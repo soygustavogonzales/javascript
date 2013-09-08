@@ -1,0 +1,81 @@
+<!DOCTYPE html>  
+<html lang="es-PE"> 
+   <head>
+     <meta charset="UTF-8">
+         <title>untitle</title> 
+         <style type="text/css">
+         *{
+         	border:0;
+         	padding:0;
+         	margin:0;
+
+         }
+         	canvas{
+         		border:2px solid #2C2C20;
+         		background:#775F5F;
+         		border-radius: 1em;
+         	}
+         </style>	
+     <script type="text/javascript">
+     	window.addEventListener('load',function(){
+     		var canvas=document.getElementsByClassName('canvas')[0],
+     		ctx=canvas.getContext('2d');
+     		canvas.width=500;
+     		canvas.height=500;
+     		ctx.font="bold 12px sans-serif"//formato del texto dentro del canvas
+     		ctx.fillStyle="#EF3F54";
+     		ctx.beginPath();
+     		ctx.moveTo(60,80);
+     		ctx.fillText("60,80",60,80)
+     		ctx.quadraticCurveTo(90,500,200,50);//(pcx,pcy,x,y),donde pcy y pcy son los puntos q reflejan la tendencia de la curva, x e y coordenadas del punto final de la curva.
+     		ctx.fillText("90,500",90,500)//("texto",x,y)escribe un texto "90,500" en la posicion 90,500
+     		ctx.fillText("200,50",200,50)
+     		
+
+     		//ctx.closePath();
+     		//ctx.stroke();
+
+     		ctx.lineTo(20,30)//linea
+     		ctx.fillText("20,30",20,30)
+     		ctx.lineTo(80,60)
+     		ctx.fillText("80,60",80,60)
+     		//ctx.closePath()
+     		ctx.stroke();//pinta solo contorno
+
+
+
+     		var timer=setInterval(function(){
+     				
+     			//canvas.width=canvas.width;//con este refresh borro lo q esta escrito anteriormente en el lienzo, esto daria el efecto de q el grafico de mueve
+     			var qX=(Math.random()*(500-0)).toFixed(0),//posicion aleatoria en X
+     			qY=(Math.random()*(500-0)).toFixed(0),//posicion aleatoria en Y
+     			r=(Math.random()*(255-0)).toFixed(0);//numero aleatorio para el color en rgbq()
+
+	     		ctx.beginPath();//inicio el grafico
+	     		ctx.fillStyle="rgba(8,239,"+r+",.8)";//color del nuevo grafico
+	     		ctx.moveTo(qX,50);//punto de inicio de la curva
+     		//ctx.fillText("450,50",450,50);
+	     		ctx.quadraticCurveTo(qX,qY,300,50);//doy esquema de la curva
+	     		//ctx.fillText(qX+","+qY,qX,qY);
+	     		//ctx.fillText("300,50",300,50);//mostrara la referencia de la cuadratura
+     			ctx.fill();//pinto la curva, y recien aparece
+     			
+     		},1000);//cada 1 seg.
+
+     	},false)
+     	
+
+     </script>
+     <link rel="stylesheet" href=""/>
+     <style type="text/css">
+     </style>
+   </head> 
+   <body>
+	  <div id="web">
+	     <canvas class="canvas">
+			YOUR BROWSER NOT SUPORT THIS FEATURE	     	
+	     </canvas>  	
+	  </div>  
+    </body> 
+</html>		
+	

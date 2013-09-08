@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+		/*
+			En este script muestro dos formas comunes del uso del
+			metodo callee() del objeto arguments : arguments.callee().
+			Lo utilizo con el algoritmo se la suma de un numero hasta
+			el 0, es decir, semejante al algoritmo del factorial de
+			un numero.
+
+		*/
+		/* 1ra forma:Usando arguments.callee en una funcion con nombre*/
+		function sumar(n){//funcion con nombre sumar
+			n=(isNaN(n))?0:parseInt(n);
+			if(n>0){
+				return n+arguments.callee(n-1);
+			}else{
+				return 0
+			}
+		}
+		console.log(sumar(10));//el metodo sumar devuelve un valor que imprimo en esta linea
+		
+		/* 2da forma:Usando arguments.callee en una funcion anonima*/
+		/*Una funcion se hace autoejecutable encerrando su instanciacion entre parentesis y termienando su instanciacion con otro par de parentesis
+			(funcion(){
+				//sentencias de la funcion
+			})
+			()
+		*/
+		console.log(
+			(function(n){//funcion anonima y autoejecutable
+					n=(isNaN(n))?0:parseInt(n);
+					if(n>0){
+						return n+arguments.callee(n-1);
+					}else{
+						return 0
+					}
+			})(10)//end funcion anonima autoejecutable
+		);//end console.log()
+
+		/*__A continuacion la 2da forma un poco mas arreglada_____________________________________________*/
+		(function sumar(n){
+			var rpta=(function(n){//rpta tomara el ultimo resultado arrojado por la funcion anonima
+				n=(isNaN(n))?0:parseInt(n);
+				if(n>0){
+					return n+arguments.callee(n-1);
+				}else{
+					return 0
+				}
+				
+			})(n);
+			console.log("rpta = "+rpta);
+		})(3);
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+
+

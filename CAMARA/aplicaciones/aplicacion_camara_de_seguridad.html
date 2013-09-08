@@ -1,0 +1,242 @@
+!!PENDIENTE
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSecurityCam</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Utiliza tu cámara web como cámara de seguridad. Use your webcam as a security cam.">
+        <meta name="keywords" content="webcam, html5, html, js, javascript, getusermedia, javascript, security cam, seguridad, alarm, alarma, camara, aplicacion web" >
+        <meta name="author" content="ProgrammingHeroes">
+        <style>
+            #logo {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+            }
+            
+            #ad {
+                float: left;
+                vertical-align: middle;
+            }
+            video{
+                width: 400px;
+                height: 400px;
+                border-radius: 10px;
+                box-shadow: 4px 6px 8px #0C0C0A;
+            }
+        </style>
+        <script>
+// websecuritycam.js -----------------------------------------------------------
+
+/*
+ * Para hacer uso de websecuritycam.js necesita que una etiqueta div de su
+ * documento html posea el id="websecuritycam".
+ */
+var div, video, canvas, contex, imgStart, imgStop, alarm, w, h, img, maxDiff;
+var watching = false, waiting = false, count = "";
+
+canvas = document.createElement("canvas");
+video = document.createElement("video");
+imgStart = document.createElement("img");
+imgStart.src = "./img/start.png";
+imgStart.addEventListener("click", start, false);
+imgStop = document.createElement("img");
+imgStop.src = "./img/stop.png";
+imgStop.addEventListener("click", stop, false);
+alarm = document.createElement("audio");
+
+window.onload = function () {
+    div = document.getElementById("websecuritycam");
+    div.style.textAlign = "center";
+    if (!alarm || !video || !canvas || !hasGetUserMedia() || !hasURL()) {
+        var text = document.createTextNode("Tu navegador "
+            +"no soporta alguna de estas caracterÃ­sticas de HTML5:"
+            +" audio, video, canvas, getUserMedia() o URL");
+        div.appendChild(text);
+        return;
+    }
+    alarm.src = "./res/alarm.wav";
+    video.addEventListener('loadedmetadata', init, false);
+    navigator.getUserMedia(
+        {video: true, audio: false},
+        setStream,
+        getError
+    );
+    canvas.style.boxShadow = "0px 0px 6px black";
+};//end load window
+
+function init() {
+    video.play();
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    if (canvas.width == 0) {
+        canvas.width = w = 640;
+        canvas.height = h = 420;
+    } else {
+        w = canvas.width;
+        h = canvas.height
+    }
+    context = canvas.getContext("2d");
+    div.appendChild(canvas);
+    div.appendChild(document.createElement("br"));
+    div.appendChild(document.createElement("br"));
+    div.appendChild(imgStart);
+    setInterval(takeSnap, 1000/30);
+    setInterval(watch, 1000/1000);
+}
+
+function hasGetUserMedia() {
+    navigator.getUserMedia = navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia;
+    if (navigator.getUserMedia) {
+        return true;
+    }
+    return false;
+}
+
+function hasURL() {
+    window.URL = window.URL ||
+        window.webkitURL ||
+        window.mozURL ||
+        window.msURL;
+    if (window.URL && window.URL.createObjectURL) {
+        return true;
+    }
+    return false;
+}
+
+function getError(e) {
+    console.log("Fallo cargando la cÃ¡mara: "+e);
+}
+
+function setStream(stream) {
+    video.src = window.URL.createObjectURL(stream);
+}
+
+function takeSnap() {
+    context.drawImage(video, 0, 0, w, h);
+    if (count != "") {
+        var fontSize = 200;
+        context.font = fontSize+"px arial";
+        var measure = context.measureText(count);
+        context.fillStyle = "rgba(240, 240, 240, 100)";
+        context.textAling = "center";
+        context.textBaseline = "middle";
+        context.fillText(count, (w-measure.width)/2, (h)/2);
+        context.strokeStyle = "rgba(0, 0, 0, 100)";
+        context.lineWidth = 5;
+        context.strokeText(count, (w-measure.width)/2, (h)/2);
+    }
+}
+
+function grabImg() {
+    var img1;
+    setTimeout(function () {
+        img1 = context.getImageData(0, 0, w, h).data;
+    }, 100);
+    setTimeout(function () {
+        takeSnap();
+        img = context.getImageData(0, 0, w, h).data;
+        var average = 0;
+        for (var i=0; i<img1.length; i+=4) {
+            var diff = Math.abs((img1[i]+img1[i+1]+img1[i+2])/3-
+                (img[i]+img[i+1]+img[i+2])/3);
+            if (diff > average) {
+                average = diff;
+            }
+        }
+        maxDiff = average*1.75;
+        watching = true;
+    }, 200);
+}
+
+function start() {
+    if (!watching && count == "") {
+        count = "3";
+        setTimeout(
+            function () {
+                count = "2"
+            },
+        1000);
+        setTimeout(
+            function () {
+                count = "1"
+            },
+        2000);
+        setTimeout(
+            function () {
+                div.replaceChild(imgStop, imgStart);
+                count = "";
+                grabImg();
+            },
+        3000);
+    }
+}
+
+function stop() {
+    if (watching) {
+        div.replaceChild(imgStart, imgStop);
+        watching = false;
+        alarmOff();
+    }
+}
+
+function alarmOn() {
+    canvas.style.boxShadow = "0px 0px 50px red";
+    alarm.loop = true;
+    alarm.play();
+}
+
+function alarmOff() {
+    canvas.style.boxShadow = "0px 0px 6px black";
+    alarm.pause();
+    alarm.currentTime = 0;
+}
+
+function watch() {
+    if (watching && !alarm.stoped) {
+        var current = context.getImageData(0, 0, w, h).data;
+        if (areDifferents(img, current)) {
+            alarmOn();
+        }
+    }
+}
+
+function areDifferents(img1, img2) {
+    for (var i=0; i<img1.length; i+=4*3) {
+        var r = img1[i];
+        var g = img1[i+1];
+        var b = img1[i+2];
+        var average = (r + g + b) / 3;
+        r = img2[i];
+        g = img2[i+1];
+        b = img2[i+2];
+        var diff = Math.abs(((r + g + b) / 3)-average);
+        if (diff > maxDiff) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// fin de websecuritycam.js ----------------------------------------------------
+    
+
+        </script>
+    </head>
+    <body style="background-color: #F91">
+        <noscript>
+            No tiene habilitado JavaScript. Debería habilitarlo para poder
+            disfrutar al completo de los contenidos de esta página.
+        </noscript>
+        <div>
+            <div id="websecuritycam">
+                <h1>WebSecurityCam</h1>
+                <!-- Elementos añadidos desde el archivo websecuritycam.js -->
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	box-sizing:border-box;
+	word-wrap:break-word;
+}
+
+#web {
+	background-color: rgba(83,78,84,.5);
+	color: white;
+	width:90%;
+	height: auto;
+	border:  2px solid cyan;
+	border-radius: 20px;
+}
+img{
+	border: 2px dotted #FB6D31;
+	border-radius: 20px;
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style rel="stylesheet" type="text/css">
+
+	body{background-color: #000000;}
+	#cajitaAltoDoc,#cajitaAnchoDoc,#cajitaLeft,#cajitaTop,#cajitaAltoVen,#cajitaAnchoVen{
+		width: 1200px;
+		height: 20px;
+		padding: 3px;
+		background: rgba(255,168,11,0.8);
+		margin: 5px;
+	}
+	
+	</style>
+	<script type="text/javascript">
+	function verMensaje(){
+		var cajitaAltoVen=document.getElementById("cajitaAltoVen");
+		var cajitaAnchoVen=document.getElementById("cajitaAnchoVen");
+		var cajitaAltoDoc=document.getElementById("cajitaAltoDoc");
+		var cajitaAnchoDoc=document.getElementById("cajitaAnchoDoc");
+		var cajitaLeft=document.getElementById("cajitaLeft");
+		var cajitaTop=document.getElementById("cajitaTop");
+		
+			
+            //console.time('time-controler');
+            var al_ven = window.outerHeight+' píxeles';//el alto de la ventana del navegador
+            var an_ven = window.outerWidth+' píxeles'; //el ancho de la ventana del navegador(todos los navegadores), ultimas versiones
+            var al_doc = window.innerHeight+' píxeles';//el alto total de1l documento(todos los navegadores)
+            var an_doc = window.innerWidth+' píxeles';//el ancho total del documento(todos los navegadores)
+            var al_doc2= document.body.offsetHeight;//el alto del documento web(FALLA CON todos DE NAVEGADORES)	
+            var an_doc2=document.body.offsetWidth;//el ancho del documento web(todos los navegadores).
+            var dis_top=window.screenY;//distancia del borde superior del navegador al borde superior de la pantalla(CHROME,IE9,FIREFOX,SAFARI)
+            var dis_left=window.screenX;//distancia del borde izquierdo del navegador al borde izquierdo de la pantalla(CHROME,IE9,FIREFOX,SAFARI)
+            var dis_top2=window.screenTop;//distancia del borde superior del navegador al borde superior de la pantalla(OPERA,IE9,CHROME,SAFARI)
+            var dis_left2=window.screenLeft//;distancia del borde superior del navegador al borde izquierdo de la pantalla(OPERA,IE9,CHROME,SAFARI)
+
+            
+            cajitaAltoDoc.innerText="Altura del documento web; Con innerHeight: "+al_doc+' píxeles; Con offsetHeight: '+ al_doc2;
+            cajitaAnchoDoc.innerHTML="Anchura del documento web;Con innerWidth: "+an_doc+' píxeles; Con offsetWidth: '+an_doc2;
+         	cajitaTop.innerHTML="Distancia al borde superior de la pantalla: con window.screenY: "+dis_top+"; Con window.screenTop: "+dis_top2;
+         	cajitaLeft.innerHTML="Distancia al borde izquierdo de la pantalla: window.screenX: "+dis_left+"; Con window.screenLeft: "+dis_left2;
+         	cajitaAltoVen.innerHTML="Altura de la vantana del navegador: "+al_ven;
+         	cajitaAnchoVen.innerHTML="Anchura de la ventana navegador: "+an_ven;
+            console.info("al_ven: "+al_ven);
+            console.info("an_ven: "+an_ven);
+            console.info("al_doc: "+al_doc+ "; al_doc2: "+al_doc2);
+            console.info("an_doc: "+an_doc+"; an_doc2: "+an_doc2);
+            console.info("dis_top: "+dis_top+"; dis_top2: "+dis_top2);
+            console.info("dis_left: "+dis_left+"; dis_left2: "+dis_left2);
+            
+            //console.timeEnd('time-controler');
+            
+            console.warn("/*************************************/")
+           /*
+		var ie_ancho=document.body.offsetWidth;
+		var ie_largo=document.body.offsetHeight;
+		var otroNav_ancho=window.innerWidth;
+		var otroNav_largo=window.innerHeight;
+		console.log("ie_largo(vertical-Y): "+ie_largo);
+		console.log("ie_ancho(Horizontal-X): "+ie_ancho);
+		console.log("otroNav_largo(vertical-Y): "+otroNav_largo);
+		console.log("otroNav_ancho(Horizontal-X): "+otroNav_ancho);
+		console.warn("**************************************");
+			*/	
+
+	}
+
+	</script>
+</head>
+<body onresize="verMensaje()">
+	<div id="web">
+		<div id="cajitaAltoDoc"></div>
+		<div id="cajitaAnchoDoc"></div>
+		<div id="cajitaLeft"></div>
+		<div id="cajitaTop"></div>
+		<div id="cajitaAltoVen"></div>
+		<div id="cajitaAnchoVen"></div>
+	</div>
+</body>
+</html>
+

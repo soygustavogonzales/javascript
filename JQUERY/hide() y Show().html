@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+		li{
+			background: #9D8F84;
+			width: 150px;
+			height: 35px;
+		}
+
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" >
+			$(document).on('ready',function(){
+				var li03=$('ul.lista1>li.li03');
+				$('.boton1').click(function(){
+					self=$(this);
+					if(li03.is(':hidden')){//igual a : li03.css('visibility'=='hidden')//le pregunto si esta oculto(ojo q sige ocupando un espacio)
+						li03.show(2000,function(){
+							self.text('ocultar:hide()');
+						});
+						
+					}else{
+						li03.hide(2000,function(){
+							self.text('mostrar:show()');
+						});
+					}
+
+				});
+			});
+
+
+	</script>
+</head>
+<body>
+	<div id="web">
+		<ul class="lista1">
+			<li class="li01">list1</li>
+			<li class="li02">list2</li>
+			<li class="li03">list3</li>
+				<button class="boton1">ocultar:hide()</button>
+			<li class="li04">list4</li>
+			<li class="li05">list5</li>
+		</ul>
+		<ul class="lista2">
+			<li class="li01">list1</li>
+			<li class="li02">list2</li>
+			<li class="li03">list3</li>
+			<li class="li04">list4</li>
+			<li class="li05">list5</li>
+		</ul>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<!-
+
+		Object.freeze(nombre_objeto) : Impide la modificación de atributos y valores de propiedad existentes e impide agregar nuevas propiedades.
+		
+		-->
+		<script>
+		function DescriptorProperties(){
+			var $=[];//una matriz
+			for(key in this){
+				//console.log("correcto..."+JSON.stringify(this)+this[key]);
+				//console.log("correcto");
+				$[key]=(Object.getOwnPropertyDescriptor(this,key));
+			}
+			return $;//arroja una matriz
+		}
+			var oPersona={
+				name:'Carlos',
+				lastname:'Torres',
+				age:23,
+			}
+			oPersona.direction="Av.Unknown";
+			console.log("delete oPersona.name: "+(delete oPersona.name)+", oPersona.name: "+oPersona.name);
+			console.log(DescriptorProperties.call(oPersona));
+			/*Analisis: Se observa que las propiedades de los atributos del objeto oPersona esta como
+			sigue:
+				writable:true,
+				configurable:true,
+				enumerable:true,
+				value:'no cambia'		
+
+			*/
+			Object.freeze(oPersona);//al objeto no se le podran agregar nuevos atributos, no sera extensible.}
+			oPersona.telefono="987846541";
+			console.log("oPersona.telefono: "+oPersona.telefono);
+			console.log(DescriptorProperties.call(oPersona));
+			/*Se analiza que luego de ejecutar el metodo Object.freeze() sobre el objeto oPersona 
+				las propiedades de los atributos del objeto oPersona cambian como sigue:
+	
+				writable:false,
+				configurable:false,
+				enumerable:true,
+				value:'no cambia'
+
+			*/
+			oPersona.age=24;//le cambio el valor del atributo//no se permite la sobreescritura 
+			console.log("oPersona.age : "+oPersona.age);//arroja 23, el valor anterior, es decir no puedo sobreescribir el atributo
+			console.log("delete oPersona.name : "+(delete oPersona.name)+", oPersona.name :"+oPersona.name);
+			oPersona.lastname=undefined;//no puedo sobreescribir
+			console.log("delete oPersona.lastname : "+(delete oPersona.lastname)+", oPersona.lastname :"+oPersona.lastname);
+			
+			console.log(
+				"oPersona.lastname :"+oPersona.lastname+"\n"+
+				"oPersona.name : "+oPersona.name
+			);
+		</script>
+		<title>UNknown</title>
+	</head>
+	<body></body>
+</html>

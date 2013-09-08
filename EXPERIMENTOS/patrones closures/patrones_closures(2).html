@@ -1,0 +1,66 @@
+!!PENDIENTE
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+/*
+
+Es necesario Estudiar el siguiente codigo!!
+(
+*/
+
+/*Aqui el problema(descomenta y debuggea esta seccion)
+Cuando se ejecuta el bucle for se esperaba que con cada
+iteracion se ejecutara la function anonima dentro del setTimeout
+pero sucede que el indice i no solo tiene un valor de 4 y como
+no existe un indice 4 en el array colors siempre se arroja undefined.
+*/
+
+/*
+
+var colors=["green","brown","yellow","white"];
+
+console.time("controller2");
+		for (var i = 0,longi=colors.length; i <longi; i++) {
+			setTimeout(function(){
+							console.log(colors);
+							console.log(i);
+							console.log(colors[i]);
+						},100);
+			}
+		};//end for
+
+*/
+/*LA SOLUCION:
+
+Se hace que la funcion anonima sea autoejecutable y se le pasa como
+argumento al indice i para que pase a ser una variable del entorno de
+la funcion anonima.
+*/
+
+var colors=["green","brown","yellow","white"];
+console.time("controller2");
+		for (var i = 0,longi=colors.length; i <longi; i++) {
+			setTimeout((function(i){
+							console.log(colors);
+							console.log(i);
+							console.log(colors[i]);
+						})(i),1);
+		};//end for
+
+var colors1={
+
+}
+
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

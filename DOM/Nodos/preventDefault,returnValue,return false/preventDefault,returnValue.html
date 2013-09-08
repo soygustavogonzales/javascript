@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<!--
+	Las pruebas realizadas con evento.preventDefalt() indican que
+	este metodo del objeto solo funciona con aquellos objeto que ya tienen
+	predeterminadamente una funcion al ejecutarse su evento:ejemplo
+	Los <input> type="submit" que por default ya te envian a la pagina indicada al darle click
+	en el action del formulario al q pertenece.
+	Los <a></a> que por default nos envian a otra pagina aldarles click.
+
+	Por tanto este metodo preventDefault() no tiene efecto alguno con
+	las funiones ejecutadas con los elementos u objetos que por default 
+	no ejecutan un metodo al disparar un evento en particular.Ejemplo:
+	los <div></div> al hacerles click no hacen algo de forma predeterminada.
+	Y no solo con los clicks sino tambien con multiples eventos de muchos nodos 
+	o elementos(span,li,ul,h1,body,etc).
+
+	Otro punto a tener en cuenta es:
+	__________________________________________________________
+	evento.preventDefault <es igual a> evento.returnVaue=false;
+	__________________________________________________________
+	Lo que hacen en pocas palabras es que el evento no llame al 
+	metodo que por default se ejecuta segun el objeto sobre el 
+	que se disparo.
+
+	La siguiente linea:
+	function(){
+		return false
+		/*Mas sentencias...*/
+	}
+-->
+	<meta charset="UTF-8">
+	<title>preventDefault()</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+
+	</script>
+	<script>
+		window.addEventListener('load',function(evento){
+			console.log("se cargo el DOM : "+evento.type);
+				var boton=document.querySelector("input[type='button']");
+				boton.addEventListener('click',function(){	
+					console.log("se ejecuto el metodo predeterminado");
+		 		},false);
+			var contador_clicks=0;
+
+			var submit=document.querySelector("input[type='submit']");
+			submit.addEventListener('click',function(evento){
+				//evento.preventDefault();//<es igual a> evento.returnValue=false;
+				evento.returnValue=false;
+				/*evito que me cargue y redirija a la pagina definido en el atributo action del form 
+				al que pertenece este elemento,dado q esta es la funcion por default del input de tipo submit*/
+				console.log("hiciste click en : "+this.nodeName);
+			},false);
+
+
+
+			var a=document.querySelector("a");
+			a.addEventListener('click',function(e){
+					e.preventDefault();//evito q me redirija a la pagina correspondiente.
+				console.log("me hiciste click: "+e.type+" ; "+e.pageX);
+			},false);
+
+			//var boton=document.querySelector("input[type='button']")
+			boton.addEventListener('click',function(){
+				if(contador_clicks>2){
+					evento.preventDefault();
+					/*
+					Notar que es casi inutil e inservible ejecutar este metodo para este 
+					objeto en su evento click, pues no existe un metodo por default que
+					 se ejecute cuando se le de click al input de tipo button
+					Por tanto el preventDefault tiene un comportamiento distinto al de
+					hacer return false en este function(){}
+					
+					*/
+					console.log("hiciste mas de 2 clicks");//esta linea si se ejecuta 
+				}else{
+					console.log("Click nro: "+contador_clicks);
+					contador_clicks++;
+				}
+			},false);
+
+		},false);
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		file:prueba_preventDefault()
+		<a href="http://www.google.com">ir a google.com</a>
+		<form action="otrapagina.php">
+			<input type="text">
+			<input type="submit">
+		</form>
+		<input type="button" value="press me!!">
+
+	</body>
+	<script>
+	</script>
+</html>

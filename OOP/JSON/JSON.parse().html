@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<!
+En este script analizaremos el metodo parse de JSON
+JSON.parse(cadena_JSON) devolvera un objeto en notacion
+JSON, en base a una cadena pasada como argumento;dicha
+cadena debe estar definida como u objeto JSON, es decir,
+debe al menos respetar una estructura similar
+
+-->
+	<script>
+		var objJson={name:'omar',lastname:'gonzales',age:21};
+			console.log(objJson);//arroja el objeto
+		var cadJson=JSON.stringify(objJson);
+			console.log(cadJson);//arroja el objeto convertido en cadena
+		var newObjJson=JSON.parse(cadJson);
+			console.log(newObjJson);//arroja la cadena convetida en objeto en notacion JSON.
+
+		var mJson=['omar','gonzales',21];
+			console.log(mJson);//arroja el objeto
+		var mCadJson=JSON.stringify(mJson);
+			console.log(mCadJson);//arroja el objeto
+		var newMCadJson=JSON.parse(mCadJson);
+			console.log(newMCadJson);//arroja el objeto
+
+		var mJson=new Array(3);
+			mJson["name"]='omar';
+			mJson["lastname"]='gonzales';
+			mJson["age"]=21;
+
+			console.log(mJson);//arroja el objeto
+		var mCadJson=JSON.stringify(mJson);
+			console.log(mCadJson);//arroja el objeto
+		var newMCadJson=JSON.parse(mCadJson);
+			console.log(newMCadJson);//arroja el objeto		
+
+
+
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

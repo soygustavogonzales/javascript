@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+	/*
+A continuacion utilizo la API de html5 openDatabase, q permite
+implementar una Base de Datos en el cliente(en el navegador) y
+matenerla en el navegdor. A continuacion hago un sencillo ejemplo
+de como crear la BD, una tabla y hacer una insercion de datos.
+	*/
+	var webdb={};
+	webdb.db=null;
+	/*Mtodo para crear la BD*/
+		webdb.open=function(options){
+			if(!openDatabase)return false;
+			//Opciones por default
+			var options=options||{};
+			options.name=options.name||'noname';
+			options.mb=options.mb||5;
+			options.description=options.description||'no description';
+			options.version=options.version||'1.0';
+			//Definimos el tamaño de la BD en MB
+			var dbSize=options.mb*1024*1024;
+			//Cargamos la BD
+			webdb.db=openDatabase(options.name,options.version,options.description,dbSize);
+		}
+	/*Ejecuciones, consultasSQL a la BD*/
+	webdb.executeSql=function(sql,data,onSuccess,onError){
+		if(!webdb.db)return false;
+		webdb.db.transaction(function(tx){
+			tx.executeSql(sql,data,onSuccess,onError)
+		});
+	}
+
+
+	/*Implementando la BD, utilizando los metodos creados anteriormente*/
+		var opt={
+			name:"demo1",
+			mb:1,
+			description:"MI 1ERA BD DE EJEMPLO",
+			version:"1.0",
+		}
+		//Abrimos la BD
+		webdb.open(opt);
+		//Creamos una tabla
+		webdb.executeSql('CREATE TABLE IF NOT EXISTS ejemplo(ID INTEGER PRIMARY KEY ASC,texto TEXT,fecha DATETIME)',
+					[],function(tx,r){
+						alert("table creada");
+					},function(tx,e){
+						alert("un error : "+e.message);
+					}
+		);
+		/*Insertamos en un nuevo elemento*/
+		webdb.executeSql('INSERT INTO ejemplo(texto,fecha) VALUES (?,?)',
+						['Mensaje de ejemplo',new Date()],
+						function(tx,r){
+							alert("nuevo elemto introducido");
+						},
+						function(tx,e){
+							alert("Error: "+e.message);
+						}
+		);
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

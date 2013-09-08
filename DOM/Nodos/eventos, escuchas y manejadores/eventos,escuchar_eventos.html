@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<!--Este ejercicio lo hice para ver en consola todos los eventos que suceden en un determinado objeto(elemento o nodo-lugar html:div,li,ul,a,etc) en concreto.
+	Recomiendo observar la consola detenidamente para estudiar el codigo, la consola de OPERA es muy buena.
+	Hago acciones especiales cuando se trata del evento keydown (cuando se presiona un tecla), pues muestro su numero asignado.
+	Para apreciar el evento onload(presente en <img> y en <body>) hago uso de un boton.
+	Por algun motivo que no hallo el evento onUnload(cuando se abandona la pagina) no se ejecuta.
+	-->
+	<script type="text/javascript">
+		
+		function aviso(evento){//el parametro evento no se especifica en el argumento cuando se le llama a la funcion aviso. es una forma especial donde el parametro es creado magicamente sin necesidad de especificarlo en la ejecucion.
+			/*NOTA:Como esta funcion sera la invocada a traves del escucha addEventListener(evento,aviso,buleano) o con -en IE<9- attachEvent(manejador_Evento,aviso) o con objeto.manejador_de_Evento = aviso;cumplira con dos principios:
+				1. Al ser creada(la funcion), siempre tendra un solo parametro o ninguno, ej: function aviso(parametro){...} o function aviso(){...}.Lo mas adecuado y por convencion es crearlo con el parametro evento: function aviso(evento){...}. 
+				2. Al ser llamada, siempre se hara sin pasarle ningun!! argumento, Ej: esto da error: aviso(argumento), esto es correcto: aviso()
+			*/
+
+			//evento (objeto)toma el valor del evento que hizo la llamada a esta funcion.
+			//this (objeto)toma el valor del objeto que sobre el que se ejecuto el evento(osea el div)
+		//this.id imprime el id del objeto div: ej.:caja,cajita,cajon.
+		//this.innerText imprime el texto dentro del objeto id
+		//this.innerHTML imprime todo el contenido dentro del objeto(nodo o elemento en este caso)-se incluyen todo el HTML,comenteariosy texto.
+		//evento.type imprime el nombre del evento que invoco a la funcion actual.
+		evento = (evento || window.event);//evento sera igual evento-si es true, osea si tiene algun valor-(mayoria de browsers +IE9) o igual a window.event-si es true, osea si tiene valor,tomara el nombre del evento provocado-(funciona en IE<9).Seria imposible q ambos sean true dado q un browser no puede ser (IE y FIREFOX) o (IE y OPERA) a la vez,por dar un ejemplo.
+		var code = (evento.keyCode)?evento.keyCode : evento.which;// esto seria <igual a> code = evento.keyCode || evento.which, el keycode funciona en IE<9 y el which funciona en los demas browsers.El keyCode o which arroja un numero asignado a la tecla presionada.
+		console.log(evento+';'+evento.type+';'+this.id);//arrojara el evento como objeto, el typo de objeto(nombre del evento), y el objeto sobre el que se provoco a ese evento(campo html:un div,li,a,input,etc)
+
+		if(evento.type=='click' && this.id=='btnEnviar'){Colocar_imagen(this.id,evento.type);}//si el evento es click y se hizo sobre el objeto con id="btnEnviar" entonces que se ejecute la funcion Colocar_imagen
+		else if(evento.type=='keydown' && (this.id=='txtNombre' || this.id=='txaComentario')){Mostrar_tecla(code);}
+		}//fin function aviso
+		function Mostrar_tecla(code){
+			console.log("tecla presionada: "+code);//mostrara el numero asignado a cada tecla que fue presionada
+		}
+		function Colocar_imagen(objeto,eventoName){//creo esta funcion para que cuando se ejecute le ponga una imagen al objeto <img> y asi poder apreciar su evento onload(ver consola).
+			var img=document.querySelector('#imgImagen');
+			img.src='imagen.jpg';
+			objeto=document.getElementById(objeto);
+			if(objeto.removeEventListener){
+			objeto.removeEventListener('click',Colocar_imagen,false);}//con esto eliminamos el escucha del objeto que invocaba al Colocar_imagen, es asi que ya no solo se ejecutara el evento onload de la imagen una sola vez, luego del primer click que se le de al boton(objeto) que "llama" a metodo Colocar_imagen.
+			else{objeto.detachEvent('onclick',Colocar_imagen);}
+			console.log("carga correcta.."+objeto.id+';'+eventoName);
+		}
+		function Handler_event(matriz){
+		/*2 formas de escuchar eventos:
+		objeto1.onclick=aviso  <igual a>  objeto1.addEventListener("onclick",aviso,false)*/
+			var listEvents=[//lista de eventos,forma rapida de iniciar un array.
+				'click',//cuando se da click en el objeto
+				'dblclick',//cuando se da doble click sobre el objeto, se llamara al metodo aviso.
+				'mouseover',//cuando se pose el mouse sobre el objeto
+				'mousedown',//cuando se haga click sin dejar de presionar.
+				'mouseup',//cuando se suelta el boton al hacer click 
+				'mouseout',//cuando el mouse deje de posarse sobre el objeto
+				'mousemove',//mientras se mueve el puntero sobre el objeto.
+				'keypress',//cuando se teclee sobre un obejto,el los div, funciona si primero se tiene seleccionado un texto u otro contenidodentro de este.
+				'keydown',//cuando e presiona la tecla.
+				'keyup',//cuando se levanta la tecla.
+				'focus',//cuando el objeto toma el foco.
+				'blur',//cuando el objeto deja de tener el foco.
+				'load',//cuando el objeto se ha cargado.
+				'unload',//cuando se intenta abandonar la pagina,util para ejecutar un popup o redireccionar cuando el usuario sale de la web.
+				'Abort',//cuando se cancelo el cargado de una imagen, ejm:cuando se detiene la pagina con [STOP]
+				'Error',//cuando un objeto image no pudo cargarse correctamente
+				'change',//cuando se cambia el contenido de un objeto
+				'select',//cuando se selecciona el contenido de un objeto				
+				'hover'
+			]//end Array
+		
+		/*
+		*	objeto : (cadena)es el nodo a buscar.
+		*	evento : (cadena)es el nombre del evento.
+		*	funcion: (cadena)es el nombre del metodo a ejecutar cuando ocurra el evento
+		*	fase: (cadena:'true' o 'false' o buleano) dictara el tipo de fase a ejecutar:captura(true) o burbuja(false)
+		*/
+		function listenEvent(objeto,evento,funcion,fase){
+			
+			//recordar q : document.getElementById(id) <igual a> document.querySelector('#'+id)
+			objeto=document.getElementById(objeto);//objeto cambia de valor, ahora es un objeto nodo
+			(objeto.addEventListener)?//si es true el navegador es distinto de IE < 9, osea mayoria de browsers
+			objeto.addEventListener(evento,funcion,fase)://el buleano(3er argumento) controla el flujo de los eventos en sus 2 fases(captura y burbuja).Notar que al llamar a la funcion aviso, no se le pasa argumentos dentro, a diferencia de como se le creo lineas arriba.
+			objeto.attachEvent("on"+evento,funtion);//si es false el browser es IE<9
+
+		}//end function
+			var i=0;var j=0;
+			for(i;i<listEvents.length;i++){
+				for(j;j<matriz.length;j++){
+					listenEvent(matriz[j],listEvents[i],aviso,false)//matriz es el array pasado como argumento en la funcion Handler_event(matriz).Notar que el metodo aviso lo coloque sin parametros,y si ves su linea de creacion(lineas arriba) parece que necesita ser llamado con un argumento -function aviso(evento){...}-
+
+				}//este bucle llama a cada argumento pasado en la funcion Handler_event(matriz), q como se aprecia tiene una matriz pasada por parametro cuando se le invoca(lineas mas abajo)
+				j=0;//cuando finaliza el bucle interno, el ultimo valor de j es 8; y como la condicion sentencia q el bucle solo iterara mientras j < matriz.length -que es 8- el bucle interno ya no seguira mas en la proxima iteracion, asi q reseteo a j dandole valor de 0.
+			}//end for...finalizado el for, todos los nodos estaran en escucha de un evento.
+		
+		/*NOTA:Para comprobar lo acontinuacion descrito, observar lo avisos en consola,impresos a partir del metodo aviso()
+				Notar que en la parte html, el div:cajita esta dentro de objeto2, y objeto2 esta dentro de cajon.
+				Cuando los escuchas de objeto1,objeto2,objeto3 estan en false,ocurre la fase burbuja(de abajo hacia arriba)-->objeto1>objeto2>objeto3, es decir cuando hago click en objeto1, tambien se hace click en objeto2 y luego en objeto3
+				objeto1 en true sucede lo mismo q lo anterior.
+				objeto1 y objeto2 en true sucede lo mismo q lo anterior.
+				Cuando los escuchas de objeto1,objeto2,objeto3 estan en  true,ocurre la fase captura(de arriba hascia abajo) -->objeto3>objeto2>objeto1,cuando hago click en objeto1,se ejecuta primero el click en objeto3,luego el click en objeto2 y luego en objeto1
+		*/
+		}
+		//cuando el documento se haya cargado por completo se llamara a los metodos dentro del window.onload
+		window.onload=function(){//funcion anonima
+		var listaNodos=['cajita','caja','cajon','txtNombre','txaComentario','btnEnviar','imgImagen','body'];//matris rapida
+		Handler_event(listaNodos);
+		
+		}
+	</script>
+	<style>
+		body{background: #000;color:#fff;font-size: 12px;}
+		#caja{
+			width:60%;
+			height:60%;
+			background: #299CF1;
+			position: relative;
+			top: 20%;
+			left: 20%;
+			margin:0 auto;
+			
+		}
+		#cajon{
+			width: 200px;
+			height: 200px;
+			background: #2FEA46;
+			position: relative;
+			-webkit-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			-ms-box-sizing:border-box;
+			box-sizing:border-box;/*esta propiedad hace que la caja, capa u otro objeto cambie su tamaño por accion de otra propiedad como margin, padding,border,etc que modifican el tamaño del objeto al que son aplicados, si nuestra caja tiene un ancho fijo de 100px -por ejempo- al ponerle un border de 2px la caja tendra ahora un ancho de 104px*/
+		}
+		#cajita{
+			width:50%;
+			height: 50%;
+			background: #7169F3;
+			position: relative;
+			left:50%;
+			
+		}
+		section{
+			position: relative;
+		}
+		#imgImagen{width: 150px;height: 150px;}
+	</style>
+</head>
+<body id="body">
+	<div id="web">
+		<div id="cajon">este es un cajon...
+			<div id="caja">esta es una caja<!--este es un comentario-->
+				<div id="cajita">esta es una cajita</div><!--este es otro comentario-->
+			</div>
+		</div>
+		<section id="formulario">
+			<fieldset>
+				<legend>formulario</legend>
+				<form action="">
+					<label for="">nombre</label><input id="txtNombre" type="text" placeholder="tu nombre" value="nombre"></br>
+					<label for="">comentario</label><textarea name="" id="txaComentario" cols="20" rows="5">este es un comentario...</textarea></br>
+					<input id="btnEnviar" type="button" value="Cargar Imagen">
+					<img id="imgImagen" src="" alt="imagen">
+				</form>
+			</fieldset>
+		</section>
+					<a href="www.viunex.com">probar evento unload del body</a>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+	/*
+			Este algoritmo tiene el objetivo de manipular una matriz, sus
+			filas y columnas por separado.
+			--Falta resolver--
+
+	*/
+	//"use strict"
+		var matriz=new Array(7),longi=matriz.length;
+		var sublongi=4;
+		var vector=new Array(0,0,0,0);
+		var dias=["lunes","martes","miercoles","jueves","viernes","sabado","domingo"];
+		var libros=["matematica","arte","filosofia","historia"];
+		for(var i=0;i<longi;i++){
+			var sumafila=0;
+			matriz[i]=new Array(sublongi);
+			var contBucles=0;
+			for(var j=0;j<sublongi;j++){//for columna
+				if(contBucles==0){
+					matriz[i][j]=Math.round(Math.random()*(20-10)+10);
+					sumafila=sumafila+matriz[i][j];
+					vector[j]=vector[j]+matriz[i][j];
+				}
+				if(((i==longi-1)&&(j==sublongi-1))&&(contBucles==0)){
+					if(j==sublongi-1){j=0}else{console.log("j no es 0");};
+					var mayorVenta=0;
+					//i=0;j=0;//reseteo valores para reutiliar las mismas variables
+					for (var k=0 ; k <longi; k++) {
+						if(matriz[k][j]>mayorVenta){
+							mayorVenta=matriz[k][j];
+							var indice_dia=k;
+						}
+					};//end for subBucle
+							console.log("la mayor venta del libro de: "+libros[j]+" fue el "+dias[indice_dia]);
+					//console.log("se lleno la matriz, ultimo: "+matriz[longi-1][sublongi-1]);
+					contBucles++;
+					//i=longi-1;//seteo i para que el bucle padre(for columna) no siga dando iteraciones
+				}
+
+			}//end for columna
+			//matriz[i]=Math.round(Math.random()*(20-10)+10);
+			document.write(matriz[i]+" :::");
+			document.write("suma de fila: "+sumafila+"</br>");
+
+		}//end for fila
+		document.write(vector);
+		console.log(JSON.stringify(matriz[4][2]));
+		console.log("matriz");
+		console.log(matriz);
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

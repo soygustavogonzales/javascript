@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;}</style>
+	<script>
+	var fecha=new Date();
+	var dateDefault=new Date('12/11/1990');
+	console.log("fecha: "+fecha+'\n'+
+			"fecha.getDate(): "+fecha.getDate()+'\n'+//arroja el numero de dia del mes.
+			"fecha.getDay(): "+fecha.getDay()+'\n'+//devuelve el numero del dia de la semana.Ej:Si es lunes,arroja 1;si es martes,2;miercoles,3;hasta domingo, que arroja 7. 
+			"fecha.getFullYear(): "+fecha.getFullYear()+'\n'+//devuelve al año real:Si es 2013, arroja '2013'.
+			"fecha.getHours(): "+fecha.getHours()+'\n'+//arroja la hora.
+			"fecha.getMilliseconds(): "+fecha.getMilliseconds()+'\n'+//arroja los milisegundos.
+			"fecha.getMinutes(): "+fecha.getMinutes()+'\n'+//arroja los minutos.
+			"fecha.getMonth(): "+fecha.getMonth()+'\n'+//arroja un entero del 0 al 11,se puede tomar como un valor para un array que tiene guardado los meses del año(con los indices del 0 al 11)
+			"fecha.getSeconds(): "+fecha.getSeconds()+'\n'+//arroja los segundos.
+			"fecha.getTime(): "+fecha.getTime()+'\n'+//Nos devuelve la cantidad de milisegundos transcurridos desde el 1 de Enero de 1970 hasta la hora almacenada en el objeto fecha al que se aplica.
+			"fecha.getTimezoneOffset(): "+fecha.getTimezoneOffset()+'\n'+
+			"fecha.getUTCDate(): "+fecha.getUTCDate()+'\n'+
+			"fecha.getUTCDay(): "+fecha.getUTCDay()+"\n"+
+			"fecha.getUTCFullYear(): "+fecha.getUTCFullYear()+"\n"+
+			"fecha.getUTCHours(): "+fecha.getUTCHours()+"\n"+
+			"fecha.getUTCMilliseconds(): "+fecha.getUTCMilliseconds()+"\n"+
+			"fecha.getUTCMinutes(): "+fecha.getUTCMinutes()+"\n"+
+			"fecha.getUTCMonth(): "+fecha.getUTCMonth()+"\n"+
+			"fecha.getUTCSeconds(): "+fecha.getUTCSeconds()+"\n"+
+			"fecha.getYear(): "+fecha.getYear()+"\n"+
+			"fecha.toGMTString(): "+fecha.toGMTString()+'\n'+
+			//"fecha.toISOString(): "+fecha.toISOString()+'\n'+
+			"fecha.toJSON(): "+fecha.toJSON()+'\n'+
+			"fecha.toLocaleDateString(): "+fecha.toLocaleDateString()+'\n'+
+			"fecha.toLocaleString(): "+fecha.toLocaleString()+'\n'+
+			"fecha.toLocaleTimeString(): "+fecha.toLocaleTimeString()+'\n'+
+			"fecha.toString(): "+fecha.toString()+'\n'+
+			"fecha.toTimeString(): "+fecha.toTimeString()+'\n'+
+			"fecha.toUTCString(): "+fecha.toUTCString()+'\n'+
+			"fecha.valueOf(): "+fecha.valueOf()+"\n"+//igual de fecha.getTime()
+			"fecha.setDate(): "+fecha.setDate()+"\n"+
+			"fecha.setFullYear(): "+fecha.setFullYear()+"\n"+
+			"fecha.setHours(): "+fecha.setHours()+"\n"+
+			"fecha.setMilliseconds(): "+fecha.setMilliseconds()+"\n"+
+			"fecha.setMinutes(): "+fecha.setMinutes()+"\n"+
+			"fecha.setMonth(): "+fecha.setMonth()+"\n"+
+			"fecha.setSeconds(): "+fecha.setSeconds()+'\n'+
+			"fecha.setTime(): "+fecha.setTime()+'\n'+
+			"fecha.setUTCDate(): "+fecha.setUTCDate()+'\n'+
+			"fecha.setUTCFullYear(): "+fecha.setUTCFullYear()+'\n'+
+			//"fecha.setUTCHours(): "+fecha.setUTCHours()+'\n'+
+			"fecha.setUTCMilliseconds(): "+fecha.setUTCMilliseconds()+'\n'+
+			"fecha.setUTCMinutes(): "+fecha.setUTCMinutes()+'\n'+
+			"fecha.setUTCMonth(): "+fecha.setUTCMonth()+'\n'+
+			"fecha.setUTCSeconds(): "+fecha.setUTCSeconds()+'\n'+
+			"fecha.setYear(): "+fecha.setYear()+'\n'+
+			"fecha.toDateString(): "+fecha.toDateString()
+			);		
+	</script>
+</head>
+<body>
+	<div id="web">
+		<input type="date" id="calendario">
+		<input type="time" id="tiempo">
+
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+		var obJSON={
+			key1:'value1',
+			key2:'value2',
+			key3:[
+				'subvalue1',
+				'subvalue2',
+				'subvalue3',
+				'subvalue4'
+			],
+			key4:{
+				key41:'subvalue41',
+				key42:'subvalue42',
+				key43:'subvalue43',
+			},
+			key5:function(){},
+			key6:1000,
+			key7:1>2||2<3,
+		}
+		for(key in obJSON){
+			if(typeof(obJSON[key])!='object'){
+				console.log(key+" : "+obJSON[key]+" : "+typeof(obJSON[key]));
+			}
+			else{
+				for(subkey in obJSON[key]){
+					console.log(subkey+" : "+obJSON[key][subkey]);
+				}
+			}
+		}
+		/*
+			console.log(
+			obJSON.key1+"\n"+
+			typeof(obJSON['key1'])+"\n"+
+			obJSON.key2+"\n"+
+			obJSON['key3']+"\n"+
+			typeof(obJSON['key3']))
+		*/
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

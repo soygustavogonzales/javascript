@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<style>
+		*{
+			margin:0px;
+			border:0px;
+			padding: 0px;
+		}
+		body{
+			height: 800px;
+		}
+		#caja{
+			background: #D06822;
+			width: 150px;
+			height: 150px;
+			border: 2px solid #E0DBCD;
+			position: fixed;
+			top:100px;
+			left:100px;
+		}
+
+		</style>
+		<title>UNknown</title>
+	</head>	
+	<body>
+
+		<div id="caja">caja
+		</div>
+	</body>
+		<script>
+			var al_ven=window.outerHeight;
+			var caja=document.getElementById("caja");
+			console.log(document.documentElement);
+			caja.style.top=(al_ven-200)+"px";
+			//console.log(caja.style.top);
+			window.addEventListener('resize',function(){
+				al_ven=window.outerHeight;
+				console.log(al_ven);
+				caja.style.top=(al_ven-200)+"px";
+			},false);
+		</script>
+</html>

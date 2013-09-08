@@ -1,0 +1,177 @@
+*{border:0;padding:0;margin:0;}
+body{background-color:#000000;color:#4DB82E;font-size:45px;text-shadow:3px 3px 3px #272822; }
+div{margin: 10px;}
+#pacman1{
+	background: url('pacman.png');
+	height: 50px;
+	width: 50px; 
+}
+
+#cajita0{
+
+	background-image:url('images.jpeg');
+	background-position: left top;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 300px;
+	width: 700px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita1{
+	background-image:url('images.jpeg');
+	background-position: right top;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 300px;
+	width: 700px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita2{
+	background-image:url('images.jpeg');
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 300px;
+	width: 700px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita3{
+	background-image:url('images.jpeg');
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 300px;
+	width: 700px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita4{
+	background-image:url('images.jpeg');
+	background-position: left top;
+	background-repeat: repeat-x;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 300px;
+	width: 700px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita5{
+	background-image:url('images.jpeg');
+	background-position: 10cm 0.5cm;/*horizontal y vertical respectivamente*/
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 300px;
+	width: 700px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita6{
+	background-image:url('images.jpeg');
+	background-position: left top;
+	background-repeat: repeat-x;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 300px;
+	width: 700px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita7{
+	background-image:url('pacman.png');
+	background-position: 5px 50px;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 300px;
+	width: 700px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita8,#cajita9,#cajita10,#cajita11,#cajita12,#cajita13,#cajita14{
+	display: inline-block;
+}
+#cajita8{
+	background-image:url('pacman.png');
+	background-position: -2px -2px;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 38px;
+	width:38px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita9{
+	background-image:url('pacman.png');
+	background-position: -52px -2px;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 38px;
+	width:38px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita9:hover{
+	background-position: -102px -2px;
+}
+#cajita10{
+	background-image:url('pacman.png');
+	background-position: -102px -2px;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 38px;
+	width:38px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita11{
+	background-image:url('pacman.png');
+	background-position: -152px -2px;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 38px;
+	width:38px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita12{
+	background-image:url('pacman.png');
+	background-position: -202px -2px;
+	background-repeat: no-repeat;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 38px;
+	width:38px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita13{
+	background-image:url('pacman.png');
+	background-position: -252px -2px;
+	background-repeat: no-repeat;
+	background-attachment: absolute;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 38px;
+	width:38px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita14{
+	background-image:url('pacman.png');
+	background-position: -302px -2px;
+	background-repeat: no-repeat;
+	background-attachment: absolute;
+	/*background-attachment: fixed; la imagen se qedara quieta*/
+	height: 38px;
+	width:38px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}
+#cajita15{
+	background-image: url('pacman.png');
+	background-position: -2px -2px;
+	background-repeat: no-repeat;
+	height: 38px;
+	width:38px;
+	border: 2px solid #27CAED;
+	border-radius: 10px;
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio se podra apreciar en accion a las funciones addEventListener(mayoria de browsers) y 
+	a atachEvent(para IE<9) que son escuchas de eventos.Tambien apreciaremos en accion a los 
+	removedores de escuchas que una ves ejecutados ya no llamaran al metodo que el 
+	escucha invocaba una vez provocado el evento.
+	Ver los mensajes por consola.
+
+	*NOTA: Notar q 
+	objeto.addEventListener("click",metodo,false); =es igual a= objeto.onclick=metodo; =es igual a= objeto.attachEvent("onclick",metodo);
+	-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+		body{background: #000;}
+	</style>
+	<script type="text/javascript">
+
+	window.onload=function(){
+		boton=document.querySelector('#boton_id');
+		imgn=document.querySelector('img');
+		imgn.onload=function(){console.log("evento onload");}
+		if(boton.addEventListener)//si es true entonces el browser entiende esta funcion, para el caso de la mayoria de navegadores incluyendo IE9 y posteriores
+		{boton.addEventListener('click',aviso1,false);//escucha que llama al metodo aviso1, luego de provocarse el evento click sobre el objeto boton.
+		boton.addEventListener('click',aviso2,false);}//lo mismo que el anterior pero esta vez se llama al metodo aviso2
+		else{boton.attachEvent('onclick',aviso1);//si es false, el navegador no entiende esa funcion y se deduce que se trata de IE, pero una version anterior al 9.
+		}
+	}
+	function aviso1(){
+		//console.log("correcto1;");
+		imgn.src="fondo.jpg";
+		(boton.removeEventListener)?//si es true entonces el browser entiende esta funcion, para el caso de la mayoria de navegadores incluyendo IE9 y posteriores
+		boton.removeEventListener('click',aviso1,false)://elimimo el escucha de eventos
+		boton.detachEvent('onclick',aviso1);//si es false, el navegador no entiende esa funcion y se deduce que se trata de IE, pero una version anterior al 9.Y procedo a ejecutar una funcion similar al removeEventListener pero para los IE <9.
+		console.log("correcto2;se ejecuto aviso1");
+		/*NOTA: Observar que solo he creado un removedor de escuchas para el metodo aviso1 con el metodo click, pero no he creado un removedor para el metodo aviso2 asi que 
+		el metodo aviso2 seguira ejecutandose cada vez que se haga click sobre el boton.*/
+	}
+	function aviso2(){
+		console.log("correcto3; se ejecuto aviso2");
+	}
+
+	</script>
+</head>
+<body>
+	<div id="web">
+		<input id="boton_id" type="button" value="hazme click">
+		<img src="" alt="fondo.jpg">
+	</div>
+</body>
+</html>
+

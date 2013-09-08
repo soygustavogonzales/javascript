@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=no">
+		<title></title>
+		<title>UNknown</title>
+		<script>
+		function DescriptorProperties(){
+			var $=[];//una matriz
+			for(key in this){
+				//console.log("correcto..."+JSON.stringify(this)+this[key]);
+				//console.log("correcto");
+				$[key]=(Object.getOwnPropertyDescriptor(this,key));
+			}
+			return $;//arroja una matriz
+		}
+		console.group("preventExtensions");
+			var oPersona={
+				name:'Gustavo',
+				lastname:'Gonzales',
+				surname:'Jesus',
+				age:23,
+			}
+			console.log(DescriptorProperties.call(oPersona)) ;
+			Object.preventExtensions(oPersona);//impido la adicion de nuevas propiedades
+			console.log(Object.isExtensible(oPersona));//se pueden agregar mas atributos?
+			oPersona.domicilio="Unknown";
+			console.log(oPersona.domicilio);//arroja undefined.
+			console.log(DescriptorProperties.call(oPersona)) ;
+		console.groupEnd("preventExtensions");
+
+		</script>
+	</head>
+	<body></body>
+</html>

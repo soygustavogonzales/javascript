@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<!En este ejercicio se pide que se ingrese un numero(en base decimal) y al presionar el boton se arrojara un mensaje de alert con el numero convertido en base hexadecimal.-->
+        <script type="text/javascript">
+
+     var a =parseInt('BFFF3C',16);
+     document.write(a);
+     
+	/*
+	for(var j=0;!stop;){//el bucle termina cuando stop sea true
+		++j;
+		document.write("hola "+j)
+		if(j==10)stop=!stop;
+	}
+	*/
+	/*
+	for(var j=0;!stop;j++){//el bucle termina cuando top sea =true
+		document.write(j+'&nbsp'+stop);
+		if(j==5){stop=true;}}
+	*/
+       
+		
+	function converterHex(number){//number deve estar en base decimal
+		var numeral='0123456789ABCDEF';
+            ///////////////////////////////
+            function cambiar(number2){
+				number2=parseInt(number2);
+		                
+				for(i=0;i<17;i++){
+					if(number2==i){break;}
+				}
+				return numeral[i];	
+            }//end function
+            //////////////////////////////
+            
+                var numberOriginal=number;
+				number=parseInt(number);
+                var respuestaHex;//resultado en hexadecimal
+		if(number<16){
+			respuestaHex=cambiar(number);
+		
+		}else{
+                        
+			var div;
+			var resto;
+			var entero;
+			var temp='';
+            var stop=false;
+			for (;!stop;) {//el bucle se detiene cuando stop=true
+				div=number/16;//puede ser entero o decimal flotante
+                               // div=parseInt(div);//
+				entero=parseInt(div);//extrae la parte entera
+				resto=number%16;//siempre entero            
+				if(resto<16){resto=cambiar(resto);}                             
+				temp=resto+''+temp;
+				if(entero<16){stop=!stop;temp=cambiar(entero)+''+temp;}else{number=entero;}				
+				
+			}//end for
+			respuestaHex=temp;
+                }//end else
+                if (numberOriginal==parseInt(respuestaHex,16)){return respuestaHex +  ' , Es correcto';}//aqui confirmo que el resultado en Hexa es correcto, comparo el valor original del numero que qiero convertir con el resultado de convertir el Hexa a decimal parseInt(valor_en_Hexa,16) y si es true imprimira la respuesta es Hexa
+		return 	(numberOriginal==parseInt(respuestaHex,16))+' maquina: ' +parseInt(respuestaHex,16)+' ,algoritmo: '+ respuestaHex;
+	}//end function
+
+	</script>
+        <style type="text/css">
+            body{background: #000000;}
+        </style>
+</head>
+<body>
+	<input type="text" placeholder="digite numero decimal" name="texto">
+	<input type="button" value="convertir a Hexadecimal" onclick="javascript:alert(converterHex(document.getElementsByName('texto')[0].value))">
+	
+</body>
+</html>

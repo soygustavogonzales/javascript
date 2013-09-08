@@ -1,0 +1,175 @@
+
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <! Estos metodos solo funcionan luego de que el DOM se haya cargado completamente-->
+    <title>trabajando con getElementById y getElementByTagName</title>
+
+    <script type="text/javascript">
+    /*
+        getElementById('id')  : obtiene el nodo con el id que se le pase comom parametro
+        getElementsByName('name') : obtiene el nodo con el atributo name que se la pase como parametro.
+        getElementsByTagName('tagName') : obtiene el nodo con el tagname(etiqeta de html:body,section,div,article,nav,aside,footer,etc) que se le pase por parametro
+    */
+        function elegirMetodo(tagName,ind_,id_,class_,nam_){
+            var rpta=prompt("Elige el metodo"+"\n"+"1 :alterarPanel1()"+"\n"+"2 : alterarPanel2()"+"\n"+"3 : alterarPanel3()"+"\n"+"4 : alterarPanel4()");
+            switch(rpta){
+
+                case '1': alterarPanel1(tagName,ind_);break;
+                case '2': alterarPanel2(id_);break;
+                case '3': alterarPanel3(class_);break;
+                case '4': alterarPanel4(nam_);break;
+                default: elegirMetodo(tagName,ind_,id_,class_,nam_); 
+            }
+        }
+
+        function alterarPanel1(tagName,ind_,id_){
+            /*haciendo pruebas concluyo q solo se pueede utilizar get...  continuos si adelante existe un 
+                document.getElementById() o getElementsByTagName()
+
+             */
+                /*alert("correcto 1");*/
+                var ind=parseInt(ind_);
+                /*alert("correcto 2"+ " name_ :"+tagName+"ind_ : "+ind_);*/
+                var panel_=document.getElementById('web').getElementsByTagName('section')[0].getElementsByTagName('article')[0].getElementsByTagName(tagName)[ind];
+                /*alert("correcto 3");*/
+                //no haria falta colocar el document.getElementById('web') ya q es el unico nodo(div con id="web") hijo directo del nodo <body>
+                /*alert("hola "+panel_.length);*/
+                panel_.style.background='#000000';
+        }
+
+        function alterarPanel2(id_){//esta es una forma directa de acceder al nodo          
+                var panel_=document.getElementById(id_)
+                panel_.style.background='#A589E2';
+                panel_.style.border='2px solid #000000';
+                panel_.innerHTML="new text";
+                
+        }
+
+        function alterarPanel3(class_){//esta es una forma directa de acceder al nodo mediante el atributo id         
+                /*alert("correcto 1 "+ class_);*/
+                var panel_= document.getElementsByClassName(class_)[0];
+                /*alert("correcto 2 : "+panel_.length);*/
+                panel_.style.background='#000000';
+                /*alert("correcto 3");*/
+                panel_[0].innerText="new text";
+                /*alert("correcto 4 "+panel_.innerHTML);*/
+        }
+        function alterarPanel4(name_){//esta es una forma directa de acceder al nodo mediante el atributo name          
+                /*alert("correcto 1 "+ name_);*/
+                var panel_= document.getElementsByName(name_);
+                /*alert("correcto 2 : "+panel_[0].getAttribute("class"));*/
+                panel_[0].style.color='#000000';
+                panel_[0].style.left="60px";
+                panel_[0].style.top="80px";
+                panel_[0].style.background='#ADFF99';
+                /*alert("correcto 3");*/
+                panel_[0].innerText="new text";
+                /*alert("correcto 4 "+panel_[0].innerHTML);*/
+        }
+    </script>
+    <style type="text/css">
+        body{background-color: #000000;}
+        #web>section[id="content-principal"]{
+            color:#ffffff;
+            background:#B9B4A5;
+        }
+        p{font-size: 2em;}
+        #web>section[id="content-principal"]>article[id="paneles"]>div,#web>section[id="content-secundario"]>article[id="paneles"]>div {/*selecciona al section que tenga el atributo id="content-principal"*/
+        /*Esto afecta a todos los div : panel1,panel2,panel3,panel4*/
+            width:80px;
+            height:100px;
+            border:3px solid #FFEB2e;
+            position: relative;    
+        }
+        #web>section[id="content-principal"]>article[id="paneles"]>div[id="panel1"]{
+            /*top:30px;
+            left:40px;
+            */
+            background-color: #A3D891;
+            z-index: 1;
+        }
+        #web>section[id="content-principal"]>article[id="paneles"]>div[id="panel2"]{
+            top:-70px;
+            left:30px;
+            background-color: #ECF472;
+            z-index: 2;
+        }
+        #web>section[id="content-principal"]>article[id="paneles"]>div[id="panel3"]{
+            top:-150px;
+            left:50px;
+            background: #FF697F;
+            z-index: 3;
+
+        }
+        #web>section[id="content-principal"]>article[id="paneles"]>div[id="panel4"]{
+            background:#758AFD;
+            top:-230px;
+            left:70px;
+            z-index:4;
+
+        }
+        #web>section[id="content-principal"]>article[id="botones"]>div[id="botones"]{
+            background:#CACACA;
+            width:300px;
+            border-radius: 7px;
+            position:relative;
+            top:-200px;
+
+        }
+        #web>section[id="content-secundario"]{
+           color:#ffffff;
+            background: #FF9293;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="web">
+        <section id="content-principal">
+            <p>solo acepta la opcion 1 o 2, has click sobre los paneles</p>
+            <article id="paneles">
+                <div id="panel1" name="name_" onclick="elegirMetodo('div','0','panel1','null','null')"><!div 1,indice 0-->
+                    panel1
+                </div>
+                <div id="panel2" name="name_" onclick="elegirMetodo('div','1','panel2','null','null')"><!div 2,indice 1-->
+                    panel2
+                </div>
+                <div id="panel3" name="name_" onclick="elegirMetodo('div','2','panel3','null','null')"><!div 3,indice 2-->
+                    panel3
+                </div>
+                <div id="panel4" name="name_" onclick="elegirMetodo('div','3','panel4','null','null')"><!div 4,indice 3-->
+                    panel4
+                </div>
+            </article>
+        </section>
+        <section id="content-secundario"> 
+            <article id="paneles">
+                <p>solo acepta la opcion 3 o 4, has click sobre los paneles</p>
+                <div class="panel5" name="name1_"  onclick="elegirMetodo('null','null','null','panel5','name1_')"><!div 5,indice 4-->
+                    panel5
+                </div>
+                <div class="panel6" name="name2_" onclick="elegirMetodo('null','null','null','panel6','name2_')"><!div 6,indice 5-->
+                    panel6
+                </div>
+                <div class="panel7" name="name3_" onclick="elegirMetodo('null','null','null','panel7','name3_')"><!div 7,indice 6-->
+                    panel7
+                </div>
+
+                <!--div 8,indice 7-->
+                <div class="panel8" name="name4_" onclick="elegirMetodo('null','null','null','panel8','name4_')">
+                    panel8
+                </div>
+            </article>
+        </section>
+                
+                <div id="botones"><!div 9,indice 8-->
+                    <input type="submit" value="alterarPanel4()" onclick="alterarPanel4('nam4_')">
+                    <input type="submit" value="panel2" onclick="alterarPanel()">
+                    <input type="submit" value="panel3" onclick="alterarPanel()">
+                    <input type="submit" value="panel4" onclick="alterarPanel()">
+                </div>
+    </div>
+</body>
+</html>

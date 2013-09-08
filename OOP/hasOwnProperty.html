@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!-En este ejercicio aplicaremos :
+	hasOwnProperty()//arroja true o false si el objeto tiene ese atributo de forma nativa y no generado por el prototype de la clase a la q pertenece
+	Si el atributo nunca fue creado para ese objeto, tambien arrojara false
+
+	-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+	function clsPadre(prop1,prop2,prop3){
+		this.prop1_=prop1;
+		this.prop2_=prop2;
+		
+		this.getProp1=function(){
+			return this.prop1_;
+		}
+		this.getProp2=function(){
+			return this.prop2_;
+		}
+		
+	}
+
+	var obj=new clsPadre();
+	clsPadre.prototype.prop3_='this is the prop3';//crear esta propiedad con el prototype da el mismo efecto que si se crease antes de la creacion del objeto de la clase.
+	clsPadre.prototype.Met3=function(){;//crear esta propiedad con el prototype da el mismo efecto que si se crease antes de la creacion del objeto de la clase.
+		return this.prop3_;
+	}
+	console.groupCollapsed('GROUP1');//Agrupara los mensajes de consola
+	console.log("obj.hasOwnProperty('prop1_'): "+obj.hasOwnProperty('prop1_')+'\n'+//arroja true
+				"obj.hasOwnProperty('prop2_'): "+obj.hasOwnProperty('prop2_')+'\n'+//arroja true
+				"obj.hasOwnProperty('getProp1'): "+obj.hasOwnProperty('getProp1')+'\n'+//arroja true
+				"obj.hasOwnProperty('prop3_'): "+obj.hasOwnProperty('prop3_')+'\n'+//arroja false//este atributo fue creado mediante prototype
+				"obj.hasOwnProperty('Met3'): "+obj.hasOwnProperty('Met3')+'\n'+//arroja false//este atributo fue creado mediante prototype
+				"obj.hasOwnProperty('loQueSea'): "+obj.hasOwnProperty('loQueSea')//arroja false//este atributo nunca fue creado
+				);
+	console.groupEnd('GROUP1');
+	console.groupCollapsed('GROUP2');
+		console.log("obj.prop3_: "+obj.prop3_+'\n'+//arroja 'this is the prop3'
+					"obj.Met3(): "+obj.Met3());//arroja 'this is the prop3'
+	console.groupEnd('GROUP2');
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

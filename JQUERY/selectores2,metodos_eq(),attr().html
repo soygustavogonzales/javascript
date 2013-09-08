@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es-PE">
+<head> 
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>
+		$(document).on('ready',function(){
+			var paragraph1=$('section>p.p1');
+			var paragraph2=$('section>p.p2');
+			if(paragraph1.length)
+				{console.log('existe p nro: '+paragraph1.length);}
+			else
+				{console.log('no existe');}
+			
+			paragraph1.text('hola mundo');
+			paragraph2.html('<p><trong>hello world</strong></p>');
+			var li=$('ul>li').eq(2);
+			li.text('este es el li d indice 2');
+			console.log(li.attr('id'));
+				if(li.attr('id')){
+					console.log(li.attr('id'));
+				}else{console.log('el li no tiene id...');
+					li.attr('id','li3');
+					console.log(li.attr('id'));
+				};
+				li.text('este es el li3');
+				var objCss={
+					background:'black',
+					color:'orange',
+					'font-family':'Arial',
+					'font-size':'20px'
+				};
+
+				var arrayCss=new Array();
+				arrayCss['background']='black';
+				arrayCss['color']='orange';
+				arrayCss['font-family']='Arial';
+				arrayCss['font-size']='20px';
+				arrayCss['width']='100px';
+				arrayCss['height']='100px';
+
+			li.css(arrayCss);	
+			var div=$('div');
+			div.text('este es el div');
+			div.css(arrayCss);
+
+
+	});
+
+	</script>
+</head>
+	<body>
+		<section id="web">
+			<p class="p1">p1</p>
+			<p class="p2">p2</p>
+			<p class="p3">p3</p>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<div></div>
+		</section>
+	</body>
+</html>

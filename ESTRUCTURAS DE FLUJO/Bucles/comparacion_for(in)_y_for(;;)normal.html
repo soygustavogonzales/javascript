@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejerccio muestro la forma de recorrer un Array o un Objeto de forma eficiente con el uso de for() y for(in) segun sus indices(si son numericos o cadenas).
+	*Si son objetos a los que se le quiere recorrer sus atributos se debe utilizar for(in){}
+	*Si son arrays de indices solo numericos lo que se quiere recorrer, entonces es obligado utilizar al for(;;){} normal, es mas recomendable por su eficiencia de rapidez. 
+	*Si son arrays de indices numericos y de cadenas o de solo cadenas, entonces se debe utilizar al for(in){}
+	ej:
+	//un array de indices numericos.
+	var matriz=new Array();
+	matriz[0]='uno';
+	matriz[1]='dos';
+	matriz[2]='tres'
+	//un array de indices cadenas y numericas.
+	var matriz=new Array();
+	matriz['cero_']='uno';
+	matriz['uno_']='dos';
+	matriz['dos_']='tres';
+	matriz[6]='seis';
+	//*NOTA: al hacer matriz.length //arrojara 7, pues tomara en cuenta solo el mayor indice numerico y al ser [6] se entiende que es el indice sexto que referencia al elemento 7mo.
+	//a continuacion un objeto, con notacion Json
+	var objeto={prop1_:'prop1',prop2_:'prop2',prop3_:'prop3'}
+
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;color:#fff;}</style>
+
+	<script type="text/javascript">
+	console.error("EVALUANDO EL ARRAY: matriz, indices numericos y cadenas");
+		var matriz=new Array()/*Notar que en este array hay indices numericos y cadenas.*/
+		matriz['dos']=function(a,b){return (a*b)};
+		matriz['uno']=function(){return 'hola'};
+		matriz[2]='dos';
+		matriz[10]='cinco';
+		console.log("matriz.length : "+matriz.length);
+		console.log("matriz['uno'](): "+matriz['uno']());
+		console.log("matriz['dos'](2,2) : "+matriz['dos'](2,2));//imprime 4
+		var i;
+	console.warn("CON: for(in){}");
+		/*Esta es la forma de recorrer una coleccion(Array u objeto) donde los indices se incluyen una notacion tipo Json, entendida como hash, donde hay una dicotomia [clave:valor] o [key:value] o [atributo:valor] o como se le quiera llamar*/
+		for(i in matriz){
+			console.log('indice: '+i+' ; valor: '+matriz[i]);
+		}
+	console.warn("CON: for(){}");
+		var longi=matriz.length;//longitud del array matriz.
+		i=0;
+		for(i;i<longi;i++){console.log('indice: '+i+' ; valor: '+matriz[i])}/*Notar que este bucle recorre solo los indices numericos(no los de cadena) y para(de parar) cuando llegue hasta el ultimo indice(el 10) .No es muy eficaz para estos tipos de arrays a pesar que es mas rapido que el for(in)*/
+	console.error("EVALUANDO EL OBJETO: oPersona");
+		var oPersona={firstname:'gustavo',
+					lastname:'gonzales',
+					edad:22,
+					cualidades:['emprendedor','innovador','proactivo'],
+					Madurez:function(){return 'adulto-joven'}
+		}
+		i=null;
+
+	console.warn("Con: for(in)");		
+
+		for(i in oPersona){//bucle que recorre al objeto
+			console.log('indice: '+i+' ; valor: '+oPersona[i]);
+		}
+
+	console.warn('CON: for()')
+		i=0;
+		var longi=5;//como no hay forma de obtener el numero de atributos(propiedades y metodos) que tiene el objeto, lo asigno manualmente
+		for (i; i < longi; i++) {
+			console.log('key: '+i+' ; valor: '+oPersona[i])
+		};
+		/*Al analizar este bucle nos percatamos que no imprimio ninguna de las propiedades del objeto, por la razon del key,¡obvio el problema es el indice! Si hubiera una forma de obtener los keys del objeto?*/
+
+	console.error("EVALUANDO EL ARRAY: matriz2, indices solo numericos");
+
+		var matriz2=new Array("hola",//esta matriz tiene indices numericos de forma implicita(del 0 hasta al 8)
+							"mama",
+							"te",
+							"quiero",
+							"mucho",
+							10,
+							undefined,
+							NaN,
+							function(){return 'oh yea!!';});
+	console.warn('CON: for()');
+		var longi=matriz2.length;//notar que longi cambia de valor
+		i=0;
+		for(i;i<longi;i++){console.log('indice: '+i+' ; valor: '+matriz2[i])}//este bucle mostro muy bien todos los elementos de la matriz de indice numericos.
+		
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

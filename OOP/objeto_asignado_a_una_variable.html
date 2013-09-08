@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio veremos que sucede con un objeto al ser asignado a una variable
+		notamos que la variable apuntara ahora por valor por referencia al objeto, de esta
+		forma cuando creemos(de crear) un atributo para la variable, estaremos creando un atributo para el objeto original.
+		ejemplo:
+		var objA={prop1_:'valor1',prop2_:'valor2',prop3_:'valor3',met1:function(){return 'llamaste al metodo1'}}
+
+		var varA;//este es un variable...
+		console.log(typeof(varA))//arroja undefined.
+		varA=objA;//ahora varA es un objeto que hace referencia(en todo aspecto) al objeto original objA.
+
+		console.log(varA.prop1_);//arroja 'valor1'.//estA es la propiedad original de object
+		console.log(typeof(varA));//arroja 'object'.}
+		varA.prop1_='valorNuevo';//puedo cambiar el valor de la propiedad del objeto como si se tratara del objeto original objA.
+		console.log(varA.prop1_);//arroja 'valor1';
+		console.log(objA.prop1);//arroja 'valor1';
+
+	-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+		var objA={name_:'erick',lastname_:'gonzales',age_:20,ocupation_:'student'}//este es un objeto
+		console.group("objeto original");
+			console.log("typeof(objA):\t"+typeof(objA)+"\n"+//arroja object
+						"objA.name_:\t"+objA.name_+"\n"+
+						"objA.lastname_:\t"+objA.lastname_+"\n"+
+						"objA.age_:\t"+objA.age_+"\n"
+						);
+		console.groupEnd("objeto original");
+		console.group("ASIGNACION POR RERERENCIA");//el objeto nuevo hace referencia al objeto original
+			var A=objA;//la variavle A se convierte en object, y en tal sentido apuntara al objeto objA
+			A.name_='roberto';
+			A.lastname_='vidaurre';
+			A.age_=30;
+			console.log("typeof(A):\t"+ typeof(A)+"\n"+//arroja object
+						"objA.name_:\t"+objA.name_+"\n"+//arroja roberto
+						"objA.lastname_:\t"+objA.lastname_+"\n"+//arroja vidaurre
+						"objA.age_:\t"+objA.age_+"\n"+//arroja 30
+						"A.name_:\t"+A.name_+"\n"+//arroja roberto
+						"A.lastname_:\t"+A.lastname_+"\n"+//arroja vidaurre
+						"A.age_:\t"+A.age_+"\n"//arroja 30
+						);
+			//console.log(typeof(Array));//arroja function
+		console.groupEnd("ASIGNACION POR RERERENCIA");
+		/*CONCLUSION: Se nota que los cambios relaizados en la variable/objeto afectan al
+		objeto obj, entendiendose que al hacer var A=obj, donde obj es un objeto, el primero(A)
+		tomara como valor por referencia al objeto obj, es decir no es una copia, sino que 
+		referencian al mismo objeto. Esto sucedera aun cuando creemos muchas variables dando
+		referencia al objeto obj.
+			
+		*/
+		console.groupCollapsed("ASIGNACION POR VALOR/COPIA")//el objeto nuevo es una copia fiel(clon) del original
+			console.group('1ERA FORMA');
+				var b=Object.create(objA);
+			/*creo el objeto b, que tendra los mismos atributos que le objeto objA, pero con la caracteristica
+			 que este objeto es una copia del objA, no hace referencia al mismo objeto,
+			 las modificaciones realizadas sobre este ultimo no afectaran en algo al objeto objA original*/
+				console.log(
+					"typeof(b) : "+typeof(b)+"\n"+
+					"objA.name_: "+objA.name_+"\n"+
+					"b.name_: "+b.name_
+				);
+				b.name_ = "Erick";//cambio la el atributo name_ del objeto b
+				console.info('modificamos b.name_ = "Erick"');
+				console.log(
+					"objA.name_ : "+objA.name_+"\n"+//arroja Roberto
+					"b.name_ : "+b.name_//arroja Erick
+				);
+			console.groupEnd();
+			console.group('2DA FORMA');
+				var clsPadre = function(){
+					this.name_="gustavo";
+					this.lastname_="gonzales";
+					this.age=23;
+				}
+				var oHijo1=new clsPadre();
+				var oHijo2=new clsPadre();
+					oHijo2.name_="erick";
+				console.log(
+					"oHijo1.name_ :  "+oHijo1.name_+"\n"+//arrojara gustavo			
+					"oHijo2.name_ : "+oHijo2.name_//arrojara erick
+				);
+
+			console.groupEnd();
+			console.group('3RA FORMA');
+				var clsMadre=function(){}//creo la clase			
+				clsMadre.prototype={//estas seran propiedades del prototipo o la plantilla de los objetos que se instancien de esta clase
+					name_:"jorge",
+					lastname_:"guerrero",
+					age_:30,
+				}
+				var oHijo1 = new clsMadre();
+				var oHijo2 = new clsMadre();
+				oHijo2.name_ = "jackie";//seteo el atributo name_ de oHijo2, es como tapar el valor de este atributo seteado en el prototipado, mas no lo sobreescribe
+				console.log(
+					"oHijo1.name_ : "+oHijo1.name_+"\n"+
+					"oHijo2.name_ : "+oHijo2.name_
+				);
+				delete oHijo2.name_;//borro el atributo name_="jackie", pero persiste el prototipo(no se eleimina el valor por "jorge")
+				delete oHijo2.lastname_;//se elimina solo el valor de su atributo en la instanciacion, mas no el valor setado en el prototipado.
+				/*borrando el atributo name_ del objeto oHijo2
+				ojo que no se produce(en el caso de este ejercicio) el mismo
+				 efecto si hacemos oHijo.name_=undefined
+				*/
+				console.info(
+					"delete oHijo2.name_"+"\n"+
+					"delete oHijo2.lastname_"
+				);
+				console.log(
+					"oHijo1.name_ : "+oHijo1.name_+"\n"+//arroja jorge
+					"oHijo2.name_ : "+oHijo2.name_+"\n"+//arroja jorge, el valor seteado en el prototipado
+					"oHijo2.lastname_ : "+oHijo2.lastname_//arroja guerrero,el valor seteado en el prototipado
+				);
+			console.groupEnd();
+		console.groupEnd("ASIGNACION POR VALOR/COPIA")
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

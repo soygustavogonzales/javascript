@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+    <!En este ejercicio mostraremos las formas que he descuvierto para crear clases e instanciar objetos
+    Con algunas solo creo objetos, con otras solo clases, y con las mayoria se pueden hacer los dos entidades -->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+     /*1era forma://Para crear solo objetos. Esllamada la forma Literal de crear objetos, tambien asociada a la forma de notacion de Json*/
+     var oObjeto = {
+         nombre: 'gustavo',
+         apellido: 'gonzales',
+         edad: 22,
+         sexo: 'masculino',
+         grado: 'superior',
+         cualidades: ['estudioso', 'autodidacta', 'creativo', 'osado', 'emprendedor'],
+         Madurez: function () {
+             if (this.edad < 18) {
+                 return 'adolescente';
+             }
+             else if (this.edad >= 18 && this.edad < 60) {
+                 return 'adulto';
+             }
+             else { return 'anciano'; }
+         }
+     }//end object
+
+
+     console.error("****************************************");
+     /*2da forma://Para crear objetos y clases. Esta forma es muy poco usada para crear a la clase*/
+     var clsEmpleado = new Function("nombre", "apellido", 'this.nombre_=nombre;this.apellido_=apellido');
+
+     var oEmpleado = new clsEmpleado("carlos", "torres"); //este es un objeto
+     console.log("Atributos del objeto oEmpleado" + "\n" +
+                     "oEmpleado.nombre_ : " + oEmpleado.nombre_ + "\n" +
+                     "oEmpleado.apellido_ : " + oEmpleado.apellido_);
+
+
+
+     console.error("****************************************");
+     /*3era forma: //Para crear objetos y clases.Es una forma mas eficiente de crear una clase*/
+     function clsAnimal(nombre, genero, nroPatas, sexo, edad) {
+         this.nombre_ = nombre;
+         this.genero_ = genero;
+         this.nroPatas = nroPatas;
+         this.sexo_ = sexo;
+         this.edad_ = edad;
+         this.EtapasDesarrollo = ['nacer', 'desarrollar', 'morir'];
+         this.dueno = false;
+         this.Madurez = function () {
+             if (this.edad_ < 1) {
+                 return 'joven';
+             }
+             else if (this.edad >= 1 && this.edad < 3) {
+                 return 'adulto';
+             }
+             else { return 'viejo'; }
+         }
+     } //end class/fuction
+     var oGatito = new clsAnimal('michifus', 'felino', 4, 'macho', 2);
+
+     console.log("Atributos del objeto oGatito: " + "\n" +
+                 "oGatito.nombre_ : " + oGatito.nombre_ + "\n" +
+                 "oGatito.genero_ : " + oGatito.genero_ + "\n" +
+                 "oGatito.nroPatas_ : " + oGatito['nroPatas_'] + "\n" +
+                 "oGatito.Madurez() : " + oGatito['Madurez']() + "\n");
+
+
+
+     console.error("****************************************");
+     /*4ta forma //Para crear objetos y clases*/
+     var clsAutomovil = function (marca, modelo, ano, color) {
+         this.marca_ = marca;
+         this.modelo_ = modelo;
+         this.ano_ = ano;
+         this.color_ = color;
+         this.nroLLantas_ = 4;
+         this.Estado = function () {
+             var fecha = new Date; var anoActual = fecha.getFullYear();
+             var antiguedad = (anoActual - this.ano_);
+             if (antiguedad < 1) { return 'nuevo'; }
+             else if (antiguedad >= 1 && antiguedad < 3) { return 'casi-nuevo'; }
+             else if (antiguedad >= 3 && antiguedad < 5) { return 'casi-viejo'; }
+             else if (antiguedad >= 5 && antiguedad < 8) { return 'viejo' }
+             else { return 'chatarra'; }
+         } //end function/metodo
+     } //end funciton/class
+
+     var oCarro = new clsAutomovil('nissan', 'station-waggon', '1992', 'blanco'); //creando e instanciando un objeto
+     var oCarro2 = new clsAutomovil('toyota', 'corolla'); //creando e instanciando a otro objeto
+
+     console.log("Atributos del objeto: oCarro : \n" +
+                         "marca: " + oCarro.marca_ + "\n" +
+                         "modelo: " + oCarro.modelo_ + "\n" +
+                         "año: " + oCarro.ano_ + "\n" +
+                         "Estado: " + oCarro.Estado());
+
+     console.log("Atributos del objeto: oCarro2 : \n" +
+                         "marca: " + oCarro2.marca_ + "\n" +
+                         "modelo: " + oCarro2.modelo_ + "\n" +
+                         "año: " + oCarro2.ano_ + "\n" +
+                         "Estado: " + oCarro2.Estado());
+
+     /*5ta forma://Solo para crear objetos. Utilizando una clase como objeto-recordar que las clases tambien se comportancomo objetos-, utilizaremos la clase ya creada anteriormente: clsAutomovil*/
+
+     clsAutomovil.dueño_ = 'gustavo gonzales sojo';
+     clsAutomovil.placa_ = 'TO7109';
+     clsAutomovil.nroMultas = 4;
+     console.log(oCarro.constructor);
+
+     /*6ta forma://Con Object. Utilizando el objeto padre del que heredan todos los objetos/clases Object*/
+
+     //Para crear solo objetos.
+     var oObjeto2 = new Object(); //En el parentesis se puede poner a valores de objetos ya creados, o a los mismos objetos.
+
+     oObjeto2.nombre_ = 'omar';
+     oObjeto2.apellido_ = 'gonzales';
+     oObjeto2.edad_ = 20;
+     oObjeto2['sexo_'] = 'masculino';
+     oObjeto2['cualidades_'] = ['estudiar', 'jugar play', 'ociar', 'servicial'];
+     oObjeto2['Madurez'] = function () {
+         if (this.edad_ < 18) {
+             return 'adolescente';
+         }
+         else if (this.edad_ >= 18 && this.edad_ < 60) {
+             return 'adulto';
+         }
+         else { return 'anciano'; }
+     }
+
+     console.log("Atributos del objeto oObjeto : " + "\n" +
+             "oObjeto2.nombre_ : " + oObjeto2.nombre_ + "\n" +
+             "oObjeto2.apellido_ : " + oObjeto2.apellido_ + "\n" +
+             "oObjeto2.edad_ : " + oObjeto2.edad_ + "\n" +
+             "oObjeto2['cualidades_'][1] : " + oObjeto2['cualidades_'][1] + "\n" +
+             "oObjeto2.Madurez() : " + oObjeto2.Madurez());
+
+     //Para crear objetos y clases. Una foma derivada de las anteriores, donde utilizo al constructor del objeto Object para crear a los nuevos objetos. */
+     var clsPersona=new Object(Function('name','lastname','this.name_=name;this.lastname_=lastaname;return this;'));
+     var oclsPersona=new clsPersona('omar','gonzales');
+     console.log("typeof(clsPersona): "+typeof(clsPersona)+'\n'+
+                "typeof(oclsPersona): "+typeof(oclsPersona)+'\n'+);
+
+     var clsAvion=new Object(function(modelo,compania){this.modelo_=modelo;this.compania_=compania})
+     var oclsAvion=new clsAvion('RT-760','Lans Peru');     
+     
+     console.error("****************************************");
+    </script>
+</head>
+
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

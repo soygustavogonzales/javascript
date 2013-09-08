@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+	function clsPadre(prop1,prop2){
+		this.prop1_=prop1;
+		this.prop2_=prop2;
+		this.getProp1=function(){
+			return this.prop1_;
+		};
+	};
+	var oHijo=new clsPadre;
+	obj={
+		property1: {
+		    configurable:true,//puede ser eliminado este atributo?.
+		    enumerable:true,//puede ser incluido en el conteo de atributos?//Osea al momento de recorrer(con un bucle) los atributos del objeto.
+		    value: 'Hello',//su valor por defecto.
+		    writable: true,//puede ser sobreescrito(cambiar de valor) este atributo?.
+  		},
+		property2: {
+			configurable:false,
+			enumerable:false,
+			value: 'World',
+			writable: false,
+  		},
+  		property3:{
+  			configurable:false,
+  			enumerable:true,
+  			value:'Sin city',
+  			writable:true,
+  		}
+	};
+	console.groupCollapsed('GROUP1');
+		console.log(Object.defineProperties(oHijo,obj));//forma de agragar atributos en lote.
+		console.log(Object.defineProperty(oHijo,'property4',{//forma de agregar un solo atributo
+			configurable:true,
+			enumerable:true,
+			value:null,
+			writable:true,
+			set prop4(value){
+				this.value_=value;
+			},
+			
+			get prop4(){
+				return (this.value_ +'...super!!');
+			},
+
+		}));
+		//oHijo.property4='EUREKA!!';
+		console.log('oHijo.property4: '+oHijo.property4);
+	console.groupEnd('GROUP1');
+	console.groupCollapsed('GROUP2')//probando writable
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property1'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property2'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property3'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property4'));
+		oHijo.property2='Peru';
+		oHijo.property1='Bye';
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property1'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property2'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property3'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property4'));
+	console.groupEnd('GROUP2');
+	console.groupCollapsed('GROUP3');//probando enumerable
+		for(var i in oHijo){
+			console.log('key: '+i+'; value: '+oHijo.i);
+		}
+	console.groupEnd('GROUP3');
+	console.groupCollapsed('GROUP4');//probando configurable
+		console.log("delete oHijo.property2: "+delete oHijo.property2+'\n'+
+					"delete oHijo.property1: "+delete oHijo.property1+'\n'+
+					"delete oHijo.property3: "+delete oHijo.property3	);
+	console.groupEnd('GROUP4');
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

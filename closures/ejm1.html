@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+	console.group("GRUPO 1");
+		var myFuncion=function(a){
+			//var a=5;b=10;
+			return function(b){
+				return a+b;
+			};
+		};
+		var pr1=myFuncion(5);
+		var pr2=myFuncion(8);
+		console.log('typeof(pr1) : '+typeof(pr1)+'\n'+//arroja function
+					'typeof(pr2) : '+typeof(pr2));//arroja function
+		console.log(pr1(2));
+		console.log(pr1());
+		console.log(pr2(2));
+		console.log(pr2());
+	console.groupEnd("GRUPO 1");
+	console.group("GRUPO 2");
+		var myFunction2=function(a){
+			return function sumar(b){
+				return a+b;
+			};
+			//return sumar();
+		};
+		var pr3=myFunction2(5);
+		var pr4=myFunction2(8);
+		console.log(pr3(2));
+		console.log(pr3());
+		console.log(pr4(2));
+		console.log(pr4());
+		console.log('typeof(pr3) : '+typeof(pr3)+'\n'+//arroja function
+					'typeof(pr4) : '+typeof(pr4));//arroja function
+	console.groupEnd("GRUPO 2");
+	console.group("GRUPO 3");
+		var myFunction3=function(a){
+			function sumar(b){
+				//a="hola";b="mundo";//con este cambio el typeof(pr5) y typeof(pr6) arroja String.
+				//console.log(typeof(a)+" ; "+typeof(b));//arroja undefined si no se ah especificado un valor por default antes de esta linea.
+				return (a+b);
+			};
+			return sumar();
+		};
+		var pr5=myFunction3(2);//pr5 no se convierte a una funcion,pues va a coger el resultad de la ejecucion de la funcion myFunction3
+		console.log('typeof(pr5) : '+typeof(pr5)+'\n'+//arroja number
+					'pr5 : '+pr5//arroja NaN(not a number)
+					);
+		/*
+		console.log(pr5(2));//invalido pues pr5 no es una funcion
+		console.log(pr5());//invalido pues pr5 no es una funcion
+		*/
+	console.groupEnd("GRUPO 3");
+	console.group("GRUPO 4");
+		var myFunction31=function(a){
+			var c=10;
+			function sumar(b){
+				//a="hola";b="mundo";//con este cambio el typeof(pr5) y typeof(pr6) arroja String.
+				//console.log(typeof(a)+" ; "+typeof(b));//arroja undefined si no se ah especificado un valor por default antes de esta linea.
+				return (a+c);
+			};
+			return sumar();
+		};
+		var pr51=myFunction31;//pr5 no se convierte a una funcion,pues va a coger el resultad de la ejecucion de la funcion myFunction3
+		console.log(pr51(5));
+		console.log(pr51);
+		console.log('typeof(pr51) : '+typeof(pr51)+'\n'+//arroja number
+					'pr51 : '+pr51//arroja NaN(not a number)
+					);
+		/*
+		console.log(pr5(2));//invalido pues pr5 no es una funcion
+		console.log(pr5());//invalido pues pr5 no es una funcion
+		*/
+	console.groupEnd("GRUPO 4");
+	console.group("GRUPO 5");
+		console.log("**************");
+		function myFunction4(a,b){
+			function sumar(){
+				return a+b;
+			};
+			return sumar();
+		};
+		var pr7=myFunction4(2,3);
+		var pr8=myFunction4(2,5);
+		console.log(pr7)
+	console.groupEnd("GRUPO 5");
+	console.group('GRUPO 6');
+	function myFunction5(a,b){
+		console.log('a + b = '+(a+b));
+	}
+	var pr9=myFunction5;
+	console.log('pr9 : '+pr9+'\n'+
+				'typeof(pr9) : '+typeof(pr9));
+	console.groupEnd('GRUPO 6');
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

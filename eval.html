@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En  este ejercicio trato a la funcion eval(), una funcion metodo que no tiene constructor por lo tanto no se puede generar un objeto a partir de el.-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;color:#fff;}</style>
+	<script type="text/javascript">
+		var matriz=['omar','erick','gustavo'];
+		var personas=new Array();
+		personas['omar']='naphin';
+		personas['erick']='naphin';
+		personas['carlos']='naphin';
+		personas['cris']='naphin';
+		personas[function metodo(){}]='naphin';
+		personas[undefined]='naphin';
+		personas[null]='naphin';
+		personas['Global']='naphin';
+		personas[String]='naphin';
+		personas[5]='naphin.';
+
+
+		var edades=[20,23,32,22,50];
+		//eval('for(var i=0;i<10;i++){console.log(i);}');
+		var longi=personas.length;
+		var i;var j=0;
+		var evalito=eval;
+		console.log("correcto1 : "+evalito);
+		//for(i in personas){personas[i]=edades[j];console.log("indice: "+i);j++}
+		console.log(personas.length+" ; "+matriz.length+" ; "+edades.length);
+		//var cadena2="personas['omar']=edades[0]";
+		var cadena2="for(i in personas){personas[i]=edades[j];console.log('correcto2 : '+i);j++}";
+		eval(cadena2);
+		
+
+
+
+
+		var matriz2=new Array("nelly","hugo","fernando","jorge");
+		var matriz3=new Array("nelly2","hugo2","fernando2","jorge2");
+		var cadena=matriz[0];
+		console.log(matriz[0]+'\tes mi super hermano');
+		//eval('console.log(cadena);prompt("escriba aqui nerd!!!");');
+		var evaluador="console.log('hola mundo desde eval');";
+		//console.log(console.error("hola loco mundo"));		
+		eval('document.write(matriz[2]+" soy yo");');
+		
+	</script>
+	<script>
+
+	console.error('*************************************');</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

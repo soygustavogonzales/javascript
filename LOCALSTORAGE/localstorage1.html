@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!-- 
+	Este es un demo del localstorage donde se pude aprecir como funciona esta API  de javascipt
+	localStorage.key()//obtiene el key(indice_numerico)
+	localStorage.nombre_atributo
+	 -->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	body{
+		background:#272822;
+	}
+	</style>
+	<script>
+		function saveStorage(nombre,edad,email){
+			localStorage.nombre=nombre;
+			localStorage["edad"]=edad;
+			localStorage.setItem("email",email);
+			console.log("datos guardados");
+			/*Forma segura de guardar, con un namespace*/
+			var User={
+				'name':nombre,
+				'edad':edad,
+				'email':email,
+			}
+			/*
+				localstorage.setItem("User",User);(INCORRECTO...)
+				localstorage.getItem("User");//arroja "[object Object]" (literalmente en una cadena)
+				**Lo corecto es primero convertir el objeto a una cadena con formato JSON, con el metodo stringify() del obj JSON
+			*/
+			User=JSON.stringify(User);//(CORRECTO)...convierto el objeto en una cadena que luego podra ser convertida facilmente a un objeto con JSON.parse(obj_cadena). Es la unica forma de pasar objetos al localStorage sin modificar su tipo de Dato.
+			localStorage.setItem("User",User);
+			/*
+				localStorage.getItem("User")//;arroja por Ejemplo: "{"name":"omar","edad":20,"email":"o@gmail.com"}"
+				*Luego convierto a objeto con JSON.parse(objeto_cadena)
+				JSON.parse(localStorage.getItem("User"));//Esto ya arroja un obj en formato JSON con el que es posible trabajar y manipular su estructura y  datos(key-value)
+			*/
+
+		}
+		function clrForm(ListaInputs,nameForm){//esta funcion limpiara los input y vaciara el localStorage
+				/*la lista de inputs debera ser un array con el name(el atributo) del formulario*/
+				var form=document[nameForm.toString()];
+				for(var i=ListaInputs.length-1;i>=0 ;i--){
+					form[ListaInputs[i].toString()].value="";//
+				}
+		}
+		function clrStorage(listaKeys){/*listaKeys es un array*/
+			if(listaKeys){
+				for(var i=listaKeys.length-1;i>=0 ;i--){
+					localStorage.removeItem(listaKeys[i].toString());//borrare del localStorage los elementos indicados en la matriz
+				}
+			}else{localStorage.clear()}//clear() removera todos los atributos guardados en el localStorage
+		}
+		function ShowLastUser(nameForm){
+					var form=document[nameForm];
+					var User=[];
+					User.nombre=localStorage.nombre,
+					User.edad=localStorage["edad"],
+					User.email=localStorage.getItem("email");
+					var UserKeys=Object.keys(User);
+				for(var i=UserKeys.length-1;i>=0 ;i--){
+					if(form[UserKeys[i]]){
+						form[UserKeys[i]].value=User[UserKeys[i]];
+						//console.log(User[UserKeys[i]]);
+					}else{
+						console.log("NO EXISTE ELEMENTO: "+UserKeys[i]);
+					}
+				}//end for
+					var oUser=localStorage.User;//extraigo el valor del objeto guardado en el localStorage,oUser es una cadena.
+					oUser=JSON.parse(oUser);//oUser es un objeto
+					console.log("DATOS EXTRAIDOS DEL NAMESPACE User"+"\n"+
+						oUser.name+"\n"+//accediendo a la propiedad del obj oUser
+						oUser.edad+"\n"+
+						oUser.email
+					)
+		}
+		window.onload=function(){
+			var btn_mostrar=document.querySelector(".get");
+			var btn_guardar=document.querySelector(".set");
+			var btn_limpiar=document.querySelector(".clr");
+			console.log(btn_mostrar + " : "+btn_guardar);
+			btn_mostrar.onclick=function(){
+				ShowLastUser("miForm");
+			}
+			btn_guardar.onclick=function(){
+				saveStorage(document.miForm.nombre.value,document.miForm.edad.value,document.miForm.email.value);
+			}
+
+			btn_limpiar.onclick=function(){
+				var inputs=["nombre","edad","email"];
+				clrForm(inputs,"miForm");/*miForm es el name del formulario*/
+				if(confirm("Limpiar tambien el localStorage?")){
+					clrStorage();
+				}
+			}
+			
+
+		}
+	</script>
+</head>
+<body>
+	<div id="web">
+		<form name="miForm" action="">
+			<input type="text" name="nombre" placeholder="nombre">
+			<input type="number" name="edad" placeholder="number">
+			<input type="mail" name="email" placeholder="email">
+		</form>
+		<button class="set">GUARDAR USUARIO</button>
+		<button class="get">MOSTRAR ULTIMO USUARIO</button>
+		<button class="clr">LIMPIAR STORAGE</button>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+*{
+	border:0;margin:0;padding:0;
+	box-sizing:border-box;
+}
+
+body{
+	background: #E7E9E4;
+}
+#web{
+	width:90%;
+	position: relative;
+	min-height: 600px;
+	background: #FFFFFF;
+	margin:0 auto;
+	border-radius: 1em;
+	box-shadow: 0 0 10px #434343;
+}
+#web>div.cajita_img{
+	width:80%;
+	//border:2px solid #78826F;
+	box-shadow: 0px 0px 15px #434343;
+	margin:0% auto;
+	overflow: hidden;
+	border-radius: 1em;
+	padding: .2em;
+}
+#web>div.cajita_img>img{
+	margin: 50% auto;
+	width: 100%;
+	border-radius: 1em;
+
+}

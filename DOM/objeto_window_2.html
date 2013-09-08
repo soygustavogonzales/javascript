@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!pruebas con el objeto window de javascript-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style rel="stylesheet" >
+		html{}
+		body{background-color: #000000;color:#ffffff;}
+		#cajita{
+			background-color: rgba(47,217,255,0.5);
+			width: 350px;
+			height: 50px;
+			display:block;
+			font-size: 15px;
+			position: absolute;
+			top:100px;
+			left:100px;
+		}
+	</style>
+	<script type="text/javascript">
+	
+	function ocultarMensaje(){
+		var cajita=document.getElementById("cajita");
+		cajita.style.display="none";
+		console.info("ocultando ventana");
+		//console.error("console error");
+		//console.warn("console warning");
+		//console.time(label);
+
+	}
+	function verMensaje(){
+		var width;
+		var height;
+			
+		width=window.innerWidth;
+		console.warn("correcto window.innerWidth ancho");
+		height=window.innerHeight;
+		console.warn("correcto window.innerHeight alto");
+				
+		var MensajeMedidaXY="el ancho :"+width+", el alto :"+height;
+		var cajita=document.getElementById("cajita");
+		cajita.style.display="block";
+		console.log(MensajeMedidaXY);
+		console.log("correcto1...");
+		cajita.innerHTML=MensajeMedidaXY;
+		setTimeout("ocultarMensaje()",3000);
+	}
+	</script>
+</head>
+<body onresize="verMensaje()">
+	<div id="web">
+			hola
+		<div id="cajita">
+		</div>
+		<div id="cajita2">
+		
+		</div>
+
+	</div>
+</body>
+</html>
+

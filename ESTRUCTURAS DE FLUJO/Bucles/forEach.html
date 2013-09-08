@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!El metodo forEach solo funciona en IE9 Y posterior, y por supuesto en todos los demas browsers
+	El forEach() solo se puede utilizar con los arrays de indices solo numericos, es decir donde el array tenga estas formas:
+	//En el array a continuacion los indices son numericos de forma implicita:
+	var matriz=new Array('uno','dos','tres','cuatro','cinco','seis');
+	//En al array a continuacion los indices son numericos y de forma explicita:
+	var matriz2=new Array();
+	matriz[0]='uno';
+	matriz[1]='dos';
+	matriz[2]='tres';
+
+	Por lo tanto el forEach no se aplica a arrays con indices cadena, o para recorreer objetos(sus atributos):
+	Ej:
+	//El siguiente array se muestra indice en cadena, con una notacion estilo Json.
+	var matriz3=new Array();
+	matriz3['cero_']='uno';
+	matriz['uno_']='dos';
+	matriz['dos_']='tres';
+	//El siguiente es un objeto, 
+	var objeto={prop1_:'prop1',prop2_:'prop2',prop3_:'prop3',metodo1:function(){return 'call by metodo1'}}
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;}</style>
+	<script type="text/javascript">
+	var index=0;
+	var matriz0 =['hola','mama','te','quiero','mucho',null,undefined,NaN,['soy','gustavo','gonzales','davalos']];
+	var matriz1 =new Array(1,2,3,4);
+	var matriz2=new Array(4);
+		matriz2['uno']='gustavo';
+		matriz2['dos']='omar';
+		matriz2['tres']='erick';
+		matriz2['cuatro']='gloria';
+		matriz2['cinco']=null;
+		matriz2['seis']=undefined;
+
+		function metodo(value,index,array) {
+			/*
+			* a es el valor del elemento
+			* b es el indice
+			* c representa al array
+			**/
+		//console.log("El array es: "+array); //no es necesario utilizar todos los parametros.
+	    console.log('indice: '+index+' ; valor: '+value);
+		}
+
+	console.log("**************");
+
+	
+	
+	//objeto.forEach(metodo);//No se puede recorrer un objeto o un array con indices de cadena con el forEach(de forma explicita).
+	matriz0.forEach(metodo);//los argumentos(el indice,valor,el array) se pasan de forma implicita
+	    console.log("____________________________");
+	matriz1.forEach(metodo);//los argumentos(el indice,valor,el array) se pasan de forma implicita.
+		console.log("____________________________");
+	matriz2.forEach(function(value,index){//esta es un forma directa de uso(con funcion anonima)//Notar que no es necesario contar con todos los parametros.
+			console.log('indice: '+index+' ; valor: '+value);
+	});
+		console.log("____________________________");
+
+	</script>
+</head>
+<body>
+	<div id="web">
+	</div>
+</body>
+</html>
+

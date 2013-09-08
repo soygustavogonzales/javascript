@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio se mostrara atributos de eventos del mouse y el puntero, cada ves que se mueva el puntero del mouse por el body de la pagina, se visualizara en consola el detalle de atributos del puntero,
+		en este caso se veremos, las distancia del puntero en relacion del limite lateral izquierdo y el limite superior de la pagina y el navegador respectivamente.
+		*NOTA: Ver los resultados por consola. El script funciona bien en la mayoria de navegadores y en IE9 Y posteriores. 	
+		-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	body{background: #000;}
+	#web{width: 300px;height: 300px;border: 2px solid #C4B5BA;}
+	</style>
+	<script type="text/javascript">
+		
+		function informar(evento){
+			console.log("correcto2;");
+			evento = evento || window.event;
+			var X1=evento.clientX;//coordenada en x con respecto del browser-el limite izquierdo de la ventana del navegador-
+			var Y1=evento.clientY;//coordenada en y con respecto del browser-el limite superior de la ventana del navegador-
+			var X2=evento.pageX;//coordenada en x con respecto del documento(pagina web)-limite izquierdo de la pagina-
+			var Y2=evento.pageY;//coordenada en y con respecto del documento(pagina web)-limite superior de la pagina-
+			var coordenadas="Con respecto del navegador> En x: "+X1+";En y: "+Y1+"\nCon respecto de la pagina> En x: "+X2+";En y: "+Y2;
+			console.log(coordenadas);
+			console.log("correcto3;");
+		}
+		window.onload=function(){
+			//var body3=document.getElementsByTagName('body');
+			//var body2=document.querySelector('body');
+			var body=document.getElementById('body_id');
+			body.addEventListener('mousemove',informar,false);//ejecuto el codigo con el addEventListener
+			
+			//body2.addEventListener("mousemove",informar,false);
+			//console.log("correcto")//+";"+body+";"+body2+";"+body3)
+
+		}
+	
+	</script>
+</head>
+<body id="body_id">
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

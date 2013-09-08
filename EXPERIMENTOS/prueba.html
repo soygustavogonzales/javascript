@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+		var obj={
+			nombre:'gustavo',
+			apellido:'gonzales'
+		}
+		obj['dni']='3423423234';
+		console.log(obj.dni+" typeof "+typeof(obj));
+		function padre(name,lastname,dni,age){
+			var self=this;
+			this.name_=name;
+			this.lastname_=lastname;
+			this.dni_=dni;
+			this.age_=age;
+			this.poder={
+				name_:'tavo',
+				hielo:function(){
+					return this.name_+": arroja rocas de hielo";
+				},	
+			};
+			(this.metodo=function(){
+				console.info(
+					"correcto : "+self.name_+"\n"+
+					"correcto : "+this.name_
+					);
+			})();
+		}
+		var hijo=new padre('vito','corleone','2132343',23);
+		console.log(hijo.poder.hielo());
+		hijo.metodo();
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		hol
+	</body>
+</html>

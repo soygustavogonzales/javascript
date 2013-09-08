@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio probaremos el borrado de elementos de un objeto y de un array 
+Para el caso del array probare dos formas, mediante su metodo splice y por el nativo delete.
+Para el caso de los atributos de los objetos probaremos solo la forma delete, pues creo es la unica forma nativa de hacerlo.
+NOTACION: 
+	*Para arrays:usando delete
+		Con delete: el elemento cambia de valor a undefined, el indice sigue existiento.Por tanto el length de ese 
+		array no cambiara, sera el mismo que antes que se 'borrara' el elemento.
+			var matriz=['uno','dos','tres','cuatro'];//este es un array
+			console.log(matriz.length)//arroja 4.
+			delete matriz[0];//con esto el valor del elemento de matriz[0] cambiara a undefined
+			console.log(matriz[0]);//arroja undefined
+			console.log(matriz.length);//arroja 4.+
+	*Para arrays:usando su metodo splice()
+			matriz.splice(2);//significa que se cogera e iliminaran los elementos desde el indice 2 hasta el final del array 
+			matriz.splice(2,3);//significa que se cogera e iliminaran los elementos desde el indice 2, y a partir de este se contaran 3 indices mas, es decir cogeran a los indices:2,3,4 y los eliminaran 
+			matriz.splice(2,3,'a','b','c')//igual q el anterior, mas esta ves se insertaran los tres elementos('a','b','c') a partir del 3er argumento de este splice, y se ubicaran a partir del indice 2 del array matriz.Como 3 elementos fueron eliminados los nuevos reemplazan a los eliminados.
+			matriz.splice(2,3,'a','b','c','d','e')//igual q el anterior, mas esta ves se insertan elementos(mas de 3) que haran desplazarse a los anteriores hacia la derecha.
+
+	*Para objetos:usando delete:
+	var objeto={atrib1_:'atrib1',atrib2_:'atrib2',metodo1:function(){return 'call to metodo1'}}//
+	delete objeto.atrib1_
+	console.log(objeto.atrib1_);//arroja undefined
+	
+
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background:#000;}</style>
+	<script type="text/javascript">
+		
+		var aPrimos=new Array("a","b","c","d","e","f",'g','h','i','i','j','k');
+		console.log("correcto0; matriz original aPrimos: "+aPrimos+"; aPrimos.length: "+aPrimos.length);
+		console.log('correcto1;aPrimos.splice(4,3); los elementos eliminados son: '+aPrimos.splice(4,3));
+		console.log("mostrando aPrimos[4]:"+aPrimos[4]);
+		console.log("correcto2;Como queda: "+aPrimos+"; aPrimos.length: "+aPrimos.length);
+
+		var aPrimos=new Array("a","b","c","d","e","f",'g','h','i','i','j','k');
+		console.log("correcto3;matriz original aPrimos: "+aPrimos+"; aPrimos.length: "+aPrimos.length);
+		console.log('correcto4;aPrimos.splice(3); los elementos eliminados son: '+aPrimos.splice(3));
+		console.log("mostrando aPrimos[5]: "+aPrimos[5]);
+		console.log("correcto5;Como queda: "+aPrimos+"; aPrimos.length: "+aPrimos.length);
+
+		var aPrimos=new Array("a","b","c","d","e","f",'g','h','i','i','j','k');
+		console.log("correcto6;matriz original aPrimos: "+aPrimos+"; aPrimos.length: "+aPrimos.length);		
+		console.log("correcto7;aPrimos.splice(2,3,'01','02'); los elementos eliminados son: "+aPrimos.splice(2,3,'01','02'));
+		console.log("mostrando aPrimos[4]: "+aPrimos[4]);
+		console.log("correcto8;Como queda: "+aPrimos+"; aPrimos.length: "+aPrimos.length);
+
+		var aPrimos=new Array("a","b","c","d","e","f",'g','h','i','i','j','k');
+		console.log("correcto6;matriz original aPrimos: "+aPrimos+"; aPrimos.length: "+aPrimos.length);		
+		console.log("correcto7;aPrimos.splice(2,3,'01','02','03','04','05'); los elementos eliminados son: "+aPrimos.splice(2,3,'01','02','03','04','05'));
+		console.log("correcto8;Como queda: "+aPrimos+"; aPrimos.length: "+aPrimos.length);
+
+		var aPrimos=new Array("a","b","c","d","e","f",'g','h','i','i','j','k');
+		console.log("correcto9;matriz original aPrimos: "+aPrimos+"; aPrimos.length: "+aPrimos.length);
+		delete aPrimos[0];delete aPrimos[1];delete aPrimos[4];
+		console.log("correcto10; Aplicando delete aPrimos[0];delete aPrimos[1];delete aPrimos[4]\nmostrando aPrimos[0]: "+aPrimos[0]+'\nmostrando aPrimos[1]: '+aPrimos[1]+'\nmostrando aPrimos[4]: '+aPrimos[4]);
+		console.log("correcto11; Como queda aPrimos: "+aPrimos+"; aPrimos.length: "+aPrimos.length);
+
+		var aProfesores=new Array();//este es un tipo de array donde coloco nombre a los indices, osea ya no seran enumerados sino cadenas.Aqui no es facil usar los bucles para recorrer sus indices y elementos.
+			aProfesores['asp']='rosales';
+			aProfesores['basic']='forlan';
+			aProfesores['php']='lederman';
+			aProfesores['javascript']='miguel';
+			aProfesores['html5']='jorge';
+			aProfesores[2]='hola';
+			aProfesores[4]='mama';
+			aProfesores[8]='gloria';
+			console.log("aProfesores['html5']: "+aProfesores['html5']);
+			delete aProfesores['html5'];
+			console.log("delete aProfesores['html5'];");
+			console.log("aProfesores['html5']: "+aProfesores['html5']);
+		//var posicion=aPrimos.indexOf('willian');
+	//aPrimos.splice(4);//elimina los elementos a partir del indice 4 en adelante, arroja un array con los elementos escogidos
+	//aPrimos.splice(4,3);//elimina los elementos a partir del indice 4 en adelante, pero solo 3 elementos(osea los elementos de los indices 4,5 y 6) y finalmente arroja un array de elementos eliminados.
+		//aPrimos.splice(3,01,02,03,04,05);//los parametros desde el el 3ro hasta el ultimo 
+		//aPrimos.splice(2,3,'02','03','04','05');//los parametros desde el 2do hasta el ultimo seran los que se insertaran al array aPrimos seran los elementos que se insertaran
+		//console.log("correcto3: "+aPrimos);
+
+		var objeto={prop1_:'prop1',prop2_:'prop2',prop3_:'prop3',metodo1_:function(){return 'call by metodo1_'}};
+		console.log("mostrando objeto: ");
+		console.log("objeto.prop1_: "+objeto.prop1_+"\n"+
+					"objeto.prop2_"+objeto.prop2_+"\n"+
+					"objeto.prop3_: "+objeto.prop3_+"\n"+
+					"objeto.metodo1_: "+objeto.metodo1_);
+		delete objeto.prop1_;
+		delete objeto.metodo1_;//cuidado seria incorrecto escribir: objeto.metodo1_
+		console.log("Aplicando delete objeto.prop1_ ; delete objeto.metodo1_ : ");
+		console.log("mostrando objeto: ");
+		console.log("objeto.prop1_: "+objeto.prop1_+"\n"+
+					"objeto.prop2_"+objeto.prop2_+"\n"+
+					"objeto.prop3_: "+objeto.prop3_+"\n"+
+					"objeto.metodo1_: "+objeto.metodo1_);
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

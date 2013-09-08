@@ -1,0 +1,86 @@
+<!DOCTYPE html>  
+<html lang="es-PE"> 
+   <head>
+     <meta charset="UTF-8">
+         <title>untitle</title>
+         <style type="text/css">
+
+         canvas, div{
+         	background:#fff;
+         	background-image: 
+            linear-gradient(90deg, transparent 79px, #abced4 79px,#abced4 81px, transparent 81px),
+         	-webkit-linear-gradient(90deg, transparent 79px, #abced4 79px,#abced4 81px, transparent 81px),
+            linear-gradient(#eee .1em, transparent .1em);
+         	-webkit-linear-gradient(#eee .1em, transparent .1em);
+         	background-size: 100% 1.2em;
+         }
+         /*div{
+         	width:500px;
+         	height:500px;
+         	background:#fff;
+         	background-image: 
+         	linear-gradient(90deg, transparent 79px, #abced4 79px,#abced4 81px, transparent 81px),
+         	linear-gradient(#eee .1em, transparent .1em);
+         	background-size: 100% 1.2em;
+         }
+         */
+         </style>	 
+     <script type="text/javascript">
+     	window.addEventListener('load',function(){
+     		var canvas=document.getElementById('canvas');
+     		var points={};
+     		var counter=0;
+     		function f(x){
+     			return (50*Math.sin(0.05*x)+150)
+     		}
+     		var draw=function(){
+     			if(counter<600){
+     				ctx.beginPath();
+     				ctx.moveTo(x,y);
+     				x++;
+     				y=f(x);
+     				points[x]=y;
+     				ctx.lineTo(x,y);
+     				ctx.stroke();
+     				if(x>1000){
+     					clearInterval(timeout);
+     				}
+     			}else{
+     				ctx.clearRect(0,0,600,100);
+     				ctx.beginPath();
+     				points[x]=y;
+     				x+=1;
+     				y=f(x);
+     				for(var i=0;i<600;i++){
+     					ctx.lineTo(i,points[i*counter-600])
+     				}
+     				ctx.stroke();
+     			}
+     			counter++;
+     		}
+     		if(canvas.getContext){
+     			var ctx=canvas.getContext("2d");
+     			ctx.lineWidth=3;
+     			var x=0,
+      			y=f(0);
+     			var timeout=setInterval(draw,10);
+     		}
+     	},false);
+     </script>
+     <link rel="stylesheet" href=""/>
+     <style type="text/css">
+     	
+     </style>
+   </head> 
+   <body>
+	  <div id="web">
+	  	   <canvas id="canvas" width="1500" height="500">
+	  	   	your browser not suport this feature of html5
+	  	   </canvas>
+	  	   <div>
+	  	   	hola soy un div
+	  	   </div>	
+	  </div>  
+    </body> 
+</html>		
+	

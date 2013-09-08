@@ -1,0 +1,58 @@
+EL BENCHMARKING
+
+RESUMEN
+ABSTRACT
+INDICE
+INTRODUCCION
+
+MARCO TEORICO
+
+	EFICIENCIA Y EFICACIA
+	CONTEXTO DEL BENCHMARKING
+	BENCHMARKING EN LAS CIENCIAS DE LA COMPUTACION
+	BENCHMARKING DE ALGORITMOS
+	EL NAVEGADOR WEB
+	EL MOTOR DE RENDERIZADO DE UN NAVEGADOR
+	EL MOTOR DE JAVASCRIPT
+	HERRAMIENTA JSPERF PARA BENCHMARK
+	LAS OPERACIONES POR SEGUNDO
+
+CASO DE ESTUDIO
+
+	EL ALGORITMO DE LA SUMATORIA DE N NUMEROS DE DOS FORMAS DE SOLUCION
+	INTERPRETACION DE RESULTADOS SOBRE JSPERF
+
+APLICACION DE LA PRUEBA DE HIPOTESIS DE UNA DIFERENCIA DE PROPORCIONES POBLACIONALES
+	INTERROGANTE:
+			Existe probabilidad estadistica para afirmar que la proporcion de algoritmos eficientes resueltos
+			por formula matematica son mayores que la proporcion de algoritmos eficientes resueltos por bucles en base
+			a las marcas del los 300 millones de operaciones por segundo.?
+	
+	DATOS DEL CALCULO:
+		POBLACIONES
+			ALGORITMO BUCLES: 70 pruebas con el algoritmo resuelto por bucles
+			ALGORITMO FORMULA: 65 pruebas con el algoritmo resuelto por formula matematica()
+		PROPORCIONES
+			ALGORITMO BUCLES:
+				55 pruebas indican alta velocidad(EFICIENCIA) en ops(marcas sobre 300 millones).
+			ALGORITMO FORMULA:
+				60 pruebas arrojaron alta velocidad(EFICIENCIA) en ops(marcas sobre 300 millones).
+
+		GRADO DE SIGNIFICACION(ALFA = 0.5)
+		FORMULA DE DISTRIBUCION NORMAL(CONOCIDA)
+		GRAFICA DE DISTRIBUCION NORMAL(CONOCIDA)
+	
+	HIPOTESIS 
+		PI1: proporcion de algoritmos eficientes resueltos por bucles
+		PI2: proporcion de algoritmos eficientes resueltos por formula matematica
+		Ho:	PI1 > PI2  
+		H1:	PI1 < PI2
+	CONCLUSION E INTERPRETACION
+
+		RECHAZO O NO RECHAZO H0
+
+	
+CONCLUSIONES GENERALES
+BIBLIOGRAFIA
+
+

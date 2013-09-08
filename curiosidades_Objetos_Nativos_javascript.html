@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio vamos a introducirnos en algunos objetos nativos de javascript.
+*NOTA:Cuando menciono a la especificacion de un objeto hago referencia a la descripcion detallada en lista de los metodos nativos que posee ese objeto en concreto.Asi por ejemplo: 
+	var oCadena=new String();
+	console.log(oCadena)//arrojara una lista de atributos de ese objeto, que hereda los atributos del objeto String, entonces veremos los atributos del objeto String;
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;}</style>
+	<script type="text/javascript">
+		var variable=Boolean;
+		console.log(variable);
+		console.log("typeof variable: "+typeof variable);
+		var variable2=Boolean('hola');
+		var variable21=Boolean(null);
+		var variable22=Boolean(undefined);
+		var variable23=Boolean(NaN);
+		var variable24=Boolean(String('hola ma'));
+		var variable25=Boolean(0);
+		var variable26=Boolean(-0);
+		var variable27=Boolean(1);
+		console.log("variable2: "+variable2+'\n'+//arroja true
+					"variable21: "+variable21+'\n'+//arroja false
+					"variable22: "+variable22+'\n'+//arroja false
+					"variable23: "+variable23+'\n'+//arroja false
+					"variable24: "+variable24+'\n'+//true
+					"variable25: "+variable25+'\n'+//false
+					"variable26: "+variable26+'\n'+//arroja false
+					"variable27: "+variable27);//arroja true
+		var variable3=Math;//Math es un objeto/clase que no posee un constructor por lo tanto no se puede instanciar un objeto de el mediante el new
+		console.log(variable3);//arroja la especificacion del objeto Math
+		console.log("typeof variable3: "+typeof variable3);
+		var variable4=new String();
+		console.log(variable4);//arroja la especificacion del objeto String
+		console.log("typeof variable4: "+typeof variable4);
+		var variable5=new Date();
+		console.log(variable5);//arroja la especificacion del objeto Date
+		console.log("typeof variable5: "+typeof variable5);
+		var variable6=new Boolean();
+		console.log(variable6);//arroja la especificacion del objeto Boolean	
+		console.log("typeof variable6: "+typeof variable6);
+		var variable7=new RegExp();
+		console.log(variable7);//arroja la especificacion del objeto RegExp
+		console.log("typeof variable7: "+typeof variable7);
+		var variable8=new Number();
+		console.log(variable8);//arroja la especificacion del objeto Number
+		console.log("typeof variable8: "+typeof variable8);
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

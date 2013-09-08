@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <!-
+En este ejercicio analizamos los distintos patrones que existen para la creacion de
+objetos
+-->
+    <title>Document</title>
+    <link rel="stylesheet" href=""/>
+    <script>
+     console.group("Paradigma de factoria");
+        function clsSerVivo(name,lastname,surname){
+            var o=new Object();
+            o._name=name;
+            o._surname=surname;
+            o._lastname=lastname;
+            o.hablar=function(hablar){
+                return ("Hola soy : "+o._name);
+            }
+            o._caracteristicas=[{brazos:2,piernas:2,racional:true,hobbie:['socializar','cantar']}];
+            return o;
+         }
+         var oCarlos=clsSerVivo('carlos','segundo','torres');
+         oCarlos._caracteristicas[0].hobbie.push('coleccionar');
+         var oOmar=clsSerVivo('omar','jesus','gonzales');
+         oOmar._caracteristicas[0].hobbie.push('bailar');
+         console.log(
+            oCarlos._name+"\n"+
+            oCarlos._lastname+"\n"+
+            oCarlos._surname+"\n"+
+            oCarlos._caracteristicas[0].hobbie+"\n"+
+            oCarlos.hablar()+"\n"+
+            (oCarlos instanceof clsSerVivo)+"\n"+//arroja false
+            (oCarlos instanceof Object)//arroja true
+          );
+         console.log(
+            oOmar._name+"\n"+
+            oOmar._lastname+"\n"+
+            oOmar._surname+"\n"+
+            oOmar._caracteristicas[0].hobbie+"\n"+
+            oOmar.hablar()+"\n"+
+            Object.prototype.toString.call(oOmar)+"\n"+
+            typeof(oOmar)+"\n"+
+            (oOmar instanceof clsSerVivo)+"\n"+//arroja false
+            (oOmar instanceof Object)//arroja true
+          );
+     console.groupEnd("Paradigma de factoria");
+     console.group("Paradigma de Constructores");
+     function clsCoche(marca,modelo,anyo){
+        this._marca=marca;
+        this._modelo=modelo;
+        this._anyo=anyo;
+        this._getMarca=function(){
+            return this._marca;
+        }
+     }
+        var coche1=new clsCoche('nissan','SW','1992');
+        var coche2=new clsCoche('toyota','ST','1996');
+        console.log(
+            coche1._marca+"\n"+
+            coche1._modelo+"\n"+
+            coche1._anyo+"\n"+
+            coche1._getMarca()+"\n"+
+            (coche1 instanceof clsCoche)+"\n"+
+            (coche1 instanceof Object)
+        );
+        console.log(
+            coche2._marca+"\n"+
+            coche2._modelo+"\n"+
+            coche2._anyo+"\n"+
+            coche2._getMarca()+"\n"+
+            (coche2 instanceof clsCoche)+"\n"+
+            (coche2 instanceof Object)
+        );
+     console.groupEnd("Paradigma de Constructores");
+     console.group("Paradigma de Prototipos");
+
+        function clsAnimal(){}
+            clsAnimal.prototype._nombre='michifus';
+            clsAnimal.prototype._especie='gatuna';
+            clsAnimal.prototype._edad=2;
+            clsAnimal.prototype._GetEdad=function(){
+                return this._edad;
+            };
+        
+        var oGatito=new clsAnimal('michifus','gatuna',2);
+        var oMosca=new clsAnimal('mosquita','insecto',0.1);
+        console.log(
+            oGatito._nombre+"\n"+
+            oGatito._especie+"\n"+
+            oMosca._edad+"\n"+
+            oMosca._GetEdad()+"\n"+
+            (oGatito instanceof clsAnimal)+"\n"+
+            (oGatito instanceof Object)
+        );
+     console.groupEnd("Paradigma de Prototipos");
+     console.group("Paradigma de Hibrido Constructores/Prototipos");
+        function clsFigGeometrica(nombre,nroLados,lado,tipo){
+            this._nombre=nombre;
+            this._nroLados=nroLados;
+            this._tipo=tipo;//regular o irregular
+            this._lado=lado;
+            this._terminoRelacionados=[
+            'plano',
+            'dibujable',
+            'calculable',
+            'matematica',
+            ];
+        }
+        clsFigGeometrica.prototype.GetArea=function(){
+            if(this._lado && this._nroLados && this._tipo=="regular" && this._nombre=="cuadrado"){
+                return this._lado*this._lado;
+            }else if(this._lado && this._nroLados && this._tipo=="regular" && this._nombre=="triangulo"){
+                return this._lado*this._lado/2;
+            }else{
+                return "Error";
+            }
+        }
+        var triangulo =new clsFigGeometrica('triangulo',3,5,'regular');
+            triangulo._terminoRelacionados.push('pitagoras');
+        var cuadrado =new clsFigGeometrica('cuadrado',4,8,'regular');
+            cuadrado._terminoRelacionados.push('rombo');
+        console.log(
+            triangulo._nombre+"\n"+
+            triangulo._nroLados+"\n"+
+            triangulo._lado+"\n"+
+            triangulo._terminoRelacionados+"\n"+
+            triangulo.GetArea()
+        );
+        console.log(
+            cuadrado._nombre+"\n"+
+            cuadrado._nroLados+"\n"+
+            cuadrado._lado+"\n"+
+            cuadrado._terminoRelacionados+"\n"+
+            cuadrado.GetArea()
+        );
+     console.groupEnd("Paradigma de Hibrido Constructores/Prototipos");
+
+
+    </script>
+    <style>
+    </style>
+</head>
+    <body>
+        
+    </body>
+</html>

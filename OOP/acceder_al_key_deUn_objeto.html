@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<!
+	
+
+	Recordar que un objeto en javascript esta compuesto por una dicotomia,
+	un hash, o una pareja de key:value(clave:valor).
+	ejm:
+	var obj={
+		name:'Alan',
+		surname:'Garcia',
+	}
+	*Aqui: name y surname son los key;
+	*Alan y Garcia son los values;
+	Donde el valor puede ser cualquier tipo de dato.
+		*Este script muestra las dos fomras que hay para 
+		acceder a los atributos de un objeto.
+		FORMA 1: nombre_objeto.nombre_atributo
+		FORMA 2: nombre_objeto['nombre_atributo']
+		**La FORMA 2 tiene la ventaja de ser dinamica,
+		es decir al 'nombre_atributo' se le puede reemplazar
+		por una variable.
+		Asi:
+		var obj=new Object();
+		obj.name='gustavo';
+		var antroponimo='name';
+		 obj[antroponimo];//arrojaria 'gustavo' 
+		 obj.antroponimo;//arrojaria undefined,pues interpreta a antroponimo como un atributo(key) mas,pero no fue definido.
+	
+			
+
+
+-->
+	<script>
+	/*A continuacion demuestro algunos de los distintos tipos de valores que puede tomar e key en un objeto*/
+		var obj=new Object();
+		obj.texto='soy texto';
+		obj[/a*/]='soy una Expresion Regular';//.../a*/ es una Expresion Regular
+		obj['2']="soy '2'";
+		obj[2]='soy 2';//es diferente que obj.2, este ultimo lanzaria una excepcion
+		obj[NaN]='soy NaN';
+		obj[undefined]='soy undefined';
+		obj[function(){}]='soy function(){}';
+		obj[typeof(Object)]='soy typeof(Object)';
+
+		for(var key in obj){
+			console.log("key: "+key+", value: "+obj[key]);
+		}
+
+		function clsPersona(name,lastname,age){
+			this.name_=name;
+			this.lastname_=lastname;
+			this.age_=age;
+		}
+		var gagd=new clsPersona('jorge','guerrero',34);
+		console.log("gagd.name : "+gagd.name_+"\n"+
+					"gagd['lastname'] : "+gagd['lastname_']+"\n"+
+					"gagd.['age'] : "+gagd['age_']);
+		
+		for (var i in gagd) {
+			console.log("key: "+i+" ,value :  "+gagd[i]);
+
+
+		};
+
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

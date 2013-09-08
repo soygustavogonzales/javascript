@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<style>
+	</style>
+	<script>
+		window.addEventListener('load',function(){
+				var article=document.getElementsByClassName('art2')[0];
+				var df=document.createDocumentFragment();
+				var ul=document.createElement('ul');
+				//ul.textContent=", soy el nuevo ul";
+				//ul.innerText="hola a todos";
+				//console.log(ul.textContent);
+				ul.setAttribute('class','ul_');
+				
+				console.time("CONTROLLER: DocumentFragment");
+					for(var i=1;i<=10;i++){
+						var li=document.createElement('li');
+						li.setAttribute('class','li:'+i);
+						li.textContent="soy li:"+i;
+						df.appendChild(li);
+					}
+					article.appendChild(df);
+				console.timeEnd("CONTROLLER: DocumentFragment");
+					//ul.appendChild(df);
+				
+				var article=document.getElementsByClassName('art3')[0];
+				var df=document.createDocumentFragment();
+				var ul=document.createElement('ul');
+				ul.setAttribute('class','ul_');
+
+				
+				console.time("CONTROLLER: Normal appendChild");
+					for(var i=1;i<=10;i++){
+						var li=document.createElement('li');
+						li.setAttribute('class','li:'+i);
+						li.textContent="soy li:"+i;
+						ul.appendChild(li);
+					}
+					article.appendChild(ul);
+				console.timeEnd("CONTROLLER: Normal appendChild");
+				
+				
+		},false);
+	</script>
+</head>
+	<body>
+		<section class="sec1">
+			<article class="art1">article1
+				<ul>
+					<li>li1</li>
+					<li>li2</li>
+					<li>li3</li>
+					<li>li4</li>
+				</ul>
+			</article>
+			<article class="art2">article2
+			</article>
+			<article class="art3">article3
+			</article>
+		</section>
+	</body>
+</html>	

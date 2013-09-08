@@ -1,0 +1,8 @@
+/*
+Para acceder a los atributos de un objeto cualquiera que fuese 
+es necesario ejecutar la siguiente instruccion
+Objeto.attributes : donde Objeo es un nodo, un elemento u objeto cualquiera,
+
+
+
+*/

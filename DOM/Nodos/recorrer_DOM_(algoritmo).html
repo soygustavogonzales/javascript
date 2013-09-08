@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+		function iterateDOMtree(node){//node es un objeto nodo/tag del dom
+			console.log(node);
+			for(node=node.firstChild;node!=null;node=node.nextSibling){
+				iterateDOMtree(node);
+			}
+		}
+		function iterateDOMtreeElement(node){//node es un objeto nodo/tag del dom
+			console.log(node);
+			for(node=node.firstElementChild;node!=null;node=node.nextElementSibling){
+				arguments.callee(node);
+			}
+		}
+		var script=document.querySelector('script');//selecciono al tag <script>
+		console.log(script);//no hubo necesidad de esperar a que se cargara todo el dom,puesto queeste script esta justo dentro del nodo/tag <script>
+		iterateDOMtree(script);
+		//iterateDOMtree(script);
+		//iterateDOMtree(window);
+		//iterateDOMtree(document);
+		
+
+
+		console.info("-----------------------");
+		window.addEventListener('load',function(){//luego de cargado el documento
+			var section=document.querySelector('section');//selecciono al primer nodo/tag <section>, si no espeo a que se cargue el DOM, esto arrojaria null.
+			console.log(section);
+			console.log(section.nextElementSibling.firstChild.nextSibling);
+
+			iterateDOMtree(section);
+			iterateDOMtreeElement(section);
+		},false);
+		
+			
+
+
+	</script>
+	<style>
+
+	</style>
+</head>
+	<body>
+		<section class="sec1">
+			<article class="art1">
+				<ol class="ol1">
+					<li class="li1">li1</li>
+					<li class="li2">li2</li>
+					<li class="li3">li3</li>
+					<li class="li4">li4</li>
+				</ol>
+			</article>
+		</section>
+		<section class="sec2">
+			<article class="art2">
+				<ol class="ol2">
+					<li class="li1">li1</li>
+					<li class="li2">li2</li>
+					<li class="li3">li3</li>
+					<li class="li4">li4</li>
+				</ol>
+			</article>
+		</section>
+	</body>
+</html>

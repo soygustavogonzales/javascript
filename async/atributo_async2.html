@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!
+	Este ejercicio hace analisis del atributo async y defer del tag script.
+	async es parte del standar
+	defer funciona solo en IE
+	Ambos permiten procesar codigo javascript en deferido, es decir, luego de que el DOM sae haya cargado por completo.
+-->
+	<link rel="stylesheet" href=""/>
+	<!..Usando atributo async y defer ..>
+	<script>
+		console.time("controller");
+		var order=0,script=document.createElement('script');
+		window.addEventListener('load',function(){
+				var section=document.getElementsByTagName('section')[0];
+				var section1=document.getElementById('section1');
+				//console.log(getComputedStyle(section).background);
+				console.log("section: "+section);
+				console.log(
+					"section==section1) : "+(section==section1)+"\n"+
+					"(section===section1) : "+(section===section1)
+				);
+				order++;
+				console.log("order : "+order);
+
+		},true);
+		console.log((script.async)?'soportado':'no soportado');
+		console.timeEnd("controller");
+		
+	</script>
+	<style>
+		#section1{
+			width: 100px;
+			height:100px;
+			background: #ED593F;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+	<body>
+		<section id="section1"></section>
+	</body>
+</html>

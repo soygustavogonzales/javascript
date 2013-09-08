@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<!--
+	Este ejercicio Se Abre un escucha para un evento click sobre un boton 
+	que al instante se cierra(el escucha), luego de un tiempo determinado se abre 
+	nuevamente el escucha para el click sobre el mismo boton;y asi
+	sucesivamente con el objetivo que durante el tiempo que este cerrado
+	el escucha, no se pueda ejecutar metodo alguno si se le da click.
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+	var contador_clicks=1;
+	window.onload=function(){
+		var boton=document.getElementsByClassName("boton")[0];
+		console.log("boton: "+boton);
+		boton.addEventListener('click',metodo,false);
+		function metodo(evento){
+				console.log("OPEN LISTENED");
+				var self=this;
+				console.log("hiciste: "+evento.type//nombre del evento
+							+"\nclick #: "+contador_clicks//numero de click dados
+							+"\nsobre : "+this.nodeName//nombre del nodo que provoco el evento
+							+"\nsu name es: "+this.getAttribute("name"));//arroja el atributo name del nodo
+				contador_clicks++;
+				this.removeEventListener('click',arguments.callee,false);//remuevo el escucha del evento click para este nodo(boton) que ejecuta la funcion anonima referida.
+				/*con arguments.callee() hago referencia a la funcion anonima en la q 
+				se encuentra el objeto arguments */
+				setTimeout(function(){
+					self.addEventListener('click',metodo,false)
+					console.log("OPEN LISTENED");
+				},5000);
+				console.log("CLOSED LISTENED:")
+		}//end function metodo
+	}//end window.onload
+	</script>
+</head>
+<body>
+	<div id="web">
+		<input class="boton" name="boton" type="button" value="PRESS ME!!">
+
+	</div>
+</body>
+</html>
+

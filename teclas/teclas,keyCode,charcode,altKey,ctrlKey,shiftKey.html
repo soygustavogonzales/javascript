@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!Este ejercicio mostrara toda la informacion referente a la(s) tecla(s) pulsadas sobre el documento, ver la consola-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	
+	<script type="text/javascript">
+	function aviso(evento){
+		evento=(evento)?evento:window.event;//obtiene elobjeto evento
+		var mensaje;
+		var keycode=(evento.keyCode||evento.which);//obtiene el codigo de la tecla
+		var charcode=evento.charCode;//obtiene el codigo ascci de la tecla
+		if(String(evento.type)=="keypress" || String(evento.type)=="keydown"){//si el  evento es keypress o keydown
+				mensaje="keycode: "+keycode+
+				"\n;charcode: "+charcode+
+				"\n;caracter pulsado: "+String.fromCharCode(charcode)+//imprimo el valor de la tecla pulsada
+				"\n;en el evento tipo: "+evento.type+//imprimo el nombre del evento. o bien keypress o bien keydown
+				"\n;evento(familia): "+evento;
+			if(evento.altKey){mensaje=mensaje+";pulsaste tecla ALT"}
+			else if(evento.ctrlKey){mensaje=mensaje+";pulsaste tecla CTRL"}
+			else if(evento.shiftKey){mensaje=mensaje+";pulsaste tecla SHIFT"}
+		}else{mensaje=evento.type;}//si no sucede el keypress o el keydown, mensaje solo sera el valor del evento.En este caso sera el onunload, pues el el unico evento que tambien llama a esta funcion.
+		
+		
+		console.log(mensaje);
+		console.log("--------------------------------------")
+
+	}
+		function EscucharBody(e){
+			var body=document.getElementsByTagName('body')[0];
+			body.onunload=aviso;//antes de abandonar la pagina, esto seria <igual a> body.addEventListener("onunload",aviso,false) 
+			body.onkeypress=aviso;//cuando se presiona la tecla
+			body.onkeydown=aviso;//cuando se presiona pero aun no se levanta la tecla
+			console.log("tipo de evento: "+e.type);//imprime en consola
+		}
+		window.addEventListener('load',function(e){
+			EscucharBody(e);
+		},true);
+	</script>
+	<style>
+		body{background: #000;color:#fff}
+		#caja{width:100px;height: auto;background: #62BD24;
+			word-wrap:break-word;}/*esta propiedad hara que las palabras largas que no quepan en un elemento se partan en funcion al ancho del elemento(div,li,p,etc) que los contenga*/
+	</style>
+</head>
+<body id="body_id" class="body_class" name="body_name">
+	<div id="web">
+		<div id="caja"><!--comentario en caja-->esta es una caja, adenosintrifosfato</div>
+		<a href="www.viunex.com">probar unload</a>
+	</div>
+</body>
+</html>
+

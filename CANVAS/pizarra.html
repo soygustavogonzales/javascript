@@ -1,0 +1,135 @@
+<!DOCTYPE html>  
+<html lang="es-PE"> 
+   <head>
+     <meta charset="UTF-8">
+         <title>untitle</title> 
+         <style type="text/css">
+/* --
+CSS Reseter
+CSSLab © 2010 by Jorge Epuñan
+http://www.csslab.cl/2010/06/01/css-reseter-v2/
+-- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, dialog, figure, header, footer, hgroup, menu, nav, section, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+}
+
+article, aside, nav, section, dialog, figure, header, footer, hgroup { 
+    display:block;
+}
+
+legend {
+	display:none;
+}
+
+:focus {
+	outline: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+
+a img, iframe {
+	border: none;
+}
+
+ul {
+	list-style: none;
+}
+
+input, textarea, select, button {
+	font-size: 100%;
+	font-family: inherit;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+select {
+	margin: inherit;
+}
+
+button {
+	border: 0;
+	padding: 0;
+	background: transparent;
+	cursor: pointer;
+}
+
+/* Fixes incorrect placement of numbers in ol's in IE6/7 */
+ol { margin-left:2em; }
+
+
+/* ========================================= clearfix == */
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
+
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+
+/*end css Reseter*/
+
+         	canvas{
+         		background:rgba(39,40,34,1);
+         	}
+         	input[type="color"]{
+         		width:60px;
+         		height:25px;
+         		border:2px;
+         		border-radius: .2em;
+         	}
+         	.tools{
+         		
+         		display:block;
+         	}
+         </style>	
+     <script type="text/javascript">
+		document.addEventListener('DOMContentLoaded',function(){
+     		var pizarra=document.getElementById("pizarra");
+     		pizarra.width="500"
+     		pizarra.height="500"
+			console.log("todo bien");
+		},false);
+
+     </script>
+     <link rel="stylesheet" href=""/>
+     <style type="text/css">
+     	
+     </style>
+   </head> 
+   <body>
+	  <div id="web">
+		<div class="tools">
+	      <label for="">PLUMA</label><input type="color" name="colorPicker" id="" colorPickerBoard="">
+	      <label for="">LIENZO</label><input type="color" name="colorPickerBoard" id="" colorPickerBoard="">
+		</div>
+	      <canvas id="pizarra">
+	      	YOUR BROWSER NOT SUPORT THIS FEATURE OF HTML5
+	      </canvas> 
+
+	  </div>  
+    </body> 
+</html>		
+	

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+</head>
+	<script>
+	/*
+		var body=document.getElementsByTagName("body")[0];
+		body.addEventListener('click',function(){
+		},false);
+	*/
+		var NewWindow=function(e,self){
+			window.open("tabs.html",2);
+			console.log("popup, emitido por: "+self.tagName+" en evento "+e);
+
+		}
+	window.addEventListener('load',function(e){
+
+		NewWindow(e,this);
+		document.documentElement.addEventListener('click',function(){
+			console.log("click en :"+this);
+		},false);
+		var body=document.getElementsByTagName("body")[0];
+		body.addEventListener('click',function(e){
+			e.stopPropagation();//este evita q se invoque al click de documentElement, se evita la propagacion de la burbuja
+			NewWindow(e,this);
+			console.log(e);
+			window.e=e;
+		},false);	
+	},false);
+	</script>
+<body>
+	<div id="web">
+		Esta pagina abrira un popup
+	</div>
+</body>
+</html>
+

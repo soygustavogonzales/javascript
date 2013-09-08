@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<script>
+
+var matriz=[undefined,'n-ul1l1','Na-1N1','nu-1ll1',5,[],{}];
+var patron=/(undefined)||(null)||(NaN)/gi;
+for (var i = matriz.length - 1; i >= 0; i--) {
+	console.log(patron.exec(matriz[i]));
+};
+var result=patron.exec(matriz);
+var result1=patron.compile(matriz);
+var result2=patron.test(matriz);
+console.log(result);
+console.log(result1);
+console.log(RegExp);
+
+		</script>
+		<title>UNknown</title>
+	</head>
+	<body></body>
+</html>

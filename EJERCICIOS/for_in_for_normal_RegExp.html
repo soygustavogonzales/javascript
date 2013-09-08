@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+console.group("group1");
+	!function(){
+		//var patron = new RegExp("(null)|(undefined)|(NaN)"),
+		var patron=/(undefined)|(null)|(NaN)/;
+		matriz=['',9,null,undefined,NaN,'5',[],{}],result=null,result1=null,result2=null;
+		console.log(patron.exec(matriz));
+		console.log(JSON.stringify(matriz).match(patron));
+		console.log(RegExp.input);
+		console.log(RegExp.index);
+		console.log(RegExp.lastIndex);
+		console.log(RegExp.lastMatch);
+		console.log(RegExp.lastParen);
+		for (var i = matriz.length - 1; i >= 0; i--) {
+			result = patron.exec(matriz[i]);
+			result1 = patron.test(matriz[i]);
+			result2 = patron.compile(matriz[i]);
+			console.log(matriz[i]);
+			console.log(result);
+			console.log(result1);
+			console.log(result2);
+		};
+		
+	}();
+console.groupEnd("group1");
+console.group("grupo2");
+		var matriz=[null,undefined,NaN,9,'','5',[],{}],result=null;
+		var patron=/(null)|(undefined)|(NaN)/;
+		for (var i = matriz.length - 1; i >= 0; i--) {
+			result=patron.exec(matriz[i]);
+			console.log(matriz[i]);
+			console.log(JSON.stringify(result));
+			console.log(result);
+		};
+console.groupEnd("grupo2");
+
+
+console.group("grupo3");
+	console.time("controller1")
+		matriz=[null,undefined,NaN,9,'','5',[],{}];
+		var patron=/(null)|(NaN)|(undefined)/,result=null;
+		for (var i = matriz.length - 1; i >= 0; i--) {
+					result=patron.exec(matriz[i]);
+					console.log("encontrado /(NaN)|(null)|(undefined)/gi: "+JSON.stringify(result));
+					console.log(((result && result[0])?true:false));
+		};
+	console.timeEnd("controller1")
+console.groupEnd("grupo3");
+console.group("group4");
+	console.time("controller2")//el debug del navegador arroja que este metodo es el mas efectivo
+		matriz=[null,undefined,NaN,9,'','5',[],{}];
+		for (var i = matriz.length - 1,result=null; i >= 0; i--) {
+					var result=(
+								matriz[i]==undefined
+								||matriz[i]+""==NaN.toString()//xq NaN==NaN y NaN===NaN arrojan false ambos, no se entienede porque es una excepcion
+								||matriz[i]==null
+								);
+					console.log(result + " : "+matriz[i]);
+		};
+	console.timeEnd("controller2")
+console.groupEnd("group4");
+
+	console.group("grupo5");
+	!function(){
+		var patron = new RegExp("(undefined)|(null)|(NaN)");
+		matriz=[null,undefined,NaN,9,'','5',[],{}];
+		for (var i = matriz.length - 1; i >= 0; i--) {
+			console.log(matriz[i]);
+			result = patron.exec(matriz[i]);
+			console.log(result);
+		};
+		
+	}();
+	console.groupEnd("grupo5");
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

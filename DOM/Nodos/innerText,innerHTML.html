@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!-Este ejercicio trata de mostrar la diferencia y uso adecuado de las funciones de objetos nodos de html: objeto.innerText y objeto.innerHTML, donde objeto es un tag html, osea un nodo en el arbol del DOM(body,div,li,ul,em,p,etc).
+	*NOTA: Ver los comentarios por consola.
+		METODOS A ANALIZAR:
+		.innerText:para obtener o establecer contenido textual(cadena)
+		.textContent : muy similar a innerText
+		.innerHTML:para obtener o establecer contenido html(comentarios,tags)
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+	window.addEventListener("load",function(){//luego de que se cargue todo el DOM del documento.
+		console.log("DOM cargado correctamente...");
+		console.log(document.querySelector('#content').innerText);//obtengo e imprimo todo el contenido de texto plano  que este dentro del objeto o elemento.En este caso todo el texto dentro del nodo con el id="content".
+		console.log(document.querySelector('#content').innerHTML);//obtengo e imprimo todo el contenido solo dentro del objeto especificado,que exista en el documento, se imcluyen tags html, comentarios html y el texto plano
+		var HTMLdefault=document.querySelector('#content').innerHTML;
+		
+		//document.querySelector('#content').innerText="esto es lo nuevo";//lo que hago es designar como nuevo valor de texto una cadena, lo qe se vera en el navegador sera solo esta cadena, pues lo anterior(incluido la parte html y comentarios dentro del objeto) se habra borrado(chancado).
+		//*NOTA: innerText="hola mundo" <es igual a> textContent="hola mundo"
+
+		/*Acontinuacion una forma mas eficiente de agregar contenido sin alterar el original*/
+		console.log(document.querySelector('#content').innerHTML=HTMLdefault+"<p>esto es <strong>contenido nuevo</strong></p>");//con esto yo agregaria un parrafo con html, sin chancar(borrar) el contenido ya existente.
+	},false);
+	</script>
+</head>
+<body>
+	<div id="web">
+		<div id="content">este es un div<!--este es un div-->
+			<ul>este es un ul<!--este es un ul-->
+				<li>li1</li><!--este es un LI-->
+				<li>li2</li><!--este es un LI-->
+				<li>li3</li><!--este es un LI-->
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>
+

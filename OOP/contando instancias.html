@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!--
+	Este ejercicio hace que cada ves que se cree una instancia 
+	de una clase se avisa el numero de instancia que es,pues en
+	en el mismo constructor ejecuto un contador sencillo.
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+	var nro_instancia=1;
+		function clsPadre(name,lastname,age){
+			this.name_=name;
+			this.lastname_=name;
+			this.age_=age;
+			console.log("Se creo la instancia nro: "+nro_instancia);
+			nro_instancia++;
+		}
+		var oHijo=new clsPadre('omar','gonzales',21);
+		var oHijo2=new clsPadre('erick','davalos',22);
+		var oHijo3=new clsPadre('erick','davalos',22);
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

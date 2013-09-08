@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<script type="text/javascript">
+	var arrayPadre= new Array(3);
+		arrayPadre[0]=new Array(4);
+			arrayPadre[0][0]=10;
+			arrayPadre[0][1]=11;
+			arrayPadre[0][2]=12;
+			arrayPadre[0][3]=13;
+			arrayPadre[0][4]=14;
+			arrayPadre[0][5]=15;
+			
+		arrayPadre[1]=new Array(4);
+			arrayPadre[1][0]=20;
+			arrayPadre[1][1]=21;
+			arrayPadre[1][2]=22;
+			arrayPadre[1][3]=23;
+			arrayPadre[1][4]=24;
+			arrayPadre[1][5]=25;
+
+		arrayPadre[2]=new Array(4);
+			arrayPadre[2][0]=30;
+			arrayPadre[2][1]=31;
+			arrayPadre[2][2]=32;
+			arrayPadre[2][3]=33;
+			arrayPadre[2][4]=34;
+			arrayPadre[2][5]=35;
+
+		arrayPadre[3]=new Array(3);
+			arrayPadre[3][0]=41;
+			arrayPadre[3][1]=42;
+			arrayPadre[3][2]=43;
+			arrayPadre[3][3]=44;
+
+		/*2do array*/
+	var longitud=arrayPadre.length;
+		var i=0;var j;
+		function f_longitud2(i){
+			var longitud2=arrayPadre[i].length-1;
+			return longitud2;
+		}
+	//document.write(longitud+"--"+f_longitud2(i));
+
+	for(i=0;i<=longitud;i++){
+		for(j=0;j<=f_longitud2(i);j++){
+		document.write(arrayPadre[i][j]+",");
+			}//end for
+			document.write("</br>");
+		}//end for		
+
+</script>
+<body style="color:#ffffff; background-color:#000000">
+	
+</body>
+</html>		

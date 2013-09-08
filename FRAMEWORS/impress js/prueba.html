@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Prueba de impress.js</title>
+    	<link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    	<link href="css/impress-demo.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/impress-demo.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!--<script src="js/jquery.videoBG.js"></script>-->
+
+	</head>
+	<body class="impress-not-supported">
+		<!-- impress.js no depende de la hoja de estilos linkeada lineas arriba -->
+		<div class="fallback-message">
+			<!-- Este aviso saldra si el browser no soportase los requisitos de la presentacion -->
+			<p>TU NAVEGADOR <b>NO SOPORTA LAS CARACTERISTICAS NECESARIAS PARA MOSTRAR ESTAS PRESENTACIONES</b></p>
+   		 	<p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+
+		</div>
+		<div id="impress"><!-- aqui inicia la presentacion -->
+
+			<!-- PRIMER FOCO/diapositiva -->
+			<div id="bored" class="step slide" data-x="-1000" data-y="0" data-z="0">
+				<p><q>El benchmarking y la </q>
+				</br> <b>Aplicacion de la diferencia de proporciones poblacionales </b></p>
+				<img src="img/img1.gif" alt="">
+				<q></q>	
+			</div>
+			<!-- SEGUNDO FOCO/diapositiva -->
+			<div class="step slide" data-x="0" data-y="0" data-z="100">
+				<q>EFICIENCIA, EFICACIA, PERFORMANCE</q>			
+				<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/4qYwC2qov44" frameborder="0"></iframe>
+				
+			</div>
+			<!-- TERCER FOCO/diapositiva -->
+			<div class="step slide" data-x="1000" data-y="0" data-z="1000">
+				<q>El benchmarking y la </q>
+				<p>
+					"Benchmarking es la búsqueda de las mejores
+					prácticas de la industria que conducen a
+					un desempeño excelente” 
+				</p>
+			</div>
+			<!-- CUARTO FOCO/diapositiva -->
+			<div class="step slide" data-x="1000" data-y="150" data-z="1100">
+				<q>Operaciones por Segundo</q>
+			
+					<img src="img/img2.jpg" alt="">
+			
+			</div>
+			<div class="step slide" data-x="1000" data-y="150" data-z="1200">
+				<p>LUIS</p> 
+			</div>
+			<!-- QUINTO FOCO/diapositiva: La diapositiva hace escala -->
+			<div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+				<q>CASO DE ESTUDIO</q>		
+				<p>El algoritmo de la sumatoria: Bucle</p>
+				<pre>
+				<code>
+
+for (i; i <= n; i++) {
+	suma = suma + i;
+}
+
+				</code>
+				</pre>
+				<!--<span class="footnote">Aqui use class="footnote"<sup>*</sup></span>-->
+			</div>
+			<!-- SEXTO FOCO/diapositiva: La dispositiva rota al final-->
+
+			<div class="step" data-x="850" data-y="3000" data-z="0" data-rotate="270" data-scale="10">
+				<p>El algoritmo de la sumatoria: Formula</p>
+				<pre>
+					<code>
+suma = (n * (n + 1)) / 2;		
+
+					</code>
+
+				</pre>
+
+			</div>
+			
+			<!-- setimo FOCO/diapositiva: La dispositiva rota final-->
+			<div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
+				<p>Haciendo benchmarking: JSPERF</p>
+				<img src="img/img3.jpg" alt="" style="width:600px; height: 400px;">
+			</div>
+			<!-- octavo FOCO/diapositiva: La dispositiva rota-->
+<div id="tiny" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+	<p> APLICACION DE LA PRUEBA DE HIPOTESIS DE UNA DIFERENCIA DE PROPORCIONES POBLACIONALES </p>
+</div>
+			<!-- NOVENA FOCO/diapositiva: La dispositiva rota-->
+			<div id="ing" class="step" data-x="3500" data-y="-850" data-z="0" data-rotate="270" data-scale="4">
+				
+				<q>DATOS RECOLECTADOS</q></br>
+					<span>
+					- Algoritmos por bucle (n1): 70 pruebas con el algoritmo resuelto.
+					- Algoritmos por fórmula matemática (n2): 65 pruebas con el algoritmo resuelto.
+					</span>	
+					<!--	
+					con <b class="positioning">posicionamiento</b>,
+					con <b class="rotating">rotacion</b>,
+					con <b class="scaling">escalamiento</b>,
+					Infinito
+					-->
+			</div>
+			<!-- DECIMO FOCO/diapositiva: La dispositiva rota-->
+			<div id="imagination" class="step" data-x="6700" data-y="-300" data-scale="2">
+				<p>PRUEBAS DE EFICIENCIA</p>
+				<img src="img/img4.jpg" alt="" style="width:800px; height: 400px;">
+			</div>
+			<!-- DECIMO PRIMER FOCO/diapositiva: La dispositiva tendra una imagen vectorial a efectos del id=source uente-->
+			<div class="step" data-x="6700" data-y="-300" data-scale="4">
+			<pre>
+				<p style="font-size: 25px;">
+1)	Ho = π1 ≥ π2      : La proporción de la población 1 es mayor o igual que la 2.
+	H1 = π1 < π2      : La proporción de la población 1 es menor que la 2.
+2)	α=0.05 
+				</p>
+			</pre>
+			</div>
+			<!-- DECIMO SEGUNDO FOCO/diapositiva: La diapositiva  -->
+			<div class="step" data-x="6000" data-y="5000" data-z="600" data-scale="2">
+				<p>
+			<img src="img/img5.jpg" alt="" style="width:800px; height: 400px;" >
+
+				</p>
+			</div>
+			<div class="step" data-x="7000" data-y="6000" data-z="3800" data-scale="10">
+				<p>
+			<img src="img/img6.jpg" alt="" style="width:800px; height: 400px;">
+
+				</p>
+			</div>
+
+			<!-- DECIMO TERCER FOCO/diapositiva: La diapositiva tendra rotacion en 3d -->
+			<div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-1000" data-rotate-x="-40" data-rotate-y="100" data-scale="2">
+				
+				<span class="footnote">* esto es con class=footnote</span>
+			</div>
+			<!-- DECIMO CUARTA/diapositiva: Se vera una vista panoramica de todas las dispositivas-->
+			<div class="step" data-x="3000" data-y="1500" data-scale="10">
+				<span class="end">¡¡GRACIAS!!</span>
+			</div>
+			
+
+
+
+
+
+
+
+
+
+
+		</div>
+		<div class="hint">
+			<p>
+				USE A SPACEBAR OR ARROW KEYS TO NAVIGATE
+			</p>
+
+
+		</div>
+		<script>
+			if("ontouchstart" in document.documentElement){
+				document.querySelector(".hint").innertHTML="<p>tap on the left or right to navigate</p>";
+			}
+		</script>
+	<script src="js/impress.js"></script>
+	<script>impress().init()</script>
+	</body>
+	<!--
+		<script>
+			$('body').videoBG({
+				position:"fixed",
+				zIndex:0,
+				mp4:'f1.mp4',
+				//ogv:'',
+				//webm:'',
+				//poster:'',
+				opacity:0.3,
+			});
+		</script>
+	-->
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En el script 1 compruebo el rendimiento del bucle for( in) contra el rendiemiento delbucle normal for(;;).
+*NOTA 1:Tienes que ver la consola del navegador para ver los resultados. 
+*NOTA 2:los resultados estan mayormente en µ(microsegundos)=10^-6 segundos.
+conclusion:Comparando los tres tipos de for: for(in),for(;;) normal y el forEach. Se nota que en relacion de su velocidad de ejecucion el tiempo esta en la relacion siguiente:
+	for(;;)-normal- < for(in) < forEach.
+. Usar for (in ) es menos eficiente y tarda mucho mas que usando el for(;;) normal. Cuando tenemos un array muygrande que recorrer conviene utilizar mejor el for(;;)normal
+
+En esta comparacion solo tomo en cuenta la ejecucion de los bucles for en los arrays de indices numericos y no en los que tienen indices cadenas y/o numericos, osea en:
+//A continuacion un array con solo indices numericos explicitos.//La mejor fomrma de recorrerlos es con for(;;) normal.
+var matriz=new Array()
+	matriz[0]='uno';
+	matriz[1]='dos';
+	matriz[2]='tres';
+//A continuacion un objeto://La mejor forma,por no decir la unica, de recorrerlos es con for(in)
+	var objetoJson={name:'omar',lastname:'gonzales',age:20,ocupation:'student'}
+//A continuacion un array con indices numericos y cadenas://La mejor forma de recorrerlos en con for(in);
+var matriz2=new Array();
+	matriz[10]='uno';
+	matriz[1]='dos';
+	matriz['cad1']='tres';
+	matriz['cad2']='cuatro';
+	/*Una caracteristica de esta matriz es que su longitud de elementos (matriz2.length) no solo toma en cuenta el mayor indice numerico existente, es decir que al encontrar al indice 10, supondra que existen 11 elementos, los que no se han declarado estaran como undefined, y los que tienen indice cadena no se toman en cuenta al contarlos.*/
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;}</style>
+	<script type="text/javascript">
+		var matriz=["uno","dos","tres","cuatro","cinco"];
+
+		console.time("controller1");
+			for(var i in matriz){console.log("matriz["+i+"]: "+matriz[i]);}
+		console.timeEnd("controller1");
+
+		console.log("***************************");
+
+		var longitud=matriz.length;
+		console.time("controller2");
+		for (var i = 0; i < longitud; i++) {console.log("matriz["+i+"]: "+matriz[i]);};
+		console.timeEnd("controller2");
+
+		console.log("***************************");
+
+		console.time("controller3");
+		matriz.forEach(function(a,b,c){console.log("matriz["+b+"]: "+a);});
+		console.timeEnd("controller3");
+
+		console.warn("-----------------------------------");
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+		var cadena="0123456789-10-11-12-13-14";
+		var patch_file="c://programs ans files/users/carlos/desktop/proyects/index.html";
+		var subcadena=cadena.substring(4);//arroja ' mundo desde @carlos-pc'(con espacio en blanco al inicio)
+		var subcadena2=cadena.substring(5);//arroja 'mundo desde @carlos-pc(sin espacio en blanco al inicio)
+		var subcadena3=cadena.substring(4,6);//selecciona desde el indice 4 hasta el 5.No incluye el 6.
+		var subcadena4=cadena.substring(4,9);//selecciona desde el indice4 hasta el 8.No incluye el 6.
+		var indice_last=cadena.lastIndexOf('-');//indice de la posicion donde encuentre al ultimo '-' de izquierda a derecha.
+		var indice=cadena.indexOf('-');//indice de la posicion donde encuentre por 1era ves al '-'
+		var patch_directory=patch_file.substring(0,patch_file.lastIndexOf('/')+1);//la ruta completa incluyendo el ultimo '/' que aparezca en la ruta
+		var name_file=patch_file.substring(patch_file.lastIndexOf('/')+1);//el nombre completo del archivo incluyendo su extension.
+		console.log(subcadena);
+		console.log(subcadena2);
+		console.log(subcadena3);
+		console.log(subcadena4);
+		console.log(indice_last);
+		console.log(indice);
+		console.log(patch_directory);
+		console.log(name_file);
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">//utilizando getElementsByName
+	function cambiar(name_){
+		var elmnt=document.getElementsByName(name_);
+		/*
+		console.log("longitud del array: "+elmnt.length);
+		*/
+		elmnt[0].style.background='#000000';
+		elmnt[0].style.color="#ffffff";
+		elmnt[0].innerHTML='new text';
+		/*
+		console.log("ejecucion correcta");
+		*/
+	}	
+	function cambiar2(id_){
+		var elmnt=document.getElementById(id_);
+		//console.log("longitud del array: "+elmnt.length);
+		elmnt.style.background='#000000';
+		elmnt.style.color="#ffffff";
+		elmnt.style.padding="0px";
+		elmnt.innerHTML='...';
+		/*
+		console.log("ejecucion correcta");
+		*/
+	}	
+	function cambiar3(id_,tag_,ind_,tag2_,ind2_){
+		console.log("correcto1");
+		var elmnt = document.getElementById(id_).getElementsByTagName('article')[0];//selecciona al article(este es un objeto nodo)
+		console.log("correcto2");
+		var ind=parseInt(ind_);	
+		var ind2=parseInt(ind2_);
+		console.log("correcto3..." + "tag_ : "+tag_+" : "+ind+"; tag2_ :"+ tag2_+" : "+ind2_);
+		var elmnt2_=elmnt.getElementsByTagName(tag_)[11];
+		console.log("correcto4; "+elmnt.nodeName+";"+elmnt2_.nodeName+";"+elmnt2_.getAttribute('id'));
+		var elmnt2=elmnt.getElementsByTagName(tag_)[ind].getElementsByTagName(tag2_)[ind2];
+		console.log("correcto5 "+elmnt2.getAttribute('class'));
+		elmnt2.style.background='#000000';
+		console.log("correcto6");
+		elmnt2.style.color="#ffffff";//color al texto
+		elmnt2.innerHTML='new text,';
+//****************************************************************************
+	}
+	window.onload=function(){
+		var elmnt3_= document.getElementById('content_id');//obtiene el objeto section con id="content"
+		var elmnt32_=document.getElementsByTagName('section')[0];//obtiene el primer section
+		console.log("correcto1;"+elmnt3_+";"+elmnt32_+";")//+elmnt4_);//arroja el nombre del elemento, imprime: section
+		elmnt4_=elmnt3_.getElementsByTagName('div')[10];//objendria el <div> nro 11.
+		console.log("correcto2"+elmnt4_);//imprime el nodo como objeto html.
+		
+		/*NOTA:No puede ir un getElementsByName() a continuacion de getElementById-ni de un objeto elemento obtenido a traves de el-
+		*	   NO puede ir un getElementsByName() a continuacion de getElementsByTagName-ni de un objeto elemento obtenido a traves de el-	
+		*	   Si puede ir un getElementsByTagName() a continuacion de getElementById();
+		*/
+
+		/*A continuacion formas mas eficientes y rapidas de obtener el nodo o elemento como objeto*/
+			var elemento1=document.getElementsByTagName('section')[0];//obtengo el primer-notar el indice: 0- objeto <section>
+			var elemento2=document.querySelector('#content_id');//obtengo un objeto con id="content_id"
+			var elemento3=document.querySelector('.content_class');//obtengo un objeto con class="content_class"
+
+			var elemento4=document.getElementById('content_id');
+			var elemento5=document.getElementsByClassName('content_class')[0];//obtengo el primer-notar el indice:0- objeto con class="content_class".
+			var elemento6=document.getElementsByName('content_name')[0]//obtengo el primer-notar el indice:0- objeto con name="content_name". 
+			console.log("correcto1;");/*NOTA: elemento1 hasta elemento6 apuntan al mismo objeto*/
+				console.log(elemento1+";"+elemento1.nodeName)
+				console.log(elemento2+";"+elemento2.nodeName)
+				console.log(elemento3+";"+elemento3.nodeName)
+				console.log(elemento4+";"+elemento4.nodeName)
+				console.log(elemento5+";"+elemento5.nodeName)
+				console.log(elemento6+";"+elemento6.nodeName);
+			var section=document.querySelectorAll('.content_class');//arroja un array con los objetos nodos resultantes, todos estaran distribuidos por indices.
+			console.log("correcto2;"+section[0]);//imprime el objeto del primer indice del array section
+			section[0].style.color="#0714B4";//le doy estilo(color al texto) al objeto
+			var div=document.querySelectorAll('#sub-content > div:nth-child(1)> div')//escojo todos los <div> que son hijos del primer-:nth-child(1)- <div> hijo del <article> con id="sub-content".
+			var i=0;
+			while(i<div.length){div[i].style.color="rgba(100,100,100,0.6)";i++;}//recorro todos los objetos de la matriz y a la ves le doy estilos,colo del texto -en este caso-
+			console.log("correcto3;");
+		
+	}
+	</script>
+
+	<style type="text/css">
+		*{margin: 0;padding: 0;border: 0;}
+		body{
+			background: #737373;
+		}
+		article[id="sub-content"]>div{
+
+		}
+		div[id="tabla-fila"]{
+			/*display: table-row;
+			border-spacing: 3px;
+			*/
+		}
+		div[id="tabla-fila1"]>div,div[id="tabla-fila2"]>div,div[id="tabla-fila3"]>div{
+			margin: 5px;
+			display: inline-block;
+			width: 100px;
+			height:100px;
+			background: #00eeff;
+		}
+	</style>
+	<script type="text/javascript">
+	//cambiar(); //al ejecutar este script se llama al metodo creado, pero este
+				//no arrojara el mismo resultado que se da al ejecutar los de abajo
+				//pues el DIM aun no ha terminado de cargarse cuando se le esta llamando aqui.
+
+	</script>
+</head>
+<body name="body_">
+	<! El DOM ya termino de cargarse-->
+	<div id="web">
+		<section id="content_id" class="content_class" name="content_name">
+			<article id="sub-content">
+				<div id="tabla-fila1"><!div 0-->
+					<div id="cuadro1" name="nam1_" onclick="cambiar('nam1_')">HAZME CLICK</div><!div 1-->
+					<div id="cuadro2" name="nam2_" onclick="cambiar('nam2_')">HAZME CLICK</div><!div 2-->
+					<div id="cuadro3" name="nam3_" onclick="cambiar('nam3_')">HAZME CLICK</div><!div 3-->
+					<div id="cuadro4" name="nam4_" onclick="cambiar('nam4_')">HAZME CLICK</div><!div 4-->
+					
+				</div>
+				<div id="tabla-fila2"><!div 5-->
+					<div id="cuadro5"  onclick="cambiar2('cuadro5')">HAZME CLICK</div><!div 6-->
+					<div id="cuadro6"  onclick="cambiar2('cuadro6')">HAZME CLICK</div><!div 7-->
+					<div id="cuadro7"  onclick="cambiar2('cuadro7')">HAZME CLICK</div><!div 8-->
+					<div id="cuadro8"  onclick="cambiar2('cuadro8')">HAZME CLICK</div><!div 9-->
+				</div>
+				<div id="tabla-fila3" name='nam12_'> <!div 10-->
+					<div id="div11_id" class="cuadro9"  onclick="cambiar3('content','div','11','div','0')">HAZME CLICK</div><!div 11-->
+					<div class="cuadro10" onclick="cambiar3('content_id','div','10','div','1')">HAZME CLICK</div><!div 12-->
+					<div class="cuadro11" onclick="cambiar3('content_id','div','10','div','2')">HAZME CLICK</div><!div 13-->
+					<div class="cuadro12" onclick="cambiar3('content_id','div','10','div','3')">HAZME CLICK</div><!div 14-->
+				</div> -->
+			 </article> 
+		</section>
+			<input name="fondo_" type="submit" value="CAMBIAR FONDO" onclick="cambiar('body_')">
+			<input name="fondo_" type="submit" value="reload" onclick="javascript:window.location.reload()">
+	</div>
+</body>
+</html>
+	

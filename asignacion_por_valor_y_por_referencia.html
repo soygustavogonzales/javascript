@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+	/*
+En este script evaluo el tipo de asignacion en javascript segun
+los diferentes tipos de valores.
+Las matrices, cumplen una asignacion por referencia
+Los objetos, cumplen una asignacion por referencia
+Las variables, cumplen una asignacion por valor
+Las metodos o funciones, cumplen una asignacion por referencia en sus propiedades
+siempre y cuando no se sobreescriba el valor de la variable que se asigna
+
+	*/
+	console.group("MATRICES: POR REFERENCIA");
+		var matriz=[
+		{}
+		,null
+		,undefined
+		,8
+		,'foo'
+		,[]
+		];
+		var matriz2=matriz;
+		matriz2.push('bar');//agrego un nuevo elemento en el ultimo indice
+		matriz2.splice(4,1);//elimino el elemento de indice 4
+		console.log(matriz);
+		console.log(matriz2);
+		console.log(matriz==matriz2);		
+
+	console.groupEnd("MATRICES");
+	console.group("VARIABLES : POR VALOR");
+		var a=8;
+		var b=a*20;
+		console.log(
+			"b: "+b
+			 +"\na : "+a
+		);
+		console.log(a==b);		
+
+	console.groupEnd("VARIABLES");
+	console.group("OBJETOS: POR REFERENCIA");
+		var obj={
+			name:"gustavo"
+			,dni:'46546644'
+		}
+		var obj2=obj;
+		obj2.age=23;
+		console.log(obj==obj2);		
+		obj2.lastname="gonzales";
+		console.log(obj);
+		console.log(obj2);
+		console.log(obj==obj2);		
+		
+	console.groupEnd("OBJETOS");
+	console.group("METODOS: POR REFERENCIA/VALOR");
+		function metodo(){
+			console.log("foo");
+		};
+		var metodo2=metodo;
+		//metodo2.descripcion="soy metodo";
+		/*metodo2=function(){
+			console.log(bar);
+		};
+		*/
+		metodo2.descripcion="soy metodo2";
+		console.log(metodo);
+		console.log(metodo2==metodo);		
+		console.log(metodo2.descripcion==metodo.descripcion);		
+		console.log(metodo2.descripcion);		
+		console.log(metodo.descripcion);		
+	console.groupEnd("METODOS");
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<style>
+		*{margin:0;border: 0;}
+		#web{margin: 0 auto;width: 800px;height: 600px;background: rgba(27,27,27,0.8);}
+	</style>
+	<script type="text/javascript">
+
+	</script>
+</head>
+<body>
+	<!importando(solo funcionan colocandolo en el body) este script puedo hacer q la imagen sea flexible cuando se coloca como fondo de la pagina web o una caja(div) o elemento cualquiera, hay efectos de hasta un slide de imagenes como fondo( visitar web del autor para mas info): http://srobbin.com/jquery-plugins/backstretch/-->
+	<!con el siguiente script se puede hacer q una o varias imagenes esten como fondo del documento web-->
+	
+	<script src="jquery.backstretch.min.js"></script>
+	<script type="text/javascript">
+			//el siguiente script haria funcionar al fondo de la pagina como un slide con n imagenes rotando
+				  $.backstretch([
+				  	"fondo.png"
+				    ,  "http://dl.dropbox.com/u/515046/www/outside.jpg"
+				    , "http://dl.dropbox.com/u/515046/www/garfield-interior.jpg"
+				    , "http://dl.dropbox.com/u/515046/www/cheers.jpg"
+				  ], {duration: 3000, fade: 750});
+	</script>
+	<div id="web">
+	hola</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+
+	</div>
+</body>
+</html>
+

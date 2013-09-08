@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio probaremos la multiples formas,que he encontrado- en las que se puede implementar 
+	al objeto/clase function y Function y analizaremos la mas recomendable. 
+Segun el tiempo marcado por cada 'controller' de los console.time y console.timeEnd, la forma mas aconsejable de utilizar function es en:
+function metodo([param1,...,paramN]){[..sentencias...]}-->
+
+
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+		console.time('controller1');
+		var multiplicar1=new function(a,b){return (a*b)};//multiplicar1 es un object.Esta forma de usar al function no es usable-segun yo-para nada.Pues solo tendre un objeto del tipo function pero,de nada serviran las sentencias dentro del function al instanciarse.
+		console.timeEnd('controller1');
+		console.time('controller2');
+		var multiplicar2=new Function("a","b","return (a * b);");//multiplicar2 es una function
+		console.timeEnd('controller2');
+		console.time('controller3');
+		function multiplicar3(a,b){return (a*b);}//multiplicar3 es una function//Esta es la forma mas recomendable de usar el function
+		console.timeEnd('controller3');
+		console.time('controller4');
+		var multiplicar4=function(a,b){return (a*b);}//multiplicar4 es function
+		console.timeEnd('controller4');
+		console.time('controller5');
+		var multiplicar5=function metodo(a,b){return (a*b)}//multiplicar5 es function
+		console.timeEnd('controller5');
+		console.time('controller6');
+		var multiplicar6=new Object(Function("a","b","return (a*b)"))//multiplicar6 es function
+		console.timeEnd('controller6');
+
+
+		//multiplicar1(5,5);//esto arroja error pues multiplicar1 no es un metodo.
+		
+		console.log(multiplicar1.hola='mensaje1');//arroja 'posHola'//multiplicar1 se comporta comom objeto.
+		console.log(multiplicar2(10,10));//arroja 100//multiplicar2 se comporta como una funcion
+		console.log(Function.loQueSea_='mensaje2');//arroja 'mensaje2'//Function se comporta como objeto
+	
+		
+		console.log("typeof multiplicar1:\t"+typeof multiplicar1+";"+"\n"+
+					"typeof multiplicar2:\t"+typeof multiplicar2+"; multiplicar2(2,3):\t"+multiplicar2(2,3)+"\n"+
+					"typeof multiplicar3:\t"+typeof multiplicar3+"; multiplicar3(2,4):\t"+multiplicar3(2,4)+"\n"+
+					"typeof multiplicar4:\t"+typeof multiplicar4+"; multiplicar4(2,5):\t"+multiplicar4(2,5)+"\n"+
+					"typeof multiplicar5:\t"+typeof multiplicar5+"; multiplicar5(2,6):\t"+multiplicar5(2,6)+"\n"+
+					"typeof multiplicar6:\t"+typeof multiplicar6+"; multiplicar6(2,7):\t"+multiplicar6(2,7)+"\n"
+		);
+	</script>
+	<script>
+	console.error("************************************");
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

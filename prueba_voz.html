@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!
+ESTE SCRIPT AUN NO FUNCIONA EN LOS NAVEGADORES(ABRIL 2013).
+SE ESPERA QUE SE EJECUTE EN EL FUTURO.
+EL TTS ES UN OBJETO AUN NO IMPLEMENTADO.
+SE SUPONE QUE PERMITA LA TRANSMISION DE TEXTO A VOZ EN LOS BROWSERS
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	 <script type="text/javascript">
+     var tts = new TTS(); //Nuevo interface
+     function speak(text, lang) {
+        tts.text = text; // Indicamos el texto
+        tts.lang = lang; // Indicamos el idioma
+        tts.play(); // Hacemos hablar a nuestro navegador
+     }
+     speak("Hello world.", "en-US"); // Hola mundo  
+  	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

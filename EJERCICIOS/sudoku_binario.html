@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+		/*
+			Este algoritmo debe, poblar un vector de tamaño 10 con ceros y unos las 
+			veces que sean necesarias hasta que la suma de los valores contenidos en 
+			el mismo sea 9
+		*/
+		var binario=new Array(10);
+		var condicion=new Boolean(true);
+		for(var i = binario.length - 1; i >= 0; i--) {
+			if(condicion){
+				binario[i]=Math.round(Math.random());						
+				
+				condicion=!(binario[i]==0);
+				/*
+				condicion=(binario[i]==0)?false:true;
+				*/
+			}else{
+				binario[i]=1;
+			}
+
+			console.log(binario[i]);
+		};
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

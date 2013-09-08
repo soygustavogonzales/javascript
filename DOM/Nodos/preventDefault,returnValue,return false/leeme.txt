@@ -1,0 +1,6 @@
+los scripts de los archivos en esta carpeta se hicieron 
+con el fin de ser comparados a nivel de algoritmos.
+El objetivo es corroborar la diferencia entre los metodos:
+preventDefault() y el usar el return false.
+-El 1ero se usa con los eventos de objetos que disparan alguna ejecucion.
+-El 2do se usa solo dentro de funciones.

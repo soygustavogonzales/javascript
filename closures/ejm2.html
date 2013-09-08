@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+	/*
+	var Counter=function(){//este metodo anonimo arroja un objeto
+		var privateCounter=0;
+		function changeBy(val){
+			privateCounter+=val;
+		}
+		return {
+			incremento:function(){
+				changeBy(1);
+			},
+			decremento:function(){
+				changeBy(-1);
+			},
+			value:function(){
+				return privateCounter;
+			}
+
+		}
+	};
+	var objCounter=Counter();//objCounter se convierte en objeto
+	/*Cuando se ejecuta el metodo Counter() este devuelve al final un objeto que incluye varios metodos*/
+	console.log("typeof(objCounter) : "+typeof(objCounter));//arroja object
+	console.log(objCounter.value());
+	var Counter=Counter;//Counter se convierte en function
+	console.log(typeof(Counter));
+	*/
+
+	var Counter=(function(){//counter es una variable que tomara el valor de lo que retorne la funcion anonima autoejecutable
+		var privateCounter=0;
+		function changeBy(val){
+			privateCounter+=val;
+		}
+		return {
+			incremento:function(){
+				changeBy(1);
+			},
+			decremento:function(){
+				changeBy(-1);
+			},
+			value:function(){
+				return privateCounter;
+			}
+
+		}
+	})();
+	/*
+	Explicacion:
+	Se declara una variable que automaticamente
+	almacenara un objeto retornado por la
+	la funcion anonima autoejecutable(enadelante me referire a ella solo como "funcion").
+	Esta funcion contendra un entorno privado(que no estara disponible
+	o al alcance desde fuera de la misma funcion), que son
+	la variable privateCounter y el metodo changeBy().
+	La misma funcion devuelve a un objeto anonimo
+	(en su notacion literal o Json)que posee tres atributos 
+	donde cada uno es otro metodo, en el q cada metodo
+	llama a los atributos(privateCounter y al metodo ChangeBy())
+	que pertenecen al entorno privado de la funcion anonima
+	de la que se trataba al inicio.
+
+	Por tanto, lo que se entiende de este script
+	es que podemos ocultar en entornos privados 
+	a ciertas entidades(variables,metodos,objetos,etc)
+	para que no esten disponibles fuera de un entorno especifico.
+	Esto representa una emulacion de lo que seria
+	en otros lenguajes de programacion la declaracion
+	con los modificadores de alcance public, private, protected
+	que configuran la disponibildad de las entidades declaradas.
+
+	Notar que los 3 metodos q arroja la funcion anonima
+	tienen disponibilidad publica y solo mediante estos
+	metodos se podra tener acceso a las atributos del
+	entorno privado(la variable privateCounter y al function changeBy)
+	*/
+	console.log(typeof(Counter));//arroja object
+	console.log(Counter.value());
+	Counter.incremento();
+	Counter.incremento();
+	console.log(Counter.value());
+	Counter.decremento();
+	console.log(Counter.value());
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

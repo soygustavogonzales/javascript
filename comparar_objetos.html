@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+		var obj1={
+			name:function(){},
+			lastname:'my lastname',
+			age:'age',
+			surname:'my surname',
+		}
+		var obj2={
+			name:'my name2',
+			lastname:'my lastname2',
+			age:'my age2',
+			surname:'my surname2',
+
+		}
+		console.log(Object.keys(obj1)[0]==JSON.parse(JSON.stringify(Object.keys(obj2)[0])));
+		console.log(Object.keys(obj2)[0]);
+		console.log(JSON.stringify(Object.keys(obj2)[0]));
+
+		Object.keys(obj1)[0];
+
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

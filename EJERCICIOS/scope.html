@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+	var a=5;
+	console.log("global: a= "+a);
+		!function(){
+			a=18;
+			console.log("metodo: a= "+a);
+			!function(){
+				console.log("submetodo: a= "+a);
+			}()
+			//submetodo();
+		}()
+		//metodo();
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

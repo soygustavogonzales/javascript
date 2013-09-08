@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>retrn false</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+		function metodo1(){
+			console.log("metodo1...");
+			metodo2("hola desde metodo1");
+		}
+		function metodo2(mensaje){
+			console.log("metodo2:linea1: "+mensaje);
+			return false;//esta linea inhabilita las sentencias que vienen a continuacion.
+			console.log("metodo2:linea2: "+mensaje)
+			console.log("metodo2:linea3: "+mensaje)
+			console.log("metodo2:linea4: "+mensaje)
+		}
+		metodo1();
+
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		file:prueba retrn false.html
+	</body>
+</html>

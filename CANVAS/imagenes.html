@@ -1,0 +1,57 @@
+<!DOCTYPE html>  
+<html lang="es-PE"> 
+   <head>
+     <meta charset="UTF-8">
+         <title>untitle</title> 
+     <style type="text/css">
+     	img{
+     		display:none;
+     	}
+     	canvas{
+     		background:#2C2C2C;
+     		border:3px solid red;
+     		border-radius: 30px;
+     	}
+     </style>
+     <script type="text/javascript">
+     	window.onload=function(e){
+            var canvas1=document.getElementById('mycanvas1');
+            var canvas2=document.getElementById('mycanvas2');
+     		var canvas3=document.getElementById('mycanvas2');
+			var ctx1=canvas1.getContext('2d');     		
+     		canvas1.width=500;
+     		canvas1.height=500;
+			ctx1.drawImage(window.myimg1,0,0,300,200);
+            ctx1.beginPath();
+            ctx1.moveTo(50,50);
+            ctx1.lineTo(150,680);
+            ctx1.lineTo(50,320);
+            ctx1.lineTo(500,320);
+            ctx1.lineTo(100,120);
+            ctx1.lineTo(10,20);
+            ctx1.lineTo(0,120);
+            ctx1.closePath();
+            ctx1.fill();
+            window.canvas1=canvas1;
+            window.ctx1=ctx1;
+            /*************/
+
+            var ctx2=canvas2.getContext('2d');
+            ctx2.drawImage(canvas1,0,0,100,100);
+            window.ctx2=ctx2;
+            /*********************/
+
+     	}
+     </script>
+     <link rel="stylesheet" href=""/>
+   </head> 
+   <body>
+	  <div id="web">
+        <canvas id="mycanvas1"></canvas>    
+        <canvas id="mycanvas2" width="800" height="500"></canvas>       
+        <img src="img/fondo2.jpg" alt="FONDO1" id="myimg1">
+	    <img src="img/fondo2.jpg" alt="FONDO2" id="myimg2">
+	  </div>  
+    </body> 
+</html>		
+	

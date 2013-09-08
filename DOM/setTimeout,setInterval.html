@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+<!EL ejercicio hago uso de las funciones setInterval y setTimeout, la primera: 
+setTimeout(metodo,tiempo) ejecuta una sola vez el metodo pasado un tiempo(en milisegundos),ojo... 1 sola vez!!!
+setInterval(metodo,tiempo) ejecuta el metodo cada vez que pase cierto tiempo(en milisegundos) infinitamente.
+
+Una tecnica para hacer que el setTimeout se comporte como el setInterval es asi:
+	function metodoX(){
+		[codigo...]//las lineas de codigo comun y corriente
+		setTimeout(metodoX,tiempo);//Al agregar a este setTimeout hacemos que llame al metodoX al que pertenece, como una especie de recursividad.		
+	}
+	//Basta q se ejecute el metodoX para ocasionar una recursividad ya q en el ejemplo este metodoX se va a ejecutar infinitamente.
+ window.onload=function(){//luego q se carge el DOM del documento se ejecutara el codigo q este dentro.
+ 	setTimeout(metodoX,tiempo);//llamamos al setTimeout.
+}
+Esta tecnica de "recursividad" se ha utilizado en los ejemplos siguientes.
+-->
+	<meta charset="UTF-8">
+	<title>...</title>
+	<script type="text/javascript">
+			function reloj(){
+			
+				var _oWatch=new Date();
+				var horas=_oWatch.getHours();
+				var minutos=_oWatch.getMinutes();
+				var segundos=_oWatch.getSeconds();
+				if(horas<=9) horas='0'+horas;
+				if(minutos<=9) minutos='0'+minutos;
+				if(segundos<=9) segundos='0'+segundos;
+				var hora_=horas+' : '+ minutos + ' : '+segundos;
+				window.status=hora_;//mostrara a hora en la barra de estado de la ventana.
+				document.title=hora_;//mostrara la hora n la barra de titulo de la pagina.
+				//console.log("ejecucion correcta "+ window.location + window.status);
+				var caja=document.getElementById('reloj_');
+				caja.value=hora_; // daria el mismo efecto que : caja.setAttribute('value',hora_);
+			}	
+			function reloj2(){
+				var _oWatch=new Date();
+				var horas=_oWatch.getHours();
+				var minutos=_oWatch.getMinutes();
+				var segundos=_oWatch.getSeconds();
+				if(horas<=9) horas='0'+horas;
+				if(minutos<=9) minutos='0'+minutos;
+				if(segundos<=9) segundos='0'+segundos;
+				var hora_=horas+' : '+ minutos + ' : '+segundos;
+				//return hora_;
+				var caja2=document.getElementById('reloj2_');
+				caja2.value=hora_;
+				setTimeout('reloj2();',1000);//esto seria una especie de recursividad, pasado 1000 milisegudos(1seg) se llamara a la funcion reloj() pero solamente 1 ves.
+				
+			}
+		window.onload = function(){//cuando el DOM haya terminado de cargarse.
+			//1000 milisegundos = 1seg.
+			var id =setInterval('reloj()',1000);//cada ves que pase un tiempo determinado(en milisegundos) se ejecutara el metodo pasado por parametro.
+			setTimeout('reloj2();',1000);
+			countdown();
+			/*
+			*/
+			//setTimeout("clearInterval("+id+")",20000);//cuando pase x seg.(sol 1 ves) se ejecutara el metodo pasado como parametro.El efecto hace que el metodo dentro pasado como parametro se detenga.
+			
+			}
+			//********************************************
+
+function converterHex(number){//number deve estar en base decimal
+		var numeral='0123456789ABCDEF';
+            ///////////////////////////////
+            function cambiar(number2){
+				number2=parseInt(number2);
+		                
+				for(i=0;i<17;i++){
+					if(number2==i){break;}
+				}
+				return numeral[i];	
+            }//end function
+            //////////////////////////////
+            
+        var numberOriginal=number;
+		number=parseInt(number);
+        var respuestaHex;//resultado en hexadecimal
+		if(number<16){
+			respuestaHex=cambiar(number);
+		
+		}else{
+                        
+			var div;
+			var resto;
+			var entero;
+			var temp='';
+            var stop=false;
+			for (;!stop;) {//el bucle se detiene cuando stop=true
+				div=number/16;//puede ser entero o decimal flotante
+                               // div=parseInt(div);//
+				entero=parseInt(div);//extrae la parte entera
+				resto=number%16;//siempre entero            
+				if(resto<16){resto=cambiar(resto);}                             
+				temp=resto+''+temp;
+				if(entero<16){stop=!stop;temp=cambiar(entero)+''+temp;}else{number=entero;}				
+				
+			}//end for
+			respuestaHex=temp;
+                }//end else
+                if (numberOriginal==parseInt(respuestaHex,16)){return respuestaHex;}//aqui confirmo que el resultado en Hexa es correcto, comparo el el valor original del numero que qiero convertir con el resultado de convertir el Hexa a decimal parseInt(valor_en_Hexa,16) y si es true imprimira la respuesta es Hexa
+		return 	(numberOriginal==parseInt(respuestaHex,16))+' maquina: ' +parseInt(respuestaHex,16)+' ,algoritmo: '+ respuestaHex;
+}//end function
+
+			//variables globales
+				var counter=100;
+				var t;
+				var isTimerOn = false;
+				var top=100;
+				var left=10;
+				var color=12582716;
+			//fin variables globales.
+			function countdown(){
+				document.getElementById('reloj3_').value=counter;
+				counter--;
+				var caja_=document.getElementById('caja');
+				top++;
+				left++;
+				color+=1;
+				color=converterHex(color);
+				caja_.innerHTML=color;
+				console.log(color);//imprime en consola
+				caja_.style.top=top+'px';
+				caja_.style.left=left+'px';
+				caja_.style.background='#'+color;
+				color=parseInt(color,16);//color tomara nuevamente su en base decimal(en entero).
+				setTimeout('countdown()',1000);
+			}
+			function Press(){
+				alert("me hiciste click",255);
+			}
+			
+	</script>
+	<style type="text/css">
+	*{border:0;margin:0;padding:0;}
+		body{
+			background:#828282;
+		}
+		#web{
+			width:1200px;
+			height:1800px;
+			background:#FA8443;
+		}
+		input{
+			position:relative;
+			display: '';
+		}
+		#caja{
+			width:100px;
+			height:100px;
+			background:#FFC961;
+			border-radius: 10px;
+			position: fixed;
+			/*
+			top: 50px;
+			left: 50px;
+			*/	
+		}
+	</style>	
+</head>
+<body>
+<div id="web">
+	
+	<input type="text"  id ="reloj_" value="...">
+	<input type="text"  id ="reloj2_" value="?">
+	<input type="text"  id ="reloj3_" value="!">
+	<input type="button" value="startMe" onclick="countdown()">
+	
+	<div id="caja" onclick="Press()"></div>
+
+</div>
+</body>
+</html>

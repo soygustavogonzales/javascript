@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+			function forEach(index){
+				index=parseInt(index);
+				//console.log(index);
+				var i=null;j=0;matriz=[],obj={};
+				for(i in this){
+						matriz[j]=this[i];
+					j++;
+				};
+				
+				if(!isNaN(index)){//si index es un numero
+					return matriz[index];//retorna el valor de ese indice en el array
+				}else{
+					return matriz;//retorna el array completo.	
+				}
+				
+			};//end metodo forEach
+
+		var obj={
+			name:'omar',
+			lastname:'gonzales',
+			age:23,
+		};
+		var obj2={
+			name:'erick',
+			lastname:'davalos',
+			age:20,
+			email:'erick@enterprise.com',
+			cualidades:{
+				estudiar:true,
+				cantar:false,
+				correr:true,
+				reir:false,
+			}
+		}
+		console.log(forEach.call(obj,0));//el objeto obj toma al metodo forEach como si fuera su propio metodo
+		console.log(JSON.stringify(forEach.call(obj2)));//el objeto obj2 toma al metodo forEach como si fuera su propio metodo.Puedo hacer esto con otros objetos independientes..BUENISIMO!!!U
+		//console.log(obj2.forEach());//Esto lanza error, no puedes usar al metodo como si se hubiera creado de forma nativa con el objeto.Por tanto solo es posible usar al susodicho metodo po medio del call() o el apply()
+		document.write(JSON.stringify(forEach.call(obj2)));
+
+		var array=['uno','dos','tres','cuatro'];
+		array.forEach(function(value,index){
+			console.log('indice:'+ index+'; valor: '+value);
+		});
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

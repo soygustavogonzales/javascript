@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+		var oMensajeria={
+			aviso:'eureka!',
+			set setAviso(value){this.aviso=value},
+			get getAviso(){return this.aviso+' in this getAviso'},
+			aviso2:'voila',
+			set setAviso2(value){this.aviso2=value},
+			get getAviso2(){return this.aviso2+' in this getAviso2'}
+		};
+		//oMensajeria.setAviso='VICTORy';
+		console.groupCollapsed('GROUP1');
+			console.log(oMensajeria.getAviso)
+			console.log(oMensajeria.aviso);
+			console.log(oMensajeria.getAviso2);
+			console.log(oMensajeria.aviso2);
+		console.groupEnd('GROUP1');
+
+		function clsPadre(){
+			var self=this;//la variabloe self la utilizo para tener acceso al objeto que hereda de esta clase cuando me encuentro dentro de un  objeto(que es un atributo de esta clase), y quiero acceder a un atributo del objeto
+			this.a='it is a';//b es un atributo del objeto clsPadre
+			this.set_get_a={
+				set set_a(value){this.a=value},//aca a es un atributo(de la clase clsPadre)
+				get get_a(){return this.a},
+			};
+			this.set_get_b={//este es un objeto que es un atributo de la clase clsPadre.
+				b:'it is b',//b es un atributo del objeto set_get_b, que a la ves es un atributo de la clase clsPadre.
+				set set_b(value){self.set_get_b.b=value},//para acceder al atributo del mismo objeto uso el self
+				get get_b(){return self.set_get_b.b},
+				b1:null,
+				set set_b1(value){self.set_get_b.b1=self.set_get_b.get_b},
+				get get_b1(){return self.set_get_b.b1},
+			};
+			this.c=this.a;
+			this.set_get_d={
+				d:this.a,//d es u atributo de set_get_d y lo igualo a un atributo de la clase clsPadre
+				set set_d(value){self.set_get_d.d=value},
+				get get_d(){return self.set_get_d.d},
+			}
+			this.set_get_e={
+				e:self.set_get_b.get_b,//es igual q this.set_get_b.get_b
+				set set_e(value){self.set_get_e.e=value},
+				get get_e(){return self.set_get_e.e},
+			}
+		};
+		
+		
+		
+		var oclsPadre=new clsPadre();
+		oclsPadre.set_get_b.set_b='it is new b';
+		console.groupCollapsed('GROUP2');
+		oclsPadre.set_get_a.set_a='it is new a';
+		//oclsPadre.set_get_e.set_e='it is new e';
+			console.log("oclsPadre.a: "+oclsPadre.a+'\n'+
+				"oclsPadre.set_get_a.get_a: "+oclsPadre.set_get_a.get_a+'\n'+
+				"oclsPadre.set_get_b.get_b: "+oclsPadre.set_get_b.get_b+'\n'+
+				"oclsPadre.c: "+oclsPadre.c+'\n'+
+				"oclsPadre.set_get_d.get_d: "+oclsPadre.set_get_d.get_d+'\n'+
+				"oclsPadre.set_get_d.d: "+oclsPadre.set_get_d.d+'\n'+
+				"oclsPadre.set_get_e.e: "+oclsPadre.set_get_e.e+'\n'+
+				"oclsPadre.set_get_e.get_e: "+oclsPadre.set_get_e.get_e+'\n'+
+				"oclsPadre.set_get_b.b1: "+oclsPadre.set_get_b.b1);
+		console.groupEnd('GROUP2');
+			
+			
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

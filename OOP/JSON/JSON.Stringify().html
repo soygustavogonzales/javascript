@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<!--
+		/**INTRODUCCION**
+		var obj={name:"gustavo",lastname:"gonzales",firstname:"adolph",age:23};//Este es un objeto
+		console.log(obj.toString());//esto arrojaria [object String]
+		var variable=565;//variable es un numero
+		console.log(variable.toString());//esto arrojaria "565"
+		Es conocido que el metodo global toString() convierte un valor a un objeto
+		pero con los objetos no ocurre lo mismo.
+		Para eso existe el JSON.stringify()
+		*/
+	/*
+		JSON.stringify(Objeto,replacer,space)//devuelve una cadena con el contenido del objeto
+		* Objeto:(Obligatorio)variable,objeto de cualquier tipo, y claro una matriz
+		* replacer:(Opcional) una matriz o function
+		* space:(Opcional) un espacio q se agregara a la cadena que se devuelve.
+			Ejmp. "--","//","loQueSea","\t","\n"
+	*/	
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+	console.group("1er ejemplo");
+		/*Cuando el replacer es una matriz*/
+		var Contacto =new Object();
+		Contacto.nombre="Gustavo";
+		Contacto.apellido="Gonzales";
+		Contacto.telefono="994919737";
+		Contacto.edad=23;
+		var miembros=new Array();
+		miembros[0]="apellido";
+		miembros[1]="telefono";
+		var miembroName=["nombre"]
+		var miembroAge=["edad"];
+
+		var jsonTexto1=JSON.stringify(Contacto,miembros);
+		var jsonTexto2=JSON.stringify(Contacto,miembroName);
+		var jsonTexto3=JSON.stringify(Contacto,miembroAge);
+		//jsonTexto es una variable tipo Cadena.
+		console.log(jsonTexto1);//arrojaria una cadena con los atributos(apellido,telefono) del objeto Contacto
+		console.log(jsonTexto2);//arrojaria una cadena con los atributos(nombre) del objeto Contacto
+		console.log(jsonTexto3);//arrojaria una cadena con los atributos(edad) del objeto Contacto
+		//*****COMPROBADO QUE ES DE TIPO STRING
+		console.log(typeof(jsonTexto1)+"\n"+//arroja string
+					Object.prototype.toString.call(jsonTexto1));//arroja [object String]
+		//********************************
+	console.groupEnd("1er ejemplo");
+	console.group("2do ejemplo");
+
+		/*CUANDO argumentamos DE FORMA DIRECTA*/
+		console.log(JSON.stringify({name:'omar',age:21},["name"],"--"));//el 1er argumento es un objeto,el 2do es un array;y el 3ero s el espaciador("--"),es decir que entre cada atributo hara de separador
+		var oPersona={name:'erick',age:21,email:'erick@empresa.com'};
+		var mPersona=['erick',21,'erick@empresa.com'];
+		var mPersona2=new Array();
+			mPersona2['name']='erick';
+			mPersona2['age']=21;
+			mPersona2['email']='erick@empresa.com';
+		
+	console.groupEnd("2do ejemplo");
+	console.group("3er ejemplo");
+
+		/*CUANDO NO SE ARGUMENTA UN REPLACER*/
+		var objCad=JSON.stringify({name:'erick',age:21,telf:'23423444'});//convierte todo el objeto en una cadena
+		console.log(objCad);//arroja el objeto convertido a cadena.
+		console.log(JSON.parse(objCad));//arroja un objeto JSON, el metodo parse(cadenaJson) convierte una cadena en un objeto JSON,siempre y cuando la cadena defina un objeto JSON; es decir, n se puede convertir 'loQueSea' en un objeto JSON...'pensando'!!
+
+	console.groupEnd("3er ejemplo");
+
+
+	console.group('CODIGO EN OBSERVACION');
+			var cont=0;
+			var objCadenita=JSON.stringify(oPersona,function(key,value){
+				/*
+					*value es <igual a> this[key]
+
+				*/
+				if(key in this){
+					console.group("TRUE");
+						cont--;
+						console.log(this[key]);
+						return this[key];
+					console.groupEnd("TRUE");
+					
+				}else{
+					console.group("FALSE");
+						console.log(this[key]);
+						cont++;
+
+						return value.toString().toUpperCase();//convierto a mayusculas luego de convertirlo a cadena
+					console.groupEnd("FALSE");
+				}
+			});
+			console.log(objCadenita+" cont :"+cont);
+	console.groupCollapsed('CODIGO EN OBSERVACION');
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

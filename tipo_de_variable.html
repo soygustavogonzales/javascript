@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+	/*
+		Con el siguiente script logro obtener el nombre del
+		tipo de objeto al que le paso por argumento.
+
+	*/
+		var objetito={};
+		var numerito=1000;
+		var logico=true;
+		var cadenita='cadenita';
+		var matricita=[];
+		var fechecita=new Date('9/10/2000');
+		var expresioncita=/a*/;//esta es una expresion regular
+
+		
+		console.log(
+			Object.prototype.toString.call(objetito)+"\n"+//arroja [object Object] 
+			Object.prototype.toString.call(numerito)+"\n"+//arroja [object Number]
+			Object.prototype.toString.call(logico)+"\n"+//arroja [object Boolean]
+			Object.prototype.toString.call(cadenita)+"\n"+//arroja [object String
+			Object.prototype.toString.call(matricita)+"\n"+//arroja [object Array]
+			Object.prototype.toString.call(fechecita)+"\n"+//arroja [object Date]
+			Object.prototype.toString.call(/(msie)|(firefox)|(chrome)|(opera)|(safari)/i)+"\n"+//arroja [object RegExp]
+			Object.prototype.toString.call(expresioncita)//arroja [object RegExp]
+		);
+
+
+		/*A coninuacion la forma con abreviacion*/
+			with(Object.prototype.toString){//para no escribir las mismas lineas de codigo varias veces
+				console.log(
+					call(objetito)+"\n"+//arroja [object Object] <igual a> Object.prototype.toString.call(objetito)
+					call(numerito)+"\n"+//arroja [object Number] <igual a> Object.prototype.toString.call(numerito)
+					call(logico)+"\n"+//arroja [object Boolean] <igual a> Object.prototype.toString.call(logico)
+					call(cadenita)+"\n"+////arroja [object String] <igual a> Object.prototype.toString.call(cadenita)
+					call(matricita)+"\n"+//arroja [object Array]...idem
+					call(fechecita)+"\n"+//arroja [object Date]...idem
+					call(/(msie)|(firefox)|(chrome)|(opera)|(safari)/i)+"\n"+//arroja [object RegExp]...idem
+					call(expresioncita)//arroja [object RegExp]...idem
+				);
+			};
+	</script>
+</head>
+<body>
+	<div id="web"></div>
+</body>
+</html>
+

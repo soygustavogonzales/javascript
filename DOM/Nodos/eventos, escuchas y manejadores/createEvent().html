@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<style>
+	#caja{
+		background: #EC6C35;
+		width:400px;
+		height:400px;
+		border-radius: 10px;
+	}
+	</style>
+</head>
+	<body>
+		<div id="caja">hazme click</div>
+	</body>
+	<script>
+
+		var caja=document.getElementById("caja");
+		var evento1=document.createEvent("CustomEvent");
+		/*
+			CustomEvent : Evento personalizado
+			MouseEvent : Evento del mouse
+			KeyboardEvent : Evento del teclado
+
+
+		*/
+		//evento1.initEvent("myEvento",true,true,true);
+		evento1.initCustomEvent("myEvento",true,true,true);//Se da nombre al evento
+		/*
+			en vez de initCustomEvent podria haber sido:
+			
+
+		*/
+		caja.onclick=function(evento){
+			this.dispatchEvent(evento1);//disparo el evento
+			console.log("evento click: "+evento);
+		}
+
+		caja.addEventListener("myEvento",function(e){
+			//this hace referencia al nodo que tiene el escucha del evento myEvento
+			console.log(e);
+			console.log(typeof e);
+			console.log("e: "+e+"\n"+
+						"e.type: "+e.type+"\n"+
+						"this.tagName: "+this.tagName+"\n"+
+						"e.srcElement.tagName : "+((e.srcElement)?e.srcElement.tagName:undefined)//En Firefox aun no esta definido el atributo srcElement
+			);
+		},true);
+
+	</script>
+</html>

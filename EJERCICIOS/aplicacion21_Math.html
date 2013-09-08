@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio se grafica unas lineas en forma de espiral dependiendo de la formula que se le de,
+	 una formula trigonometrica es la mas ideal
+	 Se debe escribir la cantidad de bolitas acrear y luego darle en movimiento-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+		*{margin:0;border:0;padding: 0;padding: 0;}
+		body{background: peru;}/*peru es un color*/
+		#web{margin: 0 auto;background: #BE79E3;height: 800px;height: 600px;}
+		#caja{position: absolute;
+			top: 100px;
+			left: 500px;
+			width:1200px;
+			height: 800px;
+			background:#F7995B;
+			}
+		
+	</style>
+	<script type="text/javascript">
+		function clsFiguraTrig(){
+			var self=this;//este this hace referencia al objeto.
+			this.css={
+				background:'#fff',
+				borderRadius:'50%',//de la formaen que lo entiende javascript
+				height:'10px',
+				left:'5px',
+				position:'relative',
+				top:'5px',
+				width:'10px',
+			};
+			this.ultima=null;
+			this.lote=null;
+			this.Crear=function(){
+				console.log('(parseInt(this.lote): '+parseInt(this.lote) +'; this.lote==true: '+this.lote==false);
+				this.lote=parseInt(this.lote)||1;//si this.lote es vacio('') o es 0, this.lote valdra 1.
+				console.log('(parseInt(this.lote): '+parseInt(this.lote));
+				if(!isNaN(this.lote)){//solo si es un numero(es una forma de asegurarse) se ejecutara el script dentro de este if
+					var i=0;
+					for(i;i<this.lote;i++){
+						this.ultima=document.createElement('div');
+						for(var estilo in this.css){
+							if(estilo=='top' || estilo=='left'){
+								this.ultima.style[estilo]=this.css[estilo]+'px';
+								continue;//ya no continua el siguiente codigo, se rompe la continuidad-se pasa a la siguiente iteracion- OJO NO SE ROMPE el bucle.
+							}
+							this.ultima.style[estilo]=this.css[estilo];
+						}//end for
+						this.ultima.setAttribute('class','bolita');
+						this.ultima.setAttribute('type','text');
+						document.querySelector('#caja').appendChild(this.ultima);
+						this.css.top=parseInt(this.css.top)+1;
+						this.css.left=parseInt(this.css.left)+1;
+					}//end for
+				}//end if
+				else{console.log("No es una cantidad valida");}
+			};//end this.Crear()
+
+			this.constantes={
+				K:0.0,
+			};
+			this.getK=function(){return this.constantes.K};
+			this.Saludo=function(){
+				console.log("rebienta el planeta");
+			};
+			this.mover={
+				tiempo:100,//tiempo o 'velocidad' de movimiento.//1000 milisegundos es 1 seg.
+				controller:null,//nombre del timer.
+	
+				formula:{
+					f1:Math.cos(Math.PI/2+this.getK())*100,
+					f2:Math.cos(Math.PI/3+this.getK())*100
+				},
+				Start:function(){
+					self.mover.controller=setInterval(function(){self.mover.Movimiento()},self.mover.tiempo);//si no colocara esta variable(self), y pusiera this en su lugar,el interprete evaluaria
+										//al this como si se tratara del objeto window(que esta encima de todo el arbol del DOM) 
+					
+				},
+				Stop:function(){
+					clearInterval(self.mover.controller)
+				},
+				Movimiento:function(){
+					var bolitas=document.querySelectorAll('.bolita');
+				        var longi=bolitas.length;var t=0;
+	                    for(t;t<longi;t++){
+							self.ultima=bolitas[t];
+	                       	self.css.left=Math.sin(Math.PI/4*self.constantes.K)*100;
+	                        self.css.top=Math.cos(Math.PI/3*self.constantes.K)*100;
+	                        self.ultima.style.left=self.css.left+'px';
+	                        self.ultima.style.top=self.css.top+'px';
+	                        self.ultima.style.background='#000';
+	                        console.log("K: "+self.getK());
+	                        self.constantes.K+=0.1;
+	                        console.log("left_: "+self.ultima.style.left+" ,top_: "+self.ultima.style.top+";K: "+self.constantes.K);
+	                        console.log("f1: "+Math.sin(Math.PI/2*0.0)*100);
+	                   	}//end for
+				},
+			};//end this.Mover
+		}//end clsFiguraTrig()
+			
+		var oBolita=new clsFiguraTrig();
+		window.addEventListener('load',function(){
+			
+			var botonCrear=document.querySelector('#btn_emp');
+			var botonMover=document.querySelector('#btn_StartMov');
+			var botonParar=document.querySelector('#btn_StopMov');
+			
+			botonCrear.addEventListener('click',function(){
+				oBolita.lote=document.querySelector('#txt_cant').value
+				oBolita.Crear();
+				
+			},false);
+			botonMover.addEventListener('click',function(){
+				oBolita.mover.Start();
+			},false);
+			botonParar.addEventListener('click',function(){
+				oBolita.mover.Stop();
+			},false);
+
+		},false);//end window.addEventListener().
+	</script>
+</head>
+<body>
+	<div id="caja">
+	</div>
+		<input type="text" id="txt_cant" placeholder="# bolitas" value="">
+		<input type="button" id="btn_emp" value="Crear bolas">
+		<input type="button" id="btn_StartMov" value="mover bolas">
+		<input type="button" id="btn_StopMov" value="parar bolas">
+</body>
+</html>
+

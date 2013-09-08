@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<style>
+	*{
+		border: 0;
+		padding: 0;
+		margin: 0;
+		box-sizing:border-box;
+		color: peru;
+	}
+		textarea,div:not(#web){
+			height: 150px;
+			width: 180px;
+			overflow-y:scroll; 
+			overflow-x:scroll; 
+		}
+		#area{
+			z-index: 3;
+			background-image: url(../EXPERIMENTOS/img/fondo2.jpg);
+		}
+		#area > img {
+			position: static;
+			z-index: 1;
+		}
+		#area > span{
+			position: absolute;
+			top: 0;
+			/*
+			*/
+			z-index: 2;
+		}
+		#div2{
+			background-image: url(../EXPERIMENTOS/img/fondo2.jpg);
+			background-repeat: no-repeat;
+			background-attachment: scroll;
+			background-size: 120%;
+		}
+
+		#div2 > span{
+			position: static;
+			top: 0;
+			z-index: 2;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+		//console.group('DOMContentLoaded')
+			document.addEventListener('DOMContentLoaded',function(e){
+				var area=window.area;
+				area.addEventListener('select',function(evento){
+					console.log(
+						"evento.type: "+evento.type+"\n"+
+						"evento.timeStamp: "+evento.timeStamp
+					);	
+					var sInicio=evento.target.selectionStart,//indice inicial de la cadena seleccionada
+					sFinal=evento.target.selectionEnd,//indice final de la cadena seleccionada
+					seleccion=area.textContent.substring(sInicio,sFinal);
+					console.log("cadena seleccionada :"+seleccion);//mostrara el texto seleccionado
+				},false);
+				area.addEventListener('scroll',function(e){
+					console.log(e.type);
+					var NODOatributos=e.srcElement||e.originalTarget;//normalizando los atributos(para compatibilizdades con los distintos browsers)
+					console.log(NODOatributos.scrollTop);
+					console.log(NODOatributos.scrollLeft);
+					e.stopPropagation();
+				},false);
+			},false);
+	</script>
+</head>
+<body>
+	<div id="web">
+		<textarea id="area">
+				Lorem ipsum dolor sit amet, consectetur
+				<!-- este es un comentario -->
+		</textarea>
+		<div id="div2">
+			<span>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis harum amet velit voluptas error cum tenetur animi magni veniam deleniti nisi natus unde. Consectetur maiores magni quis qui facilis quo laborum officiis amet necessitatibus consequatur dolorem veritatis repellat similique illum!Lorem ipsum dolor sit amet,
+				<!-- este es un comentario -->
+			</span>
+		</div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	*{
+		margin:0;
+		padding: 0;
+		border: 0;
+		outline: 0;
+		font-weight: inherit;
+		font-style: inherit;
+		font-size: 100%;
+	}
+	canvas{
+		/*
+		width: 500px;/*asignar el ancho por css es un error, causa efectos no deseados al escribir en canvas*/
+		/*height: 500px;/*asignar el alto por css es un error, causa efectos no deseados al escribir en canvas*/
+
+		box-shadow: 5px 5px 5px rgba(200,200,100,.6);/*este estilo si es aceptable*/
+		position:absolute;
+		top:100px;/*puede ser (+) o (-)*/
+		left:20px;/*puede ser (+) o (-)*/
+		border:2px solid #E14C4C;
+	}
+	input[type="color"]{
+		margin:0;
+		width:60px;
+    	vertical-align:middle;
+
+	}
+	input[type="color"]:hover{
+		outline:2px solid #FF3308;
+	}
+	</style>
+	<script>
+	window.addEventListener("load",function(){
+		var canvas=document.querySelector("canvas"),
+			ctx=canvas.getContext("2d"),
+			top=parseInt(getComputedStyle(canvas).top)||0,/*con getComputedStyle obtengo el estilo computado con css(), en caso el parseInt() arroje NaN devolvere un valor 0, recordar q el getComputedStyle arroja "_valor_nemerico+px",y cuando el numero es 0 arroja solamente "px" esto provoca q el parseInt() devuelva NaN*/
+			left=parseInt(getComputedStyle(canvas).left)||0,/*Idem*/
+			BotonBorrador=document.querySelector("#clear"),
+			BotonColorLienzo=document.querySelector("#colorPickerBoard");
+
+		BotonBorrador.addEventListener("click",function(){//cuando se le hace click al boton
+			//canvas.width=canvas.width;//una forma de resetear todo el canvas, crea el efecto de borrado total
+			ctx.clearRect(0,0,canvas.width,canvas.height);//forma de borrar un contexto parametros(x,y,ancho,alto), el 0 indica el comienzo actual del lienzo(no hace falta pasarle por parametro el top y el left)
+		},false);
+		BotonColorLienzo.addEventListener("change",function(){
+			canvas.style.background=this.value;
+		},false);
+
+		/*1er ejemplo: Graficando un rectangulo*/
+			ctx.fillStyle="rgba(100,200,100,.3)";//le doy un color a lo que sera pintado en adelante con el ctx
+			ctx.fillRect(10,10,50,50);//grafico un rectangulo de 50*50(ancho*alto), 10 en x, 10 en y
+		/**********************************************/
+
+		/*2do ejemplo: Graficando puntos aleatorios de colores aleatorios*/
+			ctx.fillStyle="rgba(50,10,100,.7)";//cambio de color
+			setTimeout(function(){
+				var i=(Math.random()*(250-1)+1).toFixed(0),
+				   	j=(Math.random()*(250-1)+1).toFixed(0),
+				   	k=(Math.random()*(250-1)+1).toFixed(0),
+				   	l=(Math.random()).toFixed(1);//un numero aleatorio
+				//console.info(i+"--"+j);
+					ctx.fillStyle="rgba("+i+","+k+","+j+","+l+")";
+					ctx.fillRect(i,j,2,2);
+					
+				setTimeout(arguments.callee,100);
+			},100);
+		/**********************************************/
+		
+		/*3er ejemplo: Graficando una tabla con bucles*/
+			ctx.fillStyle="rgba(50,0,20,.7)";//cambio de color
+			for (var i = 0; i < 100; i+=10) {
+				for (var j =0; j < 100; j++) {
+					ctx.fillRect(j,i,1,1);
+				};
+			};
+			i=j=null;
+		/**********************************************/
+		
+		/*4to ejemplo: Graficando lineas(un figura geometrica) mediante puntos*/
+			ctx.beginPath();//le digo a canvas q empezare a rgaficar
+			ctx.moveTo(0,0);//le digo a canvas donde empezaran las graficas
+			ctx.lineTo(50,0);//fijo un punto(x,y)
+			ctx.lineTo(50,40);//fijo un punto(x,y)
+			ctx.lineTo(40,43);//fijo un punto(x,y)
+			ctx.lineTo(30,100);//fijo un punto(x,y)
+			ctx.closePath();//obtiene el punto inicial de un recorrido
+			ctx.stroke();
+			/*
+			stroke() :rellena con lineas, solo la silueta
+			fill() : rellena con pintura
+			*/
+		/**********************************************/
+		
+		
+		/*5to ejemplo: Graficando puntos consecutivos(como pizarra) cada vez q se mueve el mouse,*/
+		var ctx2=canvas.getContext("2d");
+		canvas.addEventListener("mousemove",function(e){//cada vez que se mueva el mouse por el elemento canvas
+			ctx.lineWidth=2;
+			var color=window.colorPicker.value;
+			ctx.strokeStyle=""+color.toString();//cambio el color de los rectangulitos
+			e=e||window.event;//en caso no este definico e, cojo el objeto por defecto de window: event...(en caso de algunos navegadores antiguos)
+			//console.log(e);	
+			var x=e.pageX,y=e.pageY;//distancia en horizaontal(X) y vertical(Y) repectivamente relativa a la pagina(el documento)
+			var x1=e.clientX,y1=e.clientY;//distancia en horizaontal(X) y vertical(Y) repectivamente relativa a los limites del navegador navegador
+			//console.log(color.toString()+"\n"+
+				//ctx.fillStyle
+				//"getComputedStyle(canvas).top: "+top+"\n"+
+				//"getComputedStyle(canvas).left: "+left
+			//);
+			/*
+			con el top y left me cuido de la ruptura de coordenadas al momento q se le cambia de top y left con estilos al nodo canvas,
+			pues ocurriria un decuadre de al escribir sobre el lienzo(yo pasaba el mouse por un(X,Y) y se escribia en (M,N) y eso no era lo deseado)
+			*/
+			ctx.strokeRect(x-left,y-top,2,2);//se escribe un rectagulo pequeño de 2*2(ancho*alto)
+			//console.log(x+"**"+y);//escribo en consola
+		},false);
+		/**********************************************/
+
+
+		/*6to ejemplo: graficando curvas y arcos*/
+			ctx.beginPath();
+			ctx.lineWidth=(2);//ancho de la linea
+			ctx.arc(100,100,50,ToRadians(0),ToRadians(-90),true);//(x,y,radio,anguloInicial,anguloFinal,sentidoAntihorario),
+			//ctx.closePath();//obtengo el punto inicial del recorrido asi, se cierra la figura.
+			ctx.closePath();//obtiene el punto inicial de la figura
+			ctx.fill();//con ctx.fill() pinto todo el interior
+
+			ctx.beginPath();
+			ctx.arc(200,200,160,ToRadians(-270),ToRadians(0),false);//(x,y,radio,anguloInicial,anguloFinal,sentidoAntihorario),
+			ctx.closePath();
+			ctx.moveTo(300,100);
+			ctx.stroke();//con ctx.stroke() solo pinto con el contorno, con fill() pinto todo el interior
+
+			function ToRadians(gradoSexa){//convierte de sexagesimales a angulo a radianes
+				return (gradoSexa*Math.PI)/180
+			}
+			console.log(
+				ToRadians(270)+"\n"+
+				ToRadians(720)
+			);
+
+		/**********************************************/
+
+
+	},false);
+
+
+
+	</script>
+</head>
+<body>
+	<div id="web">
+		<canvas id="canvas" width="500" height="500"><!--el width y height simepre deben especificarse como atributos, no asignarlos con estilos, pues causa un efecto borroso en canvas-->
+			YOUR BROWSER NOT SUPORT CANVAS OF HTML5, USE OTHER BROWSER <!--ESte mensaje saldra en los navegadores que no dan soporte a la etiqeta canvas-->
+		</canvas>
+		<button id="clear">Borrar canvas</button>
+		<label for="colorPicker">Color de Pluma</label><input type="color" id="colorPicker" name="colorPicker"><!--muestra una paleta de colores al usuario-->
+		<label for="colorPickerBoard">Color de lienzo</label><input type="color" id="colorPickerBoard" name="colorPickerBoard"><!--muestra una paleta de colores al usuario-->
+
+	</div>
+</body>
+</html>
+

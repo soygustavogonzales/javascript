@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!
+	Object.getOwnPropertyNames(objeto u array) arroja un array con los valores de los indices de un array o los keys de un objeto, dependiendo de donde se le use.
+	Se incluye em ese array el valor del length.
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+		var matriz=['uno','dos','tres','cuatro'];
+		var matriz2=new Array();
+			matriz2['soy_cero']='cero';
+			matriz2['soy_uno']='uno';
+			matriz2['soy_dos']='dos';
+			matriz2['soy_tres']='tres';
+			matriz2['soy_cuatro']='cuatro';
+
+		var obj={name:'carlos',lastname:'torres',age:24};
+		console.log(Object.getOwnPropertyNames(obj));//arroja un array con el nombre todos de los keys, se incluye el valor del length
+		console.log(Object.getOwnPropertyNames(matriz));//arroja un array con el nombre todos de los indices(los keys), se incluye el valor del length
+		console.log(Object.getOwnPropertyNames(matriz2));//arroja un array con el nombre de todos los indices(los keys), se incluye el valor del length
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

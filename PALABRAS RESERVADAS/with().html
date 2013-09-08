@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+		with(console){//metodo de abreviacion para ahorrar linas de codigo que se van a repetir
+			log("1era linea console.log ");
+			console.log("2da linea console.log ");//es valido
+			log("3era linea console.log ");
+			log("4ta linea console.log ");
+		}
+		var objetito={};
+		var numerito=1000;
+		var logico=true;
+		var cadenita='cadenita';
+		var matricita=[];
+		var fechecita=new Date('9/10/2000');
+
+
+		var expresioncita=/a*/;//esta es una expresion regular
+
+			with(Object.prototype.toString){
+				console.log(
+					call(objetito)+"\n"+//arroja [object Object] <igual a> Object.prototype.toString.call(objetito)
+					call(numerito)+"\n"+//arroja [object Number] <igual a> Object.prototype.toString.call(numerito)
+					call(logico)+"\n"+//arroja [object Boolean] <igual a> Object.prototype.toString.call(logico)
+					call(cadenita)+"\n"+////arroja [object String] <igual a> Object.prototype.toString.call(cadenita)
+					call(matricita)+"\n"+//arroja [object Array]
+					call(fechecita)+"\n"+//arroja [object Date]
+					call(/(msie)|(firefox)|(chrome)|(opera)|(safari)/i)+"\n"+//arroja [object RegExp]
+					call(expresioncita)//arroja [object RegExp]
+				);
+			};
+				
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

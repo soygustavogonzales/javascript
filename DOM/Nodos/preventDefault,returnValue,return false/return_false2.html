@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>return_false</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+
+	</script>
+	<script>
+		window.addEventListener('load',function(evento){
+			console.log("se cargo el DOM : "+evento.type);
+			var a=document.querySelector("a");
+			var buton=document.querySelector("input[type=button]");
+			var submit=document.querySelector("input[type='submit']");
+			var condicion=true;
+			var contador_click=1;
+			submit.addEventListener('click',function(evento){
+				/*El metodo predeterminado de este boton tipo submit 
+				de enviarnos a otra pagina funciona  y luego ya recien
+				 toma en cuenta las sentencias a continuacion.
+				 Pero cuando encuentra en su 1era linea a un 
+				 preventDefault o un returValue=false se omite este comportamiento
+				*/
+				evento.returnValue=false;//<es igual a> evento.preventDefault();
+
+				if(condicion){
+					console.log("hiciste click en : "+this.nodeName);//this hace referencia al objeto(nodo o elemento,etc) que disparo el evento.
+				}else{
+					return false;//inhabilita las sentencias posteriores a esta.
+					console.log("Pasaste por la linea de return false: la condicion en false...");
+				}
+			},false);
+
+				a.addEventListener('click',function(evento){
+					//evito q me redirija a la pagina correspondiente.
+				console.log("me hiciste click: "+e.type+" ; "+e.pageX);
+				return false;
+			},false)
+			buton.addEventListener('click',function(evento){
+				if(contador_click>2){//cuando el contador valga 3
+					return false;//osea que no hara nada
+					//evento.returnValue=true;
+					console.log("hiciste mas de 2 clicks...");//esto no llega a ejecutarse a causa del return false
+				}else{
+					console.log("Click nro: "+contador_click);
+					contador_click++;
+				}
+			},false);
+		},false);
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		file:prueba_return_false.html
+		<a href="http://www.google.com" target="blank">ir a google.com</a>
+		<form action="otrapagina.php">
+			<input type="text">
+			<input type="submit">
+		</form>
+		<input type="button" value="press me!!">
+	</body>
+	<script>
+	</script>
+</html>

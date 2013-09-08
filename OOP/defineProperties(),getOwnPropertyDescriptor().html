@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!
+	defineProperties() : define un a especificacion de descripciones de un atributo(s) de un objeto y puede ser 
+		 configurable:true,//puede ser eliminado este atributo?.
+		    enumerable:true,//puede ser incluido en el conteo de atributos?//Osea al momento de recorrer(con un bucle) los atributos del objeto.
+		    value: 'Hello',//su valor por defecto.
+		    writable: true,//puede ser sobreescrito(cambiar de valor) este atributo?.
+	defineProperty(): define una especificacion de descripciones para un solo atributo de un objeto   
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+	function clsPadre(prop1,prop2){
+		this.prop1_=prop1;
+		this.prop2_=prop2;
+		this.getProp1=function(){
+			return this.prop1_;
+		};
+	};
+	var oHijo=new clsPadre;
+	obj={//este objeto es especial
+		property1: {//*ojo: no se puede detallar otra descripcion dentro de este subobjeto,lanzaria un error
+		    configurable:true,//puede ser eliminado este atributo?.
+		    enumerable:true,//puede ser incluido en el conteo de atributos?//Osea al momento de recorrer(con un bucle) los atributos del objeto.
+		    value: 'Hello',//su valor por defecto.
+		    writable: true,//puede ser sobreescrito(cambiar de valor) este atributo?.
+  		},
+		property2: {
+			configurable:false,
+			enumerable:false,
+			value: 'World',
+			writable: false,
+  		},
+  		property3:{
+  			configurable:false,
+  			enumerable:true,
+  			value:'Sin city',
+  			writable:true,
+  		}
+	};
+	console.group('GROUP1');
+		console.log(Object.defineProperties(oHijo,obj));//forma de agragar atributos en lote.
+		console.log(Object.defineProperty(oHijo,'property4',{//forma de agregar un solo atributo
+			configurable:true,
+			enumerable:true,
+			value:null,
+			writable:true,
+			set prop4(value){
+				this.value_=value;
+			},
+			
+			get prop4(){
+				return (this.value_ +'...super!!');
+			},
+
+		}));
+		//oHijo.property4='EUREKA!!';
+		console.log('oHijo.property4: '+oHijo.property4);
+	console.groupEnd('GROUP1');
+	console.group('GROUP2')//probando writable
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property1'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property2'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property3'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property4'));
+		oHijo.property2='Peru';
+		oHijo.property1='Bye';
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property1'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property2'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property3'));
+		console.log(Object.getOwnPropertyDescriptor(oHijo,'property4'));
+		console.log("oHijo.property2 : "+oHijo.property2);
+	console.groupEnd('GROUP2');
+	console.group('GROUP3');//probando enumerable
+		for(var i in oHijo){
+			console.log('key: '+i+'; value: '+oHijo[i]);
+		}
+	console.groupEnd('GROUP3');
+	console.group('GROUP4');//probando configurable
+		console.log("delete oHijo.property2: "+delete oHijo.property2+'\n'+
+					"delete oHijo.property1: "+delete oHijo.property1+'\n'+
+					"delete oHijo.property3: "+delete oHijo.property3	);
+	console.groupEnd('GROUP4');
+	console.group('GROUP5')//viendo la descripcion por default de algunos atributos del objeto 'oOperario' 
+		function clsEmpleado(nombre,dni,edad){
+			this.nombre_=nombre;
+			this.dni_=dni;
+			this.edad_=edad;
+			this.id_=dni+edad;
+		}
+		var oOperario =new clsEmpleado('carlos','46433432',34);
+		var oSecretaria=new clsEmpleado();
+			console.log(Object.getOwnPropertyDescriptor(oOperario,'nombre_'))// writable: true, enumerable:true, configurable:true
+			console.log(Object.getOwnPropertyDescriptor(oOperario,'dni_'))// 	writable: true, enumerable:true, configurable:true
+			console.log(Object.getOwnPropertyDescriptor(oOperario,'edad_'))// 	writable: true, enumerable:true, configurable:true
+			console.log(Object.getOwnPropertyDescriptor(oOperario,'dni_'))// 	writable: true, enumerable:true, configurable:true
+
+			/*ANALISIS: Se nota que todas las propiedades de los atributos del objeto tienen su:
+				
+				writable:true
+				enumerable:true
+				configurable:true
+			*/
+	console.groupEnd('GROUP5')
+	console.group("GROUP6")
+
+			console.log(Object.getOwnPropertyDescriptor(oSecretaria,'nombre_'));		
+			console.log(Object.getOwnPropertyDescriptor(oSecretaria,'dni_'));		
+			console.log(Object.getOwnPropertyDescriptor(oSecretaria,'edad_'));		
+			console.log(Object.getOwnPropertyDescriptor(oSecretaria,'id_'));		
+			
+	console.groupEnd("GROUP6")
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

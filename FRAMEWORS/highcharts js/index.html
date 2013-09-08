@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+	<head>
+		<meta charset="UTF-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+		<title>UNknown</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+	</head>
+	<body>
+		
+		<div id="container" style="min-width: 200px; height: 600px; margin: 0 auto"></div>
+		<script>
+		//$(function(){
+		        $('#container').highcharts({
+		            chart: {
+		                type: 'area'
+		            },
+		            title: {
+		                text: 'US and USSR nuclear stockpiles'
+		            },
+		            subtitle: {
+		                text: 'Source: <a href="http://thebulletin.metapress.com/content/c4120650912x74k7/fulltext.pdf">'+
+		                    'thebulletin.metapress.com</a>'
+		            },
+		            xAxis: {
+		                labels: {
+		                    formatter: function() {
+		                        return this.value; // clean, unformatted number for year
+		                    }
+		                }
+		            },
+		            yAxis: {
+		                title: {
+		                    text: 'Nuclear weapon states'
+		                },
+		                labels: {
+		                    formatter: function() {
+		                        return this.value / 1000 +'k';
+		                    }
+		                }
+		            },
+		            tooltip: {
+		                pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+		            },
+		            plotOptions: {
+		                area: {
+		                    pointStart: 1940,
+		                    marker: {
+		                        enabled: false,
+		                        symbol: 'circle',
+		                        radius: 2,
+		                        states: {
+		                            hover: {
+		                                enabled: true
+		                            }
+		                        }
+		                    }
+		                }
+		            },
+		            series: [
+		            	{
+			                name: 'USA',
+			                data: [0,2,4,6,8,10,12]
+		            	},
+		            	{
+			                name: 'USSR/Russia',
+			                data: [null,null,null,11.3,11.4,11.5,11.6,11.7,20,30]
+		            	},
+		            	{
+		            		name:'PERU',
+		            		data:[2.3,10,50,200,3000,10000,10000.5,10000.7,10000.9,3030,200,50,10,3.2],
+		            	}]	
+		        });
+		    //});
+   
+
+		</script>
+
+	</body>
+</html>

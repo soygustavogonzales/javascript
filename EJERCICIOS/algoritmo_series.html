@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Algoito de la serie fraccionaria</title>
+	<!--Este script aroja la serie 1/2 1/4 1/8 1/16 ...-->
+	<link rel="stylesheet" href=""/>
+	<script>
+		var nter=window.prompt("NUMERO DE TERMINOS: ");
+		var i=1;
+		var termino;
+		var terminoCad;
+		var serie=0;
+		for(i;i<=nter;i++){
+			termino=Math.pow(1/2,i);
+			terminoCad=1+"/"+Math.pow(2,i);
+			serie=serie+termino;
+			console.log(terminoCad);
+		}
+		console.log(serie);
+		var matriz=[10,11,12,13,14,15];
+		var matriz2=new Array();
+		matriz2[0]="gustavito";
+		matriz2[1]="omarcito";
+		matriz2[2]="erickito";
+		matriz2[3]="glorita";
+		matriz2[4]="antenorcito";
+
+		matriz2.forEach(function(value,index){
+			console.log("indice : "+index+" ; value :"+value);
+		});
+		var obj={attr1:'soyattr1',attr2:'soyattr2',attr3:'soyattr3',attr4:'soyattr4'};
+		for(key in obj)
+		{
+			console.log('clave: '+key+' value :'+obj[key]);
+		}
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

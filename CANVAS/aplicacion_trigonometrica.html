@@ -1,0 +1,139 @@
+<!DOCTYPE html>  
+<html lang="es-PE"> 
+   <head>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <style type="text/css">
+        select{
+            width:80px;
+            vertical-align: baseline;
+        }
+        button{
+            width:150px;
+            height:30px;
+        }
+        canvas{
+            background:rgba(39,40,34,.7);
+        }
+    </style>
+     <meta charset="UTF-8">
+         <title>Aplicacion trigonometrica</title> 
+     <script type="text/javascript">
+        window.addEventListener('load',function(){
+            /*Variable sglobales****/
+                var canvas=window.mycanvas,//accediendo desde el id seteado en el DOM(osea en la parte del html)
+                ctx=canvas.getContext('2d'),
+                x=0,y=0,temp=0,nroCicks=0,
+                corriendo=false,//cilcos detenidos por default
+                funcionTrig=document.getElementById("opciones"),
+                StopBoton=document.querySelector('.btn'),
+                velocimetro=document.querySelector('input[type="number"]'),
+                velocidad=velocimetro.value;
+                console.log(window.velocimetro=velocimetro);
+
+            /*Variable sglobales****/
+            /**Inicializando los manejadores de eventos**/
+                velocimetro.addEventListener('change',function(){
+                    var _this=this;//como this 
+                    velocidad=_this.value;
+                    procesar(true)
+                },false);
+                StopBoton.addEventListener('click',function(){
+                    procesar(false);   
+                },false);
+                funcionTrig.addEventListener("change",function(){
+                    procesar(true);   
+                },false);
+            /**Inicializando los manejadores de eventos**/
+
+            function procesar(continuos){
+                if(corriendo && !continuos){//si esta corriendo y se le invoco por botonIniciar
+                    clearInterval(window.timer);//detiene ciclos
+                    StopBoton.innerText="Continuar ciclos";
+                    corriendo=false;
+                    console.log(timer);
+                }else if(corriendo && continuos){//si esta corriendo y se le invoco por Cambio de funcion trig. al instante
+                    clearInterval(window.timer);//detiene ciclos
+                    draw(undefined);//q siga corriendo
+                    console.log("msj4.:timer: "+timer);
+
+                }else if(!corriendo && continuos){//si esta detenido y se le llama por el evento anterior
+                    draw(undefined)//q siga corriendo
+                    corriendo=true;
+                    StopBoton.innerText="Parar ciclos";
+                    console.log("msj3.:timer: "+timer);
+                }
+                else if(!corriendo && !continuos){//esta detenido y se le invoco por el botonIniciar
+                        draw(undefined);//llama a la funcion de ciclos
+                        corriendo=true;
+                        StopBoton.innerText="Parar ciclos";
+                        console.log("msj1.:timer: "+timer);
+                }else{
+                    draw(undefined);//llama a la funcion de ciclos
+                    corriendo=true;
+                    StopBoton.innerText="Parar ciclos";
+                    console.log("msj2.:timer: "+timer);
+                    console.log("...unknown");
+                }
+                    nroCicks++;
+            }
+
+            function draw(funcion){
+                var opcion=funcion||funcionTrig.options[funcionTrig.selectedIndex],
+                funcion=opcion.value,
+                timer=setInterval(function(){
+                    x+=1;
+                    y=(Math[funcion]&&Math[opcion.dataset.funcion])?//sera true,si la funcion es: "sin","cos" o "tan"
+                        (Math.pow(Math[funcion]((x*Math.PI)/180),1)*100+150):
+                        (Math.pow(Math[funcion]((x*Math.PI)/180),-1)*100+150);//cuando la function es: "ctg","sec" o "csc"
+                                  
+                    /*console.log(
+                        "x: "+x+"\n"+
+                        "y: "+y
+                    )
+                    */
+                    //d=Math.sin(((100+c)*Math.PI)/180);
+                    //ctx.beginPath();
+                    //ctx.moveTo(100,100);
+                    ctx.strokeStyle="rgba(250,255,255,.9)";
+                    //ctx.lineTo(100+c,100)
+                    //ctx.closePath();
+                    //ctx.stroke();
+                    ctx.strokeRect(x,y,1,1);
+                    ctx.font="bold 18px white";
+                    if(x%100==0){//cada vezq x sea multiplo de 100, osea cada vez q mostrare las coordenadas en X de la funcion trigonometrica
+                        ctx.fillText(x,x,150);
+                    }
+                },velocidad);//end timer
+                window.timer=timer;
+                console.log(timer);
+                return window.timer;//devuelvo el timer para q pueda ser accesido desde fuera de la funcion
+            }
+
+
+
+     	},false);	
+     </script>
+     <link rel="stylesheet" href=""/>
+     <style type="text/css">
+     	
+     </style>
+   </head> 
+   <body>
+	  <div id="web">
+          <button class="btn">Iniciar ciclos</button> 
+            <select id="opciones">
+                <option value="sin" data-funcion="sin">sen</option>
+                <option value="cos" data-funcion="cos">cos</option>
+                <option value="tan" data-funcion="tan">tan</option>
+                <option value="tan" data-funcion="ctg">ctg</option>
+                <option value="cos" data-funcion="sec">sec</option>
+                <option value="sin" data-funcion="csc">csc</option>
+            </select>
+            <input type="number" value="10">
+	      <canvas id="mycanvas" width="1800" height="1000">
+	      	your browser not suport this feature
+	      </canvas> 	
+	  </div>  
+    </body> 
+</html>		
+	

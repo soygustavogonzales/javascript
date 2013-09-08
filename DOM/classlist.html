@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+		window.addEventListener('load',function(){
+			var section1=document.querySelector('.principal');
+			var section2=document.querySelector('#secundario');
+			console.group("Clases del elemento");
+			console.log(
+				section1.classList+"\n"+
+				typeof(section1.classList)+"\n"+//que arroja este metodo? rpta: un objeto
+				Object.prototype.toString.call(section1.classList)//que objeto es? rpta:  [object DOMTokenList] 
+			);
+			console.groupEnd("Clases del elemento");
+
+
+
+			console.group("Luego de eliminar una clase");
+				section1.classList.remove('clase1');
+			console.log(
+				section1.classList+""//las "" son para que me arroje los valores como cadena y no como objeto
+			);
+			console.groupEnd("Luego de eliminar una clase");
+
+			
+			console.group("Luego de agregar una clase");
+				section1.classList.add('clase4');
+				section1.classList.add('clase5');
+			console.log(
+				section1.classList+""//las "" son para que me arroje los valores como cadena y no como objeto
+			);
+			console.groupEnd("Luego de eliminar una clase");
+
+		},true);
+
+	</script>
+	<style>
+	/*
+	En este ejercicio se vara como afecta a un elemento
+	el tener varias clases a la vez.
+	*/
+	*{
+		margin:0;padding: 0;border: 0;
+	}
+
+		.principal{
+			font-family: 'Verdana',sans-serif;
+			color: #679BCF;
+			background: #DADAD3;
+			border-left:8px dotted #666666 ;
+			min-width: 350px;
+			max-width: 600px;
+			font-size: 18px;
+		}
+		.clase1{
+			/*font-size: 35px;*/
+			color:blue;
+		}
+		.clase2{
+			/*font-size: 20px;*/
+			color: yellow;
+		}
+		.clase3{
+			/*font-size: 10px;*/
+			color: brown;
+		}
+		p{
+			margin: 0 0 0 15px;
+		}
+		.sec::selection{
+			background: black;
+			color: white;
+		}
+		.parrafito{
+			color:green;
+		}
+		.parrafito:hover{
+			color:#59DF20;
+			font-weight: 900;
+		}
+		/*si un elemento tiene multiples id solo valida al primero, los demas son ignorados*/
+		#secundario{
+			color:blue;
+		}
+		#terciario{
+			color:red;
+		}
+		#cuaternario{
+			color:orange;
+		}
+	</style>
+<clase2>
+	<div id="web">
+		<section class="principal sec clase2 clase3 clase1">
+			Lorem ipsum dolor sit amet.
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis excepturi ipsum quis illo dolores dolore. Hic.</p>
+			<p class="sec parrafito">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium explicabo sequi earum dignissimos.</p>
+		</section>
+		<section id="secundario" id="terciario" id="cuaternario"><!-- un elemento no puede tener multiples id, solo valida al primero de la izquierda , los dmas son ignorados -->
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque excepturi delectus fuga quae similique animi a ullam minima molestiae incidunt.
+		</section>
+
+	</div>
+</body>
+</html>
+
+
+

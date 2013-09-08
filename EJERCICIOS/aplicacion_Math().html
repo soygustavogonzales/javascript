@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es-PE">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	body{background: black}
+	#bolita_id{width: 10px;height: 10px;background: cyan;position: absolute;}
+	#bolita2_id{width: 10px;height: 10px;background: peru;position: absolute;}
+	#caja{position: absolute;top: 200px;left: 150px;}
+	#caja2{position: absolute;top: 250px;left: 200px;}
+
+	</style>
+	<script type="text/javascript">
+		var cons=0.0;var pi=Math.PI;var posY;var posX;
+			function mover(){
+				var bolita=document.getElementById('bolita_id');
+				var bolita2=document.getElementById('bolita2_id');
+				posY=Math.sin(cons*pi);
+				posY=posY*100;
+				posX=Math.cos(cons*pi);				
+				posX*=100;
+				bolita.style.top=posY+'px';
+				bolita.style.left=posX+'px';
+				pos2Y=Math.sin(cons*pi+cons*2);
+				pos2Y=pos2Y*100;
+				pos2X=Math.cos(cons*pi);	
+				pos2X*=205;
+				bolita2.style.top=pos2Y+'px';
+				bolita2.style.left=pos2X+'px';
+				console.log('posY: '+posY+'\n'+
+							'posX: '+posX);
+				cons+=0.01;
+			}
+		setInterval('mover()',10);
+	</script>
+</head>
+<body>
+	<div id="web">
+		<div id="caja">
+			<div id="bolita_id"></div>			
+		</div>
+		<div id="caja2">
+			<div id="bolita2_id"></div>
+		</div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+	/*
+		Este script arrojara el factorial de un numero, utilizando una forma de recursividad
+		donde llamo a una misma funcion referenciando su nombre con arguments.callee()
+
+	*/
+		function create(){
+			return function(n){
+				if(n<=1){return 1;}
+				return n*arguments.callee(n-1);
+				/*
+					arguments.callee() es <igual a> create()
+					arguments.calle() llama a la funcion a la que pertenece o sobre la que se encuentra incluida.
+
+				*/
+			};
+		};
+		var result=create()(4);
+		console.log(result);
+		
+		/*
+			*******
+			OTRA FORMA DE HACER EL FACTORIAL
+		*/
+		function factorial(n){
+			if(n>=1){
+				return n*arguments.callee(n-1);
+			}else{
+				return 1;
+			}
+		}
+		console.warn(factorial(4));
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

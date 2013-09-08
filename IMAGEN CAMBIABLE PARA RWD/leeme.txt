@@ -1,0 +1,6 @@
+el archivo newImageOOP.js implementa al 60% la OOP,es la version 
+que se debe utilizar, aun falta optimizar para q sea mas profesional,
+ya se puede implementar basicamente la creacion de objetos a 
+partir de una clase dentro del newImage.js
+
+edited by Gustavo Gonzales on 01/03/2013 22:28hrs

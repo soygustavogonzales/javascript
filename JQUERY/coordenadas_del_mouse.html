@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	#web{
+		background:peru;
+		width:800px;
+		height:600px;
+	}
+		body{
+			background:#434343;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>window.jQuery||document.write('<script src="jquery-1.9.1.min.js"><\/script>');</script>
+	
+	<script>
+		$(document).on('ready',function(){
+			var caja=$('div.cajita1').css({//dandole estilos a la cajita.
+				'position':'fixed',
+				'background':'#DF9B68',
+				'width':'300px',
+				'height':'auto',
+				'font-size':'18px',
+			});
+			$(document).on('mousemove',function(evento){
+				aviso="la pagina en X: "+evento.pageX+"\n en Y: "+evento.pageY;
+				aviso2="al navegador en X: "+evento.clientX+"\n en Y: "+evento.clientY;
+				caja.text("POSICION DEL MOUSE CON RESPECTO : "+aviso+"\n"+ aviso2);//mostrando mensaje en la caja
+			});//end function mousemove
+		});//end function ready el DOM
+	</script>
+</head>
+<body>
+	<div id="web">
+		<div class="cajita1">este es el aviso</div>
+	</div>
+</body>
+</html>
+

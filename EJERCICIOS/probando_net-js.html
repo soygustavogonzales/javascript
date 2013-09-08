@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script src="net.js"></script>
+	<script>
+
+var obj1 ={
+	name:'omar',
+	lastname:'gonzales',
+	surname:'jesus',
+	age:20,
+	telefono:'94567456',
+	prop1:undefined,
+	prop2:'isNaN___',
+	prop3:undefined,
+
+};
+var obj2={
+	name:'erick',
+	lastname:'gonzales',
+	surname:'aldo',
+	age:21,
+	domicilio:'av:la paz',
+	nacionalidad:'peruana',
+	ocupacion:'estudiante',
+};
+var obj3={
+	name:'carlos',
+	lastname:'torres',
+	surname:'segundo',
+	age:25,
+	domicilio:'av:dominicos',
+	nacionalidad:'peruana',
+}
+var obj4={
+	name:'maria',
+	lastname:'torres',
+	surname:'de los angeles',
+	age:25,
+	domicilio:'av:ignacio canales',
+	nacionalidad:'peruana',
+	estado_civil:'soltero',
+}
+var obj5={
+	name:'antenor'
+	,lastname:'gonzales'
+	,surname:'davalos'
+	,age:51
+	,telefono:'984511513'
+	,caracteristicas:['hermosa','saludable','alta']
+	,prop1:{
+		subProp1:'soy subProp1'
+		,subProp2:'undefined'
+	}
+	,prop2:'NaN'
+	,prop6:'null'
+	,prop7:'NaN'
+	,prop8:'undefined'
+
+}
+var obj6={
+	name:'gloria'
+	,lastname:'davalos'
+	,surname:'rosa'
+	,age:48
+	,domicilio:'av:cesar vallejo'
+	,nacionalidad:'peruana'
+	,prop1:{
+		subProp1:'subProp1'
+		,subProp2:'NaN'
+		,subProp3:{
+			subProp31:'soy subProp31'
+			,subProp32:'soy subProp32'
+		},
+	}
+	
+	,prop2:'undefined'
+	,prop3:""// igual a '""' = "''" indica "" [cadena vacia]
+	,prop4:'...'
+	,prop5:'null'
+	,prop6:'null'
+	,prop7:'undefined'
+	,prop8:'NaN'
+};
+var defaults ={
+		method:'GET'
+		,pathFile:'null'
+		,queryString:'null'
+		,asincronus:true
+		,fallback:'null'//is a function(){}
+		,callback:function(request){
+			alert(request.responseText);
+		}
+		,contentType:"application/x-www-form-urlencoded"
+	
+};
+var options = {
+		method:'POST'
+		,pathFile:'procesador.php'
+		,queryString:{}
+		,fallback:function(){/*funcion que se ejecutara mientras carga el pedido y respuesta*/
+			console.log("fallback ejecutado");
+		}
+		,callback:function(request){/*funcion que hara uso de la respuesta */
+			
+			console.log("callbak ejecutado");
+		}
+		,contentType:"application/x-www-form-urlencoded"
+}
+/************************************************/
+	var obj = new net.Extends();
+	console.info(obj);
+		console.log(obj.comparar(obj5,obj6));
+		console.log(obj.comparar(obj2,obj1));
+
+		console.group('grupo1');
+		console.time("controller0");
+			console.log(obj.getExtendedObject(obj6,obj5));
+		console.timeEnd("controller0");
+		console.groupEnd();
+
+		console.group('grupo2');
+		console.time("controller");
+			console.log(obj.getExtendedObject({},obj5,obj6));
+		console.timeEnd("controller");
+		console.groupEnd();
+
+		console.group('grupo3');
+		console.time("controller");
+			console.log(obj.getExtendedObject(defaults,options));
+		console.timeEnd("controller");
+		console.groupEnd();
+
+		console.group('grupo4');
+		console.time("controller");
+			console.log(obj.getExtendedObject(options,defaults));
+		console.timeEnd("controller");
+		console.groupEnd();
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

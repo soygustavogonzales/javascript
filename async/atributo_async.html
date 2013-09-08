@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!
+	Este ejercicio hace analisis del atributo async y defer del tag script.
+	async es parte del standar
+	defer funciona solo en IE
+	Ambos permiten procesar codigo javascript en deferido, es decir, luego de que el DOM sae haya cargado por completo.
+-->
+	<link rel="stylesheet" href=""/>
+	<!..Usando atributo async y defer ..>
+	<script>
+/*
+Existen dos versions de este ejercicio para q se ueda comparar con los times cual es mas rapido en carga
+async : Permite la carga asincrona de un archivo externo
+defer : Permkite la carga asincrona de un script interno y externo
+Son un buen rremplazo al codigo 
+	window.adEventListener('load',function(){},true);
+
+**NOTA:
+asyn(para todos menos para IE)
+defer(solo IE, cualquier version)
+
+*/
+	console.time("controller");
+	var order=0,script=document.createElement('script');
+	</script>
+	<script async src="async.js" defer="defer"></script><!-- el codigo dentro de async.js se cargara luego de cargado el documento -->
+	<style>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 x                          
+		#section1{
+			width: 100px;
+			height:100px;
+			background: #ED593F;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+	<body>
+		<section id="section1"></section>
+	</body>
+</html>

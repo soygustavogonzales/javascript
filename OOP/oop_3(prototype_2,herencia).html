@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es-PE">
+<head> 
+	<!En este ejercicio vamos a implementar herencia a las clases mediante el metodo prototype que solo funciona en las clases-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;}</style>
+	<script>console.warn("*************************************");</script>
+
+	<script type="text/javascript">
+		function Animal(tipo,dueño){//esta sera mi clase Padre.
+			this.tipo_=tipo;
+			this.dueño_=dueño;
+			this.clase_='mamifero';
+			this.nroPatas_= 4;
+			this.hocico_=true;
+			this.pelaje_=true;
+			this.vertebrado_=true;
+			this.habilidad=function(){
+				switch(this.tipo_){
+					case 'perro':return 'morder';break;
+					case 'gato': return 'arañar';break;}
+				}
+		}
+		function Canino(nombre,arma){//esta sera una clase hija.
+			this.nombre_=nombre;
+			this.arma_=arma;
+			this.gustos_=['carne','hueso','pollo','pedigree canino'];
+		}
+		function Gatuno(nombre,arma){//esta sera otra clase hija.
+			this.nombre_=nombre;
+			this.arma_=arma;
+			this.juguete_='bolita';
+			this.independiente_=true;
+			this.gustos_=['pollo','dulces','leche','comida gatuna'];//esta propiedad es un array
+			return this;
+		}
+		var michi = new Gatuno('leon','garritas');//creo un objeto de la clase Gatuno
+		/*Implementado HERENCIA : */
+		Canino.prototype = new Animal();//la clase Canino(ahora clase hija) heredara todos los atributos de la clase Animal(ahora clase padre)
+		Gatuno.prototype = new Animal('gato','leonor');//la clase Gatuno(ahora clase hija) heredara todos los atributos de la clase Animal(ahora clase padre)
+
+		
+		var oPerrito1 = new Canino('Max','colmillos');//creo un objeto de la clase Canino
+		oPerrito1.tipo_="perro";
+		var oGatito1 = new Gatuno();//creo otro objeto de la clase Gatuno
+		oGatito1.nombre_='michifus';
+		oGatito1.arma_='garras';
+
+		console.log("oPerrito1.clase_: "+oPerrito1.clase_+'\n'+//arroja mamifero//clase_ es una propiedad de la clase Padre: Animal
+					"oPerrito1.gustos_[0]: "+oPerrito1.gustos_[0]+'\n'+//arroja 'carne' 
+					"oPerrito1.habilidad(): "+oPerrito1.habilidad()+'\n'+//arroja 'morder'//clase_ es un metodo de la clase Padre: Animal
+					"oPerrito1.nombre_: "+oPerrito1.nombre_+'\n'+//arroja 'Max'
+					"oGatito1.nombre_: "+oGatito1.nombre_+'\n'+//arroja 'michifus'
+					"oGatito1.jueguete: "+oGatito1.jueguete_+'\n'+//arroja undefined
+					"oGatito1.habilidad(): "+oGatito1.habilidad()+'\n'+//arroja arroja 'arañar'
+					"oGatito1.independiente: "+oGatito1.independiente_+'\n'+//arroja true
+					"oGatito1.gustos_[2]: "+oGatito1.gustos_[2]+'\n'+//arroja 'leche'.
+					"oGatito1.tipo_: "+oGatito1.tipo_+'\n'+//arroja 'gato'.
+					"oGatito1.dueño_: "+oGatito1.dueño_+'\n'+//arroja 'leonor'.
+					"typeof(Canino): "+typeof(Canino)+'\n'+//arroja 'function'.
+					"typeof(Animal: "+typeof(Animal));//arroja 'function'.
+	</script>
+	<script>console.warn("*************************************");</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

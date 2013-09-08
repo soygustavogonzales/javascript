@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+	/*
+		Ambos métodos permiten ejecutar una función como si fuera
+		un método de otro objeto. La única diferencia entre los dos
+		métodos es la forma en la que se pasan los argumentos a la función.
+		
+
+	*/
+
+		function Elevar(base,exp){
+			/*El this hace referencia al objeto que utilice este metodo como si fuera propio*/
+			base=parseInt(base) || this.base;//si la base no se expecifica bien, se cogera directamente el atributo del objeto
+			exp=parseInt(exp) || this.exp;//si el exponente no se expecifica bien, se cogera directamente el atributo del objeto
+			return  Math.pow(base,exp);
+		};
+		var obj={base:4,exp:2};
+		console.group('GRUPO1');//con call()
+				console.log(Elevar.call(obj,obj.base,3));//usar this aqui provoca un error,usar directamente el nombre del objeto
+				/*NOTA:Elevar() es tratado ahora como un metodo del objeto obj*/
+		console.groupEnd('GRUPO1');
+
+		function clsEmpleado(nombre,dni,edad,email){
+			this.nombre_=nombre;
+			this.dni_=this.dni_||dni;
+			this.edad_=this.edad_||edad;
+			this.email_=email;
+			this.id_=this.dni_+this.edad_;
+		}
+		var oGerente=new Object();//Creo al objeto oGerente, una de las tantas formas de crearlo.
+		oGerente.name_='carlos';
+		oGerente.lastname_='torres';
+		oGerente.dni_='23432343';
+		oGerente.edad_='34';
+		clsEmpleado.call(oGerente);/*Con esto hago que clsEmpleado se ejecute como un metodo del objeto oGerente
+		Es decir, es como si hubiera hecho lo siguiente:
+			oGerente.clsEmpleado=function(){
+				//Sentencias de la funcion clsEmpleado.
+			}
+		Pero cuidado!! lo siguiente daria un error:
+		oGerente.clsEmpleado();
+		Porque estamos tratando al metodo clsEmpleado() como si fuera propio del objeto oGerente, y eso esta mal.
+		Por tanto solo podemos ejecutar el metodo clsEmpleado() para el objeto oGerente mediante el uso del
+		metodo call() o apply().
+		
+		*/
+
+		console.group('GRUPO2');//con call()
+				console.log("oGerente.id_: "+oGerente.id_+'\n'+
+							"oGerente.name_: "+oGerente.name_);
+		console.groupEnd('GRUPO2');
+
+
+		/*Ejemplo con apply()*/
+
+		var oOperario={},oSecretaria={};//un objeto literal sin atributos definidos
+		/*El apply se argumenta con un array de elementos*/
+		var arrayAttributes=['sonia','45654152',24,'sonia.e@viunex.com'];
+		clsEmpleado.apply(oOperario,['carla','23432354',23,'karla@viunex.com']),
+		clsEmpleado.apply(oSecretaria,arrayAttributes);
+		console.group('GRUPO3');
+			console.log("oOperario.nombre_: "+oOperario.nombre_+'\n'+
+				"oOperario.dni_: "+oOperario.dni_+'\n'+
+				"oOperario.edad_: "+oOperario.edad_+'\n'+
+				"oOperario.email_: "+oOperario.email_+'\n'+
+				"oSecretaria.nombre_: "+oSecretaria.nombre_+'\n'+
+				"oSecretaria.dni_: "+oSecretaria.dni_+'\n'+
+				"oSecretaria.email_: "+oSecretaria.email_
+				);
+			console.log("Object.keys(oOperario): "+Object.keys(oOperario)+'\n'+//arroja un array con los nombres de los atributos(los keys,no los values) q posee el objeto oOperario
+				"Object.keys(arrayAttributes): "+Object.keys(arrayAttributes));//arroja un array con el contenidos de los indices del array arrayAttributes
+		console.groupEnd('GRUPO3');
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+
+		

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>	
+	<script>window.jQuery||document.write('<script src="jquery-1.9.1.min.js"><\/script>');</script>
+	<script>
+	var obj=[
+				[
+					{
+						name:"omar",
+						lastname:"gonzales",
+						age:20,
+						telephone:"99899949",
+						features:[
+							"alto",
+							"medio-grueso",
+							"trigeño",
+							"terco",
+							"sensible"
+						],
+						family:{
+							father:"Gustavo Gonzales",
+							mother:"Gloria Davalos",
+							brothers:[
+								"Erick","Gustavo"
+							],
+						}
+					}
+				]
+			];
+	console.group('forma1');
+		// console.log(var1, var2);
+	obj.forEach(function(value,key){
+		Mostrador(key,value);
+	});
+	console.groupEnd('forma1');
+	/******************************************************/
+	console.group("forma2")
+	for(key in obj){
+		Mostrador(key,obj[key]);
+	}
+	console.groupEnd("forma2")
+	function Mostrador(key,value){
+		switch(Object.prototype.toString.call(value)){
+			case"[object Object]":
+				console.log(key+" : "+JSON.stringify(value));
+				break;
+			case"[object Array]":
+				console.log(key+" : "+JSON.stringify(value));
+				break;
+			default:
+			console.log(key+" : "+value);
+			
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+
+
+

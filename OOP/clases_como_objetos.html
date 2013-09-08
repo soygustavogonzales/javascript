@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio veremos como funciona las clases cuando se comportan como objetos.
+	Aqui es necesario recordar que como javascript es un lenguaje BASADO EN PROTOTIPOS, sus objetos son clases y tendran doble comportamiento, como objetos y como clases.
+	Tambien veremos, que cuando ese objeto es asignado a una variable,la variable se vuelve el objeto instanciado, y si nuevamente volvemos a asignar el objeto a una nueva variable, esta ultima tambien se convertira en ese objeto original.
+	La explicacion es asi: Si tenemos un objeto objA, y si hacemos que una variable, var A=objA, lo que sucede es que A apunta al objeto por valor por referencia.
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+	function clsEmpleado(prop1,prop2){//esta es una clase.
+		this.prop1_=prop1;
+		this.prop2_=prop2;
+		this.Metodo1=function(){return 'has llamado al Metodo1'}
+	}
+	clsEmpleado.nombre_='carlos';
+	clsEmpleado.apellido_='torres';
+	clsEmpleado.edad_=25;
+	clsEmpleado.ocupacion_=null;
+	clsEmpleado.Madurez=function(){
+		if(this.edad_<18){return 'adolescente'}
+			else if(this.edad_>=18 && this.edad_<60){return 'adulto'}
+				else if(this.edad_>=60){return 'anciano'}
+	}
+	console.log("typeof clsEmpleado:\t"+typeof clsEmpleado+"\n"+//arroja function
+				"clsEmpleado.nombre_:\t"+clsEmpleado.nombre_+"\n"+
+				"clsEmpleado.apellido_:\t"+clsEmpleado.apellido_+"\n"+
+				"clsEmpleado.edad_:\t"+clsEmpleado.edad_+"\n"+
+				"clsEmpleado.ocupacion_:\t"+clsEmpleado.ocupacion_+"\n"+
+				"clsEmpleado.Madurez():\t"+clsEmpleado.Madurez());
+	console.error("**********************************************");//uso el console.error solo para colorear y resaltar esta linea de codigo.
+	
+	var clsEmpleadito=clsEmpleado;
+	clsEmpleadito.nombre_='raul';
+	clsEmpleadito.apellido_='yabar';
+	clsEmpleadito.edad_=17;
+	clsEmpleadito.ocupacion_='desarrollador';
+	console.log("typeof clsEmpleadito:\t"+typeof clsEmpleadito+"\n"+//arroja function
+				"clsEmpleadito.nombre_:\t"+clsEmpleadito.nombre_+"\n"+
+				"clsEmpleadito.apellido_:\t"+clsEmpleadito.apellido_+"\n"+
+				"clsEmpleadito.edad_:\t"+clsEmpleadito.edad_+"\n"+
+				"clsEmpleadito.Madurez():\t"+clsEmpleadito.Madurez()+"\n"+
+				"clsEmpleado.nombre_:\t"+clsEmpleado.nombre_+"\n"+
+				"clsEmpleado.apellido_:\t"+clsEmpleado.apellido_+"\n"+
+				"clsEmpleado.ocupacion_:\t"+clsEmpleado.ocupacion_+"\n"+
+				"clsEmpleado.Madurez():\t"+clsEmpleado.Madurez());
+	console.error("**********************************************");
+
+	var clsEmpleadaso=clsEmpleadito;
+	clsEmpleadaso.nombre_='ruben';
+	clsEmpleadaso.apellido_='barreda';
+	clsEmpleadaso.edad_=65;
+	clsEmpleadaso.ocupacion_='diseñador';
+	console.log("typeof(clsEmpleadaso):\t"+typeof(clsEmpleadaso)+"\n"+//arroja function
+				"clsEmpleadaso.nombre_:\t"+clsEmpleadaso.nombre_+"\n"+
+				"clsEmpleadaso.apellido_:\t"+clsEmpleadaso.apellido_+"\n"+
+				"clsEmpleadaso.edad_:\t"+clsEmpleado.edad_+"\n"+
+				"clsEmpleadaso.Madurez():\t"+clsEmpleadaso.Madurez()+"\n"+
+				"clsEmpleado.nombre_:\t"+clsEmpleado.nombre_+"\n"+
+				"clsEmpleado.apellido_:\t"+clsEmpleado.apellido_+"\n"+
+				"clsEmpleado.edad_:\t"+clsEmpleado.edad_+"\n"+
+				"clsEmpleado.Madurez():\t"+clsEmpleado.Madurez());
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

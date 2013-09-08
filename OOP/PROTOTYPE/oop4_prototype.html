@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+
+	/*
+		En este ejercicio demostrare el uso del prototype para alterar un
+		atributo de una clase/objeto, como ejemplo vamos a alterar al metodo toFixed de la clase/objeto Number.
+		*NOTA: Dentro de la especificacion del prototype del metodo de la clase a Alterar no se invocar al 
+		mismo metodo...lo veremos en el ejemplo.
+
+	*/
+		var a=new Number(4);//a es un objeto
+		var b=Number(5);//b es un numero
+		var c=7.8;//c es un numero
+		var d=5.23523;//d es un numero
+		/*
+		toFixed() es un metodo del objeto Number, se utiliza para redondear uin numero en un
+		formato en decimales
+		ej: var a= 45.89; --> a.toFixed(1);--> 45.9
+		*/
+		a.toFixed(2);//redondeado a 2 decimales
+		b.toFixed(2);//redondeado a 2 decimales
+
+		console.log(
+			a+" tipeof(a) : "+typeof(a)+", a.toFixed(2) : "+a.toFixed(2)+"\n"+//arroja 4-- object--4.00
+			b+" tipeof(b) : "+typeof(b)+", b.toFixed(2) : "+b.toFixed(2)+"\n"+//arroja 5-- number--5.00
+			c+" tipeof(c) : "+typeof(c)+", c.toFixed(2) : "+c.toFixed(2)+"\n"+//arroja 7.8-- number--7.80
+			d+" tipeof(d) : "+typeof(d)+", d.toFixed(2) : "+d.toFixed(2)//arroja 5.23523-- number-- 5.24
+		);
+		/*UTILIZANDO EL PROTOTYPE DE NUMBER PARA ALTERAR EL METODO toFixed()*/
+		/** NOTA: 
+			No se puede utilizar el metodo toFixed() dentro de la definiciond el metodo
+			del mismo nombre
+			del prototype de Number del objeto/clase a la que pertenece,pues
+			daria un problema de desbordamiento por exceso de llamadas al mismo
+			metodo.
+
+		*/
+		Number.prototype.toFixed=function(n,symbolMoney){
+			n=Math.pow(10,n);
+			return symbolMoney+". "+Math.round(this*n)/n;
+		}
+		var e=3.45645645;
+		console.log(e.toFixed(2,"$"));//arroja "$. 3.46"
+
+		/*VOLVIENDO A ALTERAR EL metodo toFixed(), ahora sera mas complejo*/
+	Number.prototype.toFixed = function (numeroDecimales, separaMiles,separaDecimales, simboloMoneda) {//metodo toFixed() mpdificado con mas cualidades
+        //Dividimos el número en parte entera y decimal
+        var parteEntera = parseInt(this);
+        var parteDecimal = this - parteEntera;
+        //Esta parte hace el redondeo al número de decimales
+        var cadDecimal = "";
+	        if (parteDecimal > 0) {
+	            var potencia = Math.pow(10, numeroDecimales);
+	            var decimales = parteDecimal * potencia;
+	            var decimalesParteEntera = parseInt(decimales);
+	            var decimalesParteDecimal = decimales - decimalesParteEntera;
+	            if (decimalesParteDecimal >= 0.5) decimalesParteEntera++;
+	            cadDecimal = decimalesParteEntera.toString();
+	            if (cadDecimal.length > numeroDecimales) {
+	                cadDecimal = "";
+	                for (var i=0; i<numeroDecimales; i++){
+	                    cadDecimal += "0";
+	                }
+	                parteEntera++;
+	            } else if (cadDecimal.length < numeroDecimales) {
+	                	for (var i=cadDecimal.length; i<numeroDecimales; i++) {
+	                    	cadDecimal = "0" + cadDecimal;
+	                	}
+	            }
+	        } else if (parteDecimal == 0) {
+	            	for (var i=0; i<numeroDecimales; i++){
+	                	cadDecimal += "0";
+	            	}
+	        }
+        //Esta parte formatea separadores de miles sobre la parte entera
+        var cad1 = parteEntera.toString();
+        var cad2 = "";
+        for (var i=(cad1.length-1); i>-1; i=i-3) {
+            var cad3 = cad1.substring(i-2, i+1);
+            if (cad2 != ""){
+                cad2 = cad3 + separaMiles + cad2;
+            } else {
+                cad2 = cad3;
+            }
+
+         }
+         //Devolvemos la cadena de número formateada 
+         return simboloMoneda+" "+cad2 + separaDecimales + cadDecimal;
+    }//end metodo toFixed()
+console.log(e.toFixed(3,"'",".","$."));//ahora voi a usar el metodo toFixed() modificado
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

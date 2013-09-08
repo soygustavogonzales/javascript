@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<!--
+	En este ejercicio evaluamos como lanzar errores.
+-->
+	<script>
+		
+		if(document.addEventListener){	
+			console.info("si soporta");
+			try{
+				throw new Error("Si existe el metodo");
+			}catch(e){
+				console.log(e.name+" : "+e.message);
+			}
+		}else{
+			try{
+				throw new Error("No existe el metodo");
+			}catch(e){
+				console.log(e.name+" : "+e.message);
+			}	
+		}
+		var n=0/0;
+		if(isFinite(n)){
+			console.log("si is finite");
+		}else{
+			try{
+				throw new Error("OOPPS!!...No es finito...");
+			
+			}catch(e){
+				console.log(e.name+" : "+e.message);		
+			}
+		}
+		console.log("correcto advantage new error");
+
+		/**********************************************/
+		console.info();
+		var n=23.456;
+		var n=n/0;
+		try{//lo que este dentro del try es codigo seceptible a fallos o excepciones, aquellos errores que no hallamos contenplado en las validaciones
+			(isFinite(n))?
+				(function(){//si no lo encierro en un closure no se podra utilizar la forma sintetizada del if();
+					var z=parseInt(n);//parte entera
+					var dec=n-z;
+					console.info(
+						"Parte entera: "+z+"\n"+
+						"Parte decimal: "+dec.toFixed(2)
+					)
+				})()
+			:eval('throw new Error("no es un numero real")');	
+		/*Si se lanza el error no se ejecutaran las lineas que esten a continuacion*/		
+		console.log("esto nunca se ejecutara")
+		}catch(e){//cuando se lanze un error se ejecutara lo que este dentro del cath, el parametro e, contiene al error
+			console.error(e.name+" : "+e.message);		
+			/*las sentencias q  esten a continuacion si se ejecutaran*/
+		}
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

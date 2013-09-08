@@ -1,0 +1,25 @@
+
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+	//este script trata de demostrar que uando se crea un id como atributo de algun elemento del DOM 
+	//tambien se crea una propiedad con ese nombre en el objeo window, al cual podemos acceder 
+	//desde window.nombre_del_id
+	window.addEventListener('load',function(){
+			var id=window.miId;
+			console.log("id : "+window.miId.nodeName);
+
+		},false);	
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		<section id="miId">este es un id</section>
+	</body>
+</html>

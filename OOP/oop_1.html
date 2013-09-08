@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es-PE">
+<!En este ejercicio trato todo respecto a la OOP en javacript, es necesario conocer la teoria de que javascript es un lenguaje basado en Prototipos y no en Clases, por lo tanto solo emulara un comportamiento similar al 2do con muchas caracteristicas adicionales y con las deficiencias caracteristicas de un lenguaje "Basado en Prototipos"
+
+En los lenguajes basados en Clases(Java,V.Basic,C y otros) se hace una diferenciacion jerargizada de los conceptos Clase e instancia.
+
+*Una clase puede definirse como el conjuntos de atributos(propiedades y metodos) que tendran las instancias u objetos. Una clase es una cuestion abstracta y generalizada. Por ejemplo si crearamos la clase Empleado esta representaria a muchos tipos, caracteristicasi similitudes de un colectivo de empleados.
+
+*Una instancia u objeto, es una particularizacion de la clase,osea uno de sus miembros. Un objeto tiene las particularidades de su clase-tambien podemos llamarle Clase Padre-,pues heredara todos los atributos que definian a la clase de la que hereda. Por ejemplo: la Clase Padre podria ser Empleado, y una instancia u objeto seria Robert kiyosaki, este tiene similitudes con respecto de los demas empleados (1er nombre,codigo,cargo,edad,esposa), pero no tiene exactamente las mismas cualidades que otro empleado,ejemplo el empleado Roberto Gonzales,pues tendra el 1er nombre ,la edad, y el cargo posiblemente igual, pero nunca el codigo y que decir de la esposa.
+
+*Los lenguajes basados en Prototipado no hacen distinciones entre el concepto de clase y de objeto, es mas todos sin excepcion son objetos.Cuando se crea una clase en javascript tambien se crea un objeto con el mismo nombre , entonces una clase Empleado sera tambien un objeto Empleado, Las diferencias de comportamiento de clase y objeto estarian en que cuando se cree un objeto de una clase-por ejemplo Empleado- aqui Empleado se comportara como una Clase tal y cual, y cuando genere atributos(propiedades y metodos) con el nombre de la Clase Empleado, entonces Empleado se comportara como Objeto.
+
+Aqui me callo mejor codeo un ejemplo:
+function clsEmpleado(nombre,codigo,cargo){
+	this.nombre_=nombre;
+	this.codigo_=codigo;
+	this.cargo_=cargo;
+}
+Acontinuacion clsEmpleado se comportara como una Clase. 
+var oRoberto=new clsEmpleado('Roberto','0010','programador');//oRoberto sera una instancia u objeto de la clase Empleado.
+
+A continucion clsEmpleado se comportara como un objeto.
+clsEmpleado.propiedad1='gustavo';//defino una propiedad del 'objeto' Empleado
+clsEmpleado.propiedad2='loQueSea'
+clsEmpleado.metodo1=function(){return 'BlaBlaBla'}//defino un metodo del objeto Empleado
+-->
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	body{background: #000;}
+	</style>
+	<script type="text/javascript">
+     var gato = { nombre: 'michifus', familia: 'gatuna', especie: 'cuadrupedo', nroPatas: 4, fraseFavorita: 'miau', enemigo: 'raton', cubierta: 'peluda' }; //este es un objeto ya instanciado, a esta forma de objeto se le denomina Json.
+     //Acontinuacion creo algunas clases en sus dos formas de creacion.
+     function animalX(nombre, familia, especie, nroPatas) {//1era forma: Segun epertos es la mas eficiente.
+         /*a continuacion a las propiedades les damos valores predeterminados, y solo en algunas utilizamos los argumentos*/
+         this.nombre = nombre;
+         this.familia = 'caninos';
+         this.familia = familia; //notar que como esta asignacion utilizo la misma propiedad que en la anterior, la 2da chanca a la 1ra(en tiempo de interpretacion).De esta forma, cuando se invoque esta propieda del objeto, arrojara el valor pasado por parametro y no el que asigne predeterminadamente.
+         this.especie = 'cuadrupedo'; //notar que no utilizo el valor del parametro, sino q predetermino el valor que tendra.
+         this.nroPatas = nroPatas;
+         this.fraseFavorita = 'wau';
+         this.enemigo = 'raton';
+         this.cubierta = 'peludo';
+     }
+     
+     var animalY = function (nombre, familia, tamaño, comida, nroPatas) {//2da forma:Menos eficiente esta clase admite 5 parametros.
+         this.nombre = nombre;
+         this.familia = familia;
+         this.tamaño = tamaño;
+         this.comida = comida;
+         this.nroPatas = nroPatas;
+         this.funcion = function () {
+             switch (this.nombre) {
+                 case 'perro': return 'morder'; break;
+                 case 'gato': return 'arañar'; break;
+                 case 'serpiente': return 'matar'; break;
+                 case 'pes': return 'nadar'; break;
+             } //end switch
+         } //end funcion
+     } //end function
+     var canino = new animalY('perruno', 'peruana', 'grande'); //notar que solo le paso 3 de los 5 argumentos que solicita la clase, al instanciarla.
+     console.log(">>>correcto1;" + '\n' +
+                 "canino: \t" + canino + '\n' + //arroja [object Object]
+                 "canino.length: \t" + canino.length + "\n" + //arroja undefined
+                 "canino.familia: \t" + canino.familia + '\n'); //arroja 'peruana'
+     /*--------------------------------------------------*/
+
+     var mascota = new animalX; //se crea como nuevo objeto
+     var mascota2 = new animalX; //se crea como nuevo objeto
+     mascota.nombre = 'michifus'; //se crea una propiedad para el objeto mascota.
+
+     console.log(">>>correcto2;" + '\n' +
+                 "mascota: \t" + mascota + '\n' + //arroja [object Object]
+                 "mascota.length: \t" + mascota.length + "\n" + //arroja undefined
+                 "mascota.nombre: \t" + mascota.nombre + "\n" + //arroja michifus
+                 "mascota2.nombre: \t" + mascota2.nombre); //arroja undefined
+
+     /*--------------------------------------------------*/
+     var mascota3 = animalX; //mascota3 es ahora una function/class pues le asigne el valor de la funcion/class animalX
+     var mascota4 = animalX; //mascota4 es tambien una clase(funcion) pues le asigne el valor de la funcion animalX.
+
+     console.log(">>>correcto3;" + '\n' +
+                 "mascota3.length: \t" + mascota3.length + "\n" + //arroja 4, cantidad original de parametros de la funcion animalX
+                 "typeof mascota3: \t"+typeof mascota3 + "\n" +//arroja function
+                 "mascota3.nombre: \t" + mascota3.nombre + "\n" + //arroja undefined, pues aun no se ha definido esa propiedad en especifico.
+                 "mascota3.especie: \t" + mascota3.especie + '\n' + //arroja undefined.idem
+                 "mascota4.length: \t"+mascota4.length+ "\n" +//arroja 4, cantidad original de parametros de la funcion animalX 
+                 "typeof mascota4: \t"+typeof mascota4 + "\n" +//arroja function
+                 "mascota4.nombre: \t" + mascota4.nombre + '\n' + //arroja undefined.idem
+                 "mascota4.especie: \t" + mascota4.especie); //arroja undefined.idem
+
+     var mascota31 = new mascota3; //mascota31 es un objeto de la function/class mascota3
+     var mascota32 = mascota3; //mascota32 es una function/class pues la iguale a la function/class mascota3.
+     mascota3.nombre = 'manchitas';
+     animalX.nombre = 'lucas';
+     console.log(">>>correcto31: " + '\n' +
+                 "mascota31:\t" + mascota31 + '\n' + //arroja [object Object]
+                 "mascota31.nombre: \t" + mascota31.nombre + '\n' + //arroja undefined
+                 "mascota32:\t" + mascota32 + '\n' + //arroja el script de la funcion animalX
+                 "mascota32.nombre:\t" + mascota32.nombre); //arroja lucas. Aqui se debe entender que cuando 
+
+     console.log(">>>correcto4;" + '\n' +
+                 "typeof mascota3 :  " + typeof mascota3 + '\n'); //arroja undefined
+     console.log(mascota3); //arroja el script de la funcion animalX
+     console.log(animalX); //arroja el script de la funcion animalX
+
+     mascota4.especie = "carnivora";
+     mascota3.especie = "herbivora";
+     animalX.nombre = "lazzy";
+     mascota3.nombre = "max";
+     mascota4.nombre = "boby";
+
+     console.log(">>>correcto5;" + '\n' +
+                 "mascota3.nombre: \t" + mascota3.nombre + "\n" + //arroja 'max'
+                 "mascota4.nombre: \t" + mascota4.nombre + '\n' + //tambien arroja 'max'
+                 "mascota4.especie: \t" + mascota4.especie + '\n' +
+                 "mascota3.especie: \t" + mascota3.especie);
+
+     /*--------------------------------------------------*/
+
+     var mascota5 = gato;
+     var mascota6 = gato;
+     console.log(gato);
+     console.log(">>>correcto6;" + '\n' +
+                 "mascota5.length: \t" + mascota5.length + "\n" + //arroja undefined
+                 "mascota5: \t" + mascota5 + '\n' + //arroja [object Object]
+                 "gato.length: \t" + gato.length + "\n" + //arroja undefined
+                 "mascota5.nombre: \t" + mascota5.nombre + "\n" + //arroja 'michifus'
+                 "mascota6.nombre: \t" + mascota6.nombre); //arroja 'michifus'
+     mascota5.nombre = 'gatito'; //cambiando el valor de la propiedad nombre.
+     console.log(">>>correcto7;" + '\n' +
+                 "mascota5.nombre: \t" + mascota5.nombre + "\n" + //arroja 'gatito'
+                 "mascota6.nombre: \t" + mascota6.nombre); //arroja 'gatito'
+     console.log("---------------------");
+     console.log("correcto8;" + '\n' +
+                 "animalY.length: \t" + animalY.length + '\n' + //arroja 5,el numero de parametros que posee la funcion animalY.
+                 "animalY.nombre: \t" + animalY.nombre + '\n' + //arroja undefined
+                 "animalX.length: \t" + animalX.length + '\n' + //arroja 4,el numero de parametros que posee la funcion animalX
+                 "animalX.nombre: \t" + animalX.nombre + '\n' + //arroja 'max'
+                 "animalX.especie: \t" + animalX.especie); //arroja 'carnivora'
+     /*--------------------------------------------------*/
+
+
+    
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

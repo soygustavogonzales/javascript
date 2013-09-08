@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script src="sumar.js"></script>
+	<script>
+		try{
+			console.log(sumar(5,8));/*notar que utilizo sumar como si fuera un objeto nativo de javascrip
+				Pero no lo es, sino que es un metodo entregado(ver esto en el archivo enlazado sumar.js) al objeto padre en javascript: window
+				y seria lo mismo que ejecutar window.sumar(valor1,valor2);//donde valor1 y valor 2 son los numeros a sumar
+			*/
+			
+		}
+		catch(mierror){
+			if(mierror.description){
+				console.warn("Error detectado : "+mierror.description);
+				
+			}else{
+				console.warn("Error detectado : "+mierror);
+
+			}
+		}	
+
+
+		/*
+			window.foo='bar';//<igual a> var foo='bar';
+			console.log(
+						foo+"\n"+//arroja 'bar' <igual a> window.foo
+						typeof foo//arroja string
+			);
+		*/
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+		var net=new Object();
+		net.clsConector = function(){
+			!function prop1(){
+				net.yo=this;
+			}();
+		};
+		net.clsConector.prototype={
+			/*
+				prop1:function(){
+					net.yo=this;
+					//net.yo=yo;
+				},
+			*/
+			prop2:this,//apunta al objeto Window
+			prop3:{
+				prop31:this//apunta a objeto Window
+				,prop32:function(){
+					return [
+							this//apunta al prop3
+							,this.prop31//apunta a objeto Window
+							,net.yo//apunta al obj instanciado de net.clsConector
+							,net.yo.prop5
+					];
+				}
+
+			}
+			,prop4:function(){
+				return this;//apunta al obj instanciado de net.clsConector
+			}
+			,prop5:'dentro de net.clsConector'
+		}
+		var obj=new net.clsConector();
+		//console.log(obj.prop1());
+		console.log(obj.prop3.prop31)
+		console.log(obj.prop3.prop32())
+		console.log(obj.prop2)//arroja al objeto Window
+		console.log(obj.prop4())//arroja la definicion del net.clsConector
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

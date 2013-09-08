@@ -1,0 +1,57 @@
+<!DOCTYPE html>  
+<html lang="es-PE"> 
+   <head>
+     <meta charset="UTF-8">
+         <title>untitle</title> 
+         <!--
+			Analizar lo que sucede al cambiar de posicion la importacion
+			de los estilos (stylos.css) amtes de la referencia al script(script.js)
+			y viceversa.
+			Analizar los distintos resultados del timeStamp en cada estado de
+			la descarga
+			Se nota que se dispara el evento DOMContentLoaded cuando el
+			DOM esta listo para ser tratado y manipulado, pero aun on se pueden
+			acceder a los estilos y demas propiedades de un nodo en particular
+			pues los estilos no se habran cargado aun(dependiendo se importamos
+			 los estilos antes o despues de importar el script). La forma mas ideal
+			 seria importar los estilos despues de importado el script, si no el 
+			 efecto seria "casi" el mismo que al dispararse el evento load del objeto
+			 window.
+			 Dependiendo del trabajo y del ejercicio a realizarse de utilizaran 
+			 los el DOMContentLoaded de document o load de window.
+			 *NOTA:Se ha notado un efecto distinto de respuesta al emplearse estos
+			 metodos en los distintos navegadores, dando como
+			 resultado diferentes respuestas.
+			 Hata ahora el metodo mas aconsejable para trabajor con el DOM cargado
+			 es a lo lejos el de jQuery( ready) y de otras librerias.
+	     -->
+     <script type="text/javascript" src="script.js"></script>
+     <link rel="stylesheet" href="stylos.css"/>
+   </head> 
+   <body>
+	  <div id="web">
+	      <img src="fondo.jpg" alt="fondo">
+	      <img src="fondo1.jpg" alt="fondo">
+	      <img src="fondo2.jpg" alt="fondo">
+	      <img src="fondo.jpg" alt="fondo">
+	      <img src="fondo1.jpg" alt="fondo">
+	      <img src="fondo2.jpg" alt="fondo">
+	      <img src="fondo.jpg" alt="fondo">
+	      <img src="fondo1.jpg" alt="fondo">
+	      <img src="fondo2.jpg" alt="fondo">
+	      <img src="fondo.jpg" alt="fondo">
+	      HASTA AQUI VAN 10 IMAGENES
+	      <img src="fondo1.jpg" alt="fondo">
+	      <img src="fondo2.jpg" alt="fondo">
+	      <img src="fondo.jpg" alt="fondo">
+	      <img src="fondo1.jpg" alt="fondo">
+	      <img src="fondo2.jpg" alt="fondo">
+	      <img src="fondo.jpg" alt="fondo">
+	      <img src="fondo1.jpg" alt="fondo">
+	      <img src="fondo2.jpg" alt="fondo">
+	      <img src="fondo.jpg" alt="fondo">
+	      <img src="fondo1.jpg" alt="fondo">
+	  </div>  
+    </body> 
+</html>		
+	

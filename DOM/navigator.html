@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<!-En este ejercicio listo las principales propiedades del objeto navigator y sus metodos, asi como tambien una forma de obtener el nombre del navegador que el usuario esta usando para ver el presente documento web-->
+	<meta charset="UTF-8">
+	<title>objeto navigator javascript </title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+	var codeName= navigator.appCodeName;
+	var Name=navigator.appName;
+	var version=navigator.appVersion;
+	var cookieE=navigator.cookieEnabled;
+	var onLine=navigator.onLine;
+	var platform=navigator.platform;
+	var userAgent=navigator.userAgent;//devuelve una cadena con el nombre del navegador ,version, sistema operativo (nombre generico) del usuario,motor del navegador.
+	var javaE=navigator.javaEnabled();
+
+	
+
+	//var taintE=navigator.taintEnabled();//arroja error en safari.
+	console.log('appCodeName: '+codeName+
+				'\nappName: '+Name+
+				'\nappVersion: '+version+
+				'\ncookieEnabled: '+onLine+
+				'\nonLine: '+onLine+
+				'\nplatform: '+platform+
+				'\nuserAgent: '+userAgent+
+				'\n'+
+				'\njavaEnabled(): '+javaE);
+				//'\ntaintEnabled(): '+taintE);
+	console.log(userAgent);
+
+	console.group("1era FORMA DE IDENTIFICAR EL NAVEGADOR");
+	/*
+		2DA FORMA DE IDENTIFICAR EL NAVEGADOR USADO, mediante bucle y matriz.
+	*/
+
+			var encontrado=false;var i=0;
+			var browsers=['msie','opera','firefox','chrome','safari'];//este array contiene el nombre de los browsers mas usados.
+			while(i<browsers.length){
+			if(userAgent.toLowerCase().indexOf(browsers[i])!=-1)//si la cadena buscada en la cadena principal arroja un valor entero positivo significa que encontro ese nombre en la cadena principal,  y por lo tanto,ese es el nombre del navegador.
+			//el metodo toLowerCase convierte a minusculas la cadena principal.Luego indexOf() arrojaria el indice, donde se encuentre la subcadena(en el array) en la cadena principal, si encuentra la coincidencia exacta arrojara el indice, si no lo encuentra arrojara -1, que significa que no esta..
+				{encontrado=true;break;}//cambio el valor de la variable encontrado=true y salgo(rompo) del bucle con break(el becle ya no iterara mas).
+			i++;
+			}
+			(encontrado)?console.log("Tu navegador es: "+browsers[i]):console.log("Tu navegador es desconocido...cambiate.")
+	console.groupEnd("1era FORMA DE IDENTIFICAR EL NAVEGADOR");
+
+
+	console.group("2º forma: IDENTIFICAR NAVEGADOR")
+		//se hacen usos de patrones
+		console.log("En el indice: "+userAgent.search(/(msie)|(firefox)|(chrome)|(opera)|(safari)/i));
+		console.log("El navegador es: "+RegExp.lastMatch);//RegExp(Regular Expresion) es un objeto global,la propiedad lastMatch arroja la ultima coincidencia encontrada en la cadena segun el patron,
+		//pero teniendo en cuenta de que userAgent solo tendra una coincidencia encontrada, esta sera la 1era y la ultima a la vez
+	
+	console.groupEnd("2º forma: IDENTIFICAR NAVEGADOR")
+
+
+	console.group("3º forma: IDENTIFICAR NAVEGADOR")
+		/*
+			3ERA FORMA DE IDENTIFICAR EL NAVEGADOR USADO
+		*/
+
+		var resq=/(msie)|(firefox)|(chrome)|(opera)|(safari)/i.exec(userAgent);//resq sera una matriz que contendra las coincidencias encontradas en la cadena segun el patron
+		/* exec() es un metodo del objeto RegExp (Regular Expresion), En un nivel sintactico y semantico es mas eficaz
+		*/
+
+		console.log("el navegador es: "+resq[0]+'\n'+
+					" hallado en index: "+resq.index+" de la cadena sobre la q se busca");
+	
+	console.groupEnd("3º forma: IDENTIFICAR NAVEGADOR")
+
+	
+
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+	</div>
+</body>
+</html>
+

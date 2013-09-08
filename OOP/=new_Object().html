@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!Em este ejerccio trato acerca de algunas curiosidades que suceden al utilizar el objeto Object al implementar la creacion de objetos por new Object([parametros]). Puedo concluir que dependiendo de la forma como se le pasen los parametros, al Object() este creara objeto o posiblemente otras funciones
+	Ej:
+	var Cadena=new Object(String)//Cadena sera un function que sera comoun "clon" de la clase pasada por parametro String y tendra todos sus atributos.
+	var oCadena=new Object(String())//oCadena sera un objeto.
+	var oArray=new Object(Array('omar','erick','gustavo'))//oArray sera un objeto Array con 3 elementos.
+	function clsPadre(a,b){return (a*b)};
+	var oclsPadre=new Object(clsPadre);//oclsPadre es un function.
+	var oclsPadre2=new Object(clsPadre());//oclsPadre2 es un object.
+	var oclsPadre=new Object(clsPadre(2,2));//oclsPadre3 es un object al que se le pasa parametros a la ves q se instancia.
+
+Tambien aprenderemos a evaluar que sucede con las variable asignadas a clases o funciones:
+
+var variable=Boolean;//variable sera un function con los mismos atributos de Boolean;
+var variable2=Boolean(false)//variable2 sera un objeto;
+	-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;}</style>
+	<script type="text/javascript">
+	var clsBuleano=new Object(Boolean);//clsBuleano es un function
+	clsBuleano.hola='ostias';
+	var oclsBuleano=new clsBuleano//ya que clsBuleano es un function, intento entonces crear un object de la clase clsBuleano como una clase.
+
+	console.log("typeof clsBuleano: "+typeof clsBuleano +"\n"+//arroja function
+				"clsBuleano.hola: "+clsBuleano.hola+"\n"+//arroja 'ostias'
+				'typeof oclsBuleano: '+typeof oclsBuleano);//arroja object
+	var clsCadena=new Object(String);//clsCadena es un function. Pero de que me sirce ese functon sino ejecutara algun codigo, pues cuando apenas abro parentesis se convierte clsCadena es un object.
+	var oCadena=new Object(String('...'));//oCadena es un object.
+	var cadenita=new clsCadena('hola soy cadenita');//aqui utilizo un constructor nativo de la clase String como si fuera nativo de clsCadena.
+	var cadenita2=String('hola soi cadenita2');//cadenita2 sera function
+	var cadenita3=String;//cadenita3 sera un function
+
+	console.log("typeof cadenita2: "+typeof cadenita2+'\n'+//arroja object
+				"cadenita2: "+cadenita2+'\n'+//arroja 'hola soi cadenita2'
+				"typeof cadenita: "+typeof cadenita+"\n"+//arroja object
+				"cadenita: "+cadenita+'\n'+//arroja object
+				"cadenita3: "+typeof cadenita3);//arroja function
+	console.log("typeof clsCadena: "+typeof clsCadena+"\n"+//arroja function
+				"typeof oCadena: "+typeof oCadena+"\n"+
+				"oCadena: "+oCadena);//arroja object
+	var oString=new String('hola ma');//instancio un objeto String
+	console.log("typeof oString :"+typeof oString+" ;\n "+
+				"oString :"+oString);//arroja object
+	
+
+	function clsPadre(a,b){
+		return (a*b);
+	}
+	var clsPadre1=new Object(clsPadre);//oclsPadre1 sera un function
+	var oclsPadre2=new Object(clsPadre(2,2))//oclsPadre2 sera un object
+	console.log('typeof oclsPadre1: '+typeof oclsPadre1+'\n'+//arroja function
+				'clsPadre1(2,2): '+clsPadre1(2,3)+'\n'+//arroja 6 
+				'typeof oclsPadre2: '+typeof oclsPadre2);
+
+
+	
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

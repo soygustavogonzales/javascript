@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!Este ejercicio consta de dos cajas de texto y dos botones, en las cajas de texto se haran correr un mismo contador, cada caja tiene un boton asignado que detendra el contador; y por tanto el conteo respectivo que muestre cada caja habra terminado
+	formas de utilizar el setInterval() y setTimeout():
+
+	*setInterval():Ejecuta un metodo cada cierta cantidad de milisegundos, de forma ilimitada 
+	setInterval('metodo()',tiempo)//metodo() en comillas,tiempo en milisegundos
+	setInterval(metodo(),tiempo,param1,param2)//metodo() y parametros sin comillas//esta forma no funciona bien en menores de IE9, en los demas browsers si funciona
+
+	*NOTA:El setTimeout() de usa de la misma manera q el setInterval().
+	*setTimeout():Ejecuta un metodo solo una vez luego de transcurrido una cantidad de milisegundos-->
+
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style rel="stylesheet" type="text/css">
+		body{background:#000;}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){//cuando el DOM haya terminado de cargarse.
+			txtNumber=document.querySelector("#txtNumero");//cuando no se declara con var se esta definiendo una variable global.
+			txtNumber2=document.querySelector("#txtNumero2");
+			ListenButton();//inicia la funcion de escucha de los botones
+		}
+
+		var timer1;var timer2;
+		var nroClicks_btn1=0;nroClicks_btn2=0; //cuando se le coloca en una condicion 0 equivale a false(cuando es distinto de 0 -incluido los negativos- equivale a true).
+		var number=200;
+
+		function ListenButton(){//escucha los botones
+			var button=document.querySelector("#btnStop");
+			button.addEventListener("click",StopCount,false);
+			/*---------------------------------------------*/
+			var button2=document.querySelector("#btnStop2");
+			button2.addEventListener("click",StopCount,false);
+			/*---------------------------------------------*/
+			var button3=document.querySelector('#btnStartCount');
+			button3.addEventListener("click",StartCount,false);
+			/*---------------------------------------------*/
+			var button4=document.querySelector('#btnStartCount2');
+			button4.addEventListener("click",StartCount,false);
+
+		}
+		
+		function Count(count){//inicia el contador
+			console.log('correcto..'+txtNumber+";"+txtNumber2);
+
+			if(count=='count1'){
+				txtNumber.value=number}
+			else if(count=='count2')
+				{txtNumber2.value=number;
+				timer2=setTimeout("Count('count2')",1000);}
+
+			console.log("correcto2;"+(count=='count1'));
+			console.log("correcto3;"+timer1+";"+timer2);
+			number-=1;//el numero q se muestre ira disminuyendo
+			console.timeEnd('controller1');//fin del controlador, hasta aqui se controlara en tiempo que tome el navegador en interpretar el codigo.
+		}
+		
+
+		function StartCount(evento){//llamara al contador respectivo(dado que son dos cajas de texto donde se aplican metodos de timer distinto) el contador
+		/*este metodo hara que ejecute sus sentencias solamente si se ha dado un solo click sobre el objeto que provoca el evento(el boton en este caso), cuando se hayan dado mas de un click devolvera un false (return false); esto, en los metodos que son llamados directamente por un escucha de eventos(ej: addEventListener), indica que se omitira la ejecucion de esa funcion o metodo,y por ende ,sera como si ese click,mouseover,o el evento q fuese no funcionase*/
+					var elementID=this.id;//el id del elemento(objeto) que provoco el evento.
+			if(!nroClicks_btn1 && elementID=='btnStartCount'){//si el contador de clicks marca 0  y se ah dado click sobre el boton con id='btnStartCount'
+					console.time('controller1');//inicia u controlador en el debugger. para controlar la velocidad de respuesta del navegador en interpretar el codigo dentro de el.
+					console.log(elementID);
+					timer1=setInterval("Count('count1')",1000);//variable global
+					nroClicks_btn1+=1;//luego q se de el primer click, esta variable aumenta en 1.
+
+			}else if(!nroClicks_btn2 && elementID=='btnStartCount2'){
+					console.log(elementID);
+					timer2=setTimeout("Count('count2')",1000);//variable global.Si la condicion es false
+					console.log("correcto1;"+timer1+";"+timer2+";"+!nroClicks_btn1+";");
+					nroClicks_btn2+=1;//luego q se de el primer click sobre el btnStartCount2 esta variable aumentara en 1.
+					
+			}else return false;//al retornar false es como decirle al escucha(addEventListener) que llamo a este metodo que no hay sentencias que ejecutar.
+		}
+
+		function StopCount(evento){//detendra el contador, dependiendo del boton donde se hizo click
+			var elementID=this.id;
+			console.log(elementID);
+			(elementID=='btnStop')?//si no es 'btnStop' entonces debe ser 'btnStop2'
+			clearInterval(timer1):
+			clearInterval(timer2);//variable global.Si la condicion es false
+			
+		}
+
+	</script>
+</head>
+<body>
+	<div id="web">
+		<input id="btnStartCount" type="button" value="StartCount">
+		<input id="txtNumero" type="text" >
+		<input id="btnStop" type="button" value="stop"></br>
+
+		<input id="btnStartCount2" type="button" value="StartCount2">
+		<input id="txtNumero2" type="text" >
+		<input id="btnStop2" type="button" value="stop2"></br>
+
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+</head>
+<body>
+	<div id="web">
+		<canvas id="mycanvas" width="800" height="500">
+			cambiate de browser, chrome es muy bueno
+		</canvas>
+		<button id="negButton">PONER NEGATIVO</button>
+	<script>
+		var image=new Image(),
+		canvas=window.mycanvas,
+		ctx=canvas.getContext('2d'),
+		negButton=document.getElementById('negButton');
+		negButton.addEventListener('click',function(){
+			var imagedata=ctx.getImageData(0,0,canvas.width,canvas.height),
+			data=imagedata.data;
+			for(var i=0,longi=data.length-4;i<=longi;i+=4){
+				data[i]=255-data[i];
+				data[i+1]=255-data[i+1];
+				data[i+2]=255-data[i+2];
+				data[i+3]=255//el alfa de 0-255
+			}
+			ctx.putImageData(imagedata,0,0);
+			window.data=data;
+		},false);
+		image.src="img/fondo2.jpg";
+		image.addEventListener('load',function(){
+			ctx.drawImage(image,0,0,image.width,image.height,0,0,ctx.canvas.width,ctx.canvas.height);
+		},false);
+	</script>
+
+	</div>
+</body>
+</html>
+

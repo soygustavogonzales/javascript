@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+/*
+A continuacion se realizaran la compracion entre usar tr para
+capturar errors o validar y prevenirlos.
+El testeador de tiempos arroja que es mas rapido
+el uso de validaciones(forma 2) antes que usar bloque try..catch,
+que es mas recomendable usarlo en casos excepcionales, luego de haber
+controlado todas los posibles errores con las validaciones respectivas. 
+
+*/
+
+
+	var n=0/0;// 0/0 dara infinito
+console.group("forma 1");
+console.time("controler1");
+		try{
+			if(!isFinite(n)) throw new Error("El numero no es real")
+			console.log("esta linea se habra ejecutado si no se lanzo algun error");
+		}catch(e){
+			console.log(e.name+" : "+e.message+" : "+"El numero debe ser real (+) o (-)");		
+		}
+console.timeEnd("controler1");
+console.groupEnd("forma 1");
+
+console.group("forma 2")
+console.time("controler2");
+			if(!isFinite(n))console.log("El numero debe ser real (+) o (-)")
+			else console.log("esta linea se habra ejecutado si no hay error");
+console.timeEnd("controler2");
+console.groupEnd("forma 2")
+
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

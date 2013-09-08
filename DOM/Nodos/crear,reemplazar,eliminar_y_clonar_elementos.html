@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es-pe">
+<head>
+	<!--En este ejercicio veremos como se puede crear, reemplazar,eliminar y clonar elementos-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	var contador =1;
+	function insertarElemento(){
+		var parrafo=document.createElement('p');
+		var texto=document.createTextNode('nuevo parrafo agregado '+contador +" "+parrafo);
+		parrafo.appendChild(texto);
+		document.getElementById('caja').appendChild(parrafo);
+		contador+=1;
+
+		/*
+		* //2da forma de inssertar un elemento, con insertAdjacentHTML(position, html)			
+		*	var padre = document.querySelector("#caja");
+		*	caja.insertAdjacentHTML("afterend","<p style='color:cyan;'><em>Elemento nuevo</em></p>");
+		*	//position puede ser: "afterbegin"(dentro del elemento padre, pero se inserta como primer hijo, desplaza-pero no elimina- a los demas hijos),
+		*	//					  "beforeend"(dentro del padre, se inserta como ultimo hijo),
+		*	//				      "beforbegin"(fuera del padre, antes del mismo y como hermano-en el mismo nivel del arbol del dom-),
+		*	//					  "afterend"(fuera del padre, despues del mismo y como hermano-en el mismo nivel del arbol del dom-)
+		*	
+		*/
+	}
+	function insertarElementBefore(){
+		
+		var parrafo=document.createElement('p');//creo el nuevo elemento pero aun no existe en el documento(esta en el "Limbo")
+		var texto=document.createTextNode('nuevo parrafo agregado antes del contenido original , '+contador);
+		//texto=document.createTextNode('nuevo parrafo agregado antes del contenido original');
+		parrafo.appendChild(texto);
+		var referencia=document.getElementsByTagName('ul')[0].getElementsByTagName('li')[0];//hago referencia al primer <li> ya que sobre este insertare el nuevo elemento recien creado, puedo insertarlo en cualquier parte del documento
+		elemento_padre=document.getElementsByTagName('ul')[0];//dentro de este elemento se se hara la insercion
+		elemento_padre.insertBefore(parrafo,referencia);//
+		console.info('se creo el elemento '+contador);
+	}
+	function reemplazarElemento(){
+		//var nuevoParrafo=document.querySelector('#caja');
+		var nuevoElemento=document.createElement('li');//es te es el nuevo elemento recien creado
+		//---------------------------------------------------
+		nuevoElemento.setAttribute('class','li2');
+		nuevoElemento.id="id_li2"//esto seria igual que >> nuevoElemento.setAttribute('id','id_li2');
+		nuevoElemento.style.color='red';//dandole estilos al elemmento antes de insertarlo al DOM
+		nuevoElemento.style.background="white";
+		nuevoElemento.style.borderRadius="5px";
+		//---------------------------------------------------
+		//console.info('correcto1;'+nuevoElemento.getAttribute('id'));//muestro en consola el valor del id recien creado
+		var texto=document.createTextNode('este es el nuevo <li>');//creo un elemento(nodo) de texto
+		nuevoElemento.appendChild(texto);//se le añade al nodo nuevoElemento el nodo texto(pero aun no esta en el documento).
+		viejoElemento=document.querySelector('.li2');//este es el elemento a reemplazar
+		
+		//console.info('correcto1;'+viejoElemento.nodeName);//arroja el nombre del nodo-en este caso imprime LI
+		console.info('correcto...'+viejoElemento)
+		var elemento_padre=viejoElemento.parentNode;//1era forma de obtener el elemento padre, es mas agil pues no necesito saber previamente el .
+		//2da forma de obtener el nodo padre(menos agil pues necesito conocer de ante mano el elemento padre propiamente dicho) elemento_padre=document.querySelector('#caja').getElementsByTagName('ul')[0];//es el que contiene el elemento a reemplazar
+		
+		console.info('Correcto2;'+elemento_padre);
+		elemento_padre.replaceChild(nuevoElemento,viejoElemento);//ocurre el reemplazo con la insercion del nuevo elemento sobre el antiguo
+		console.warn('correcto3;reemplazo nexitoso');
+	}
+	function eliminarElemento(){
+		var elemento_a_eliminar=document.querySelector('.li2');
+		if(elemento_a_eliminar){//si es true el elemento existe
+		console.info('correcto1;'+ elemento_a_eliminar);
+		document.getElementsByTagName('ul')[0].removeChild(elemento_a_eliminar);
+		console.info('correcto2; Eliminacion exitosa!!!');
+		}else {console.info("elemento ya no existe & not found...");//si es false el elemento ya no existe o nunca existio
+		}
+	}
+	function clonarElemento(){
+		var clon=document.querySelector("#lista2").cloneNode(true);//el clon es creado,true significa q incluya a todos los elementos que esten dentro del original(una copia identica)
+		console.log("clon creado;"+clon.nodeName+";"+clon.nodeType);
+		document.querySelector("#caja").appendChild(clon)//inserto el clon dentro de #caja
+	}
+	function verPropiedades(){
+	var Elemento=document.querySelector('#caja');
+	var nuevoElemento=document.createElement('p');
+	//imprimira resultados por consola.
+	console.info(Elemento.attributes)//mostrara un array de attributos del nodo o elemento.(no concatenar con otro texto o resultado).En la consola mostrara un arbol completo
+	console.info("nodeName: "+Elemento.nodeName);//el nombre del nodo(html,body,head,li,aside,article,div...)
+	console.info("nodeType: "+Elemento.nodeType);//el tipo de nodo, un valor numerico del 1 al 12(nombre de etiqeta html,comentario,texto,etc).Para ver la lista ir a: http://www.codexexempla.org/curso/curso_4_3.php
+	console.info("nodeValue: "+Elemento.nodeValue);
+	console.info("ownerDocument: "+Elemento.ownerDocument+";"+Elemento.ownerDocument.nodeName)//arroja el objeto al que pertenece el Elemento
+															//ownerDocument.nodeName. el nombre del docmuento al que pertenece en cadena
+	//los espacios,saltos de linea y los comentarios tambien son tomados como nodos  o elementos, es extraño pero q mas da.
+	console.info("firstchild:"+Elemento.firstChild+";"+Elemento.firstChild.nodeName);//el primero arroja el primer objeto hijo,el segundo arroja el nombre de ese elemento hijo(nombre de etiqeta html,comentario,texto,etc).
+	console.info("lastChild: "+Elemento.lastChild+";"+Elemento.lastChild.nodeName);//el primero arroja el ultimo hijo de ese elemento(como objeto), el seundo arroja el nombre de ese objeto(nombre de etiqeta html,comentario,texto,etc).
+	console.info("hasChildNodes: "+Elemento.hasChildNodes(Elemento));//imprime un buleano(true o false)  que indica si tiene o no nodos hijos.
+	console.info("parentNode: "+Elemento.parentNode+";"+Elemento.parentNode.nodeName);//arroja el elemento(como un objeto) el padre
+													//parentNode.nodeName : imprime el nombre de ese objeto padre(div,ul,body,etc)
+	console.info("previousSibling: "+Elemento.previousSibling+";"+Elemento.previousSibling.nodeName);//el primero arroja el nodo hermano previo(como objeto), el segundo arroja el nombre(nombre de etiqeta html,comentario,texto,etc)
+	console.info("nextSibling: "+ Elemento.nextSibling+";"+Elemento.nextSibling.nodeName);//el primero arroja el nodo hermano siguiente(comom objeto), el segundo arooja el nombre de ese hermano(nombre de etiqeta html,comentario,texto,etc)
+	console.info("innerHTML: "+Elemento.innerHTML);
+	console.info("innerText: "+Elemento.innerText);
+
+	console.info("direccion url 1era forma: "+Elemento.ownerDocument.baseURI);//guiarse del arbol que sale en la consola del navegador al ejecutar los atributos con Elemento.attributes.
+	console.info("Direccion url 2da forma: "+document.URL);
+	console.log("...");
+
+	}
+
+		/*
+		document.open();//una forma explicita de abrir el flujo de escritura del documento(no se usa)
+		document.write('hola mundo');
+		document.close();//una fomra ecplicita de cerrar el flujo de escritura de un documento
+		*/
+
+	</script>
+	<style rel="stylesheet">
+
+		*{margin:0; padding:0;border:0;}
+		body{color: #fff;}
+		#web{margin:0 auto;width: 900px;height: 800px;width:1200px;height:auto;background:#000;}
+		#caja{width: 400px;height: auto;}
+
+	</style>
+</head>
+<body>	
+	<div id="web">
+		<label for="caja">este es un elemento label</label>
+		<div id="caja"><!--jeste es un comentario-->este es un div con id="caja"
+			<ul id="lista1">
+				<li class="li1">item1</li>
+				<li class="li2">item2</li>
+				<li class="li3">item3</li>
+				<li class="li4">item4</li>
+			</ul>
+			<p>
+			</br>
+			<ol id="lista2">
+				
+				<li class="li">oli1</li>
+				<li class="li">oli2</li>
+				<li class="li">oli3</li>
+				<li class="li">oli4</li>
+				
+			</ol>
+			</p>
+			<p>
+			<blockquote>
+			
+				Tras las palabras solo hay un mural de rotulos que suplican ser desdibujados y 
+				partidos. Tras mi ser no encuentro  ami contenido, o sera talves que mi continente
+				ulule con lloriqueos de nene su esencia infinitesimal. Aun me pregunto que no preguntar.
+				
+			</blockquote><cite>"Gustavo Gonzales"</cite> 
+			</p>
+		</div>
+		<input type="button" value="insertar elemento" onclick="insertarElemento()">
+		<input type="button" value="insertar elemento antes" onclick="insertarElementBefore()">
+		<input type="button" value="Reemplazar elemento" onclick="reemplazarElemento()">
+		<input type="button" value="eliminar Elemento" onclick="eliminarElemento()">
+		<input type="button" value="Clonar Elemento" onclick="clonarElemento()">
+		<input type="button" value="Ver Propiedades" onclick="verPropiedades()">
+	</div>
+	
+</body>
+</html>

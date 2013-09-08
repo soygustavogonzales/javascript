@@ -1,0 +1,98 @@
+<!DOCTYPE html>  
+<html lang="es-PE"> 
+   <head>
+     <!En este ejercicio se presenta un circulo y cuadrado, con las teclas direccionales(flechas) usted podra mover al circulo solamente, los efectos varian segun el bowser utilizado.-->
+     <meta charset="UTF-8">
+         <title>untitle</title> 
+     <script type="text/javascript">
+
+		 function detectarTecla(evnt) {
+		 var ev = (evnt) ? evnt : event;
+		 console.log(ev+" "+evnt+" "+event);
+		 var code=(ev.which) ? ev.which : event.keyCode;
+		  console.log(code);//mensaje en consola
+
+		  mover(code);
+		  return code;
+		}//end function
+
+
+		if (window.document.addEventListener) {//esto arroja true si soporta addEventListener(chrome,Mox firefox,Opera)
+			//es un manejador de que esta escuchando a que suceda un evento(evento,funcion que llamaremos,...) 
+		   window.document.addEventListener("keydown", detectarTecla, false);
+		} else {//False cuando no lo soporta (I.Explorer antiguos)
+		   window.document.attachEvent("onkeydown",detectarTecla);
+		}//end if
+
+
+		
+		var top=100;
+		var left=340;
+     	function mover(code){
+     		var circle=document.getElementById("circle");
+     		switch(code){//el valor de la tecla presionada
+
+     		case 37://tecla de flecha izquierda
+     		left--;
+     		circle.style.left=left+'px';//mueve hacia izquierda
+     		break;
+
+     		case 38://tecla de flecha arriba
+     		top--;
+     		circle.style.top=top+'px';//mueve hacia arriba
+     		
+     		case 39://tecla de flecha derecha
+     		left++;
+     		circle.style.left=left+'px';//mueve hacia derecha
+     		break;
+
+     		case 40://tecla de flecha abajo
+     		top++;
+     		circle.style.top=top+'px';//mueve hacia abajo
+     		break;
+     		}
+
+     	}
+		
+     </script>
+
+     <link rel="stylesheet" href=""/>
+     <style type="text/css">
+     	#web{
+     		background:#FF8A8A;
+     		width:800px;
+     		height:600px;
+     	}
+     	#circle{
+     		background:#FBF17D;
+     		border-radius: 50%;
+     		position:absolute;/*el top y left no funcionan sin un position(relative,absolute,fixed,...)*/
+     		left:340px;
+     		top:100px;
+     		width:120px;
+     		height:120px;
+     	}
+     	#square{
+     		width:120px;
+     		height:120px;
+     		position:absolute;/*el top y left no funcionan sin un position(relative,absolute,fixed,...)*/
+     		left:150px;
+     		top:100px;
+     		background:#B381DD;
+     	}
+     </style>
+   </head> 
+   <body >
+	  <div id="web">
+	       
+	       	<div id="circle">
+	       		
+	       	</div>
+	       	<div id="square">
+	       		
+	       	</div>
+	     
+	  </div>  
+    </body> 
+</html>		
+	

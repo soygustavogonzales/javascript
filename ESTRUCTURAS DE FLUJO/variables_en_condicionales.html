@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+		var variable;//vasta que se  cree la variable para comprobar si existe o no, podemos declararla tambien asi:
+		/*
+			var variable=null;-->if(variable) //arroja false
+			var variable=undefined;-->if(variable) //arroja false
+			var variable="lo que sea";-->if(variable) //arroja true
+		*/
+		if(variable)//arroja true.Podemos jugar cambiando a if(!variable) y esto arrojaria false
+			{console.log(variable+" : variable existe; es true")}
+			else{console.log(variable+': variable no existe; es false');}
+
+		var variable2=0;//cuando vale 0, en un condicional esto arrojaria false.Podemos declararla tambien asi:
+		/*
+			var variable2=1;//-->if(variable2) //arroja true
+			var variable2=-1;//-->if(variable2) //arroja true
+			var variable2=-12000;//-->if(variable2) //arroja true
+			var variable2=[numero diferente de 0];//-->if(variable2) //arroja true
+			var variable=0;//-->if(variable2) //solo aqui-cuando es 0- arroja false;
+		*/
+		if(!variable2)//esto arroja true.El simbolo [!] es como negar el valor de la variable
+			{console.log(variable2+" : variable existe; es true")}
+			else{console.log(variable2+': variable tambien existe;pero es false');}
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

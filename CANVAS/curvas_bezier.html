@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	*{
+		margin: 0;
+		border: 0;
+		padding: 0;
+	}
+		canvas{
+			display: absolute;
+			top:10px;
+			left:10px;
+			margin-left: 20px;
+			margin-top: 20px;
+			background: rgba(73,75,71,.9);
+			border: 2px solid rgba(36,37,32,.7);
+		}
+	</style>
+	<script>
+		window.addEventListener('load',function(){
+			var canvas=window.mycanvas;
+			var ctx=canvas.getContext('2d');
+			ctx.strokeStyle="#5F7AEB";
+			ctx.fillStyle="rgba(230,230,230,.5)";
+			ctx.lineWidth=3;/*ancho de la linea q se dibujara*/
+			ctx.font="bold 10px Verdana";
+			ctx.fontStyle="#EC683C";/*color de texto rojo clarito*/
+			ctx.beginPath();
+			ctx.moveTo(100,10);
+			ctx.fillText("100,10",100,10);
+			ctx.lineTo(20,20);
+			ctx.fillText("20,20",20,20);
+			ctx.lineTo(125,135);
+			ctx.fillText("125,135",125,135);
+			ctx.closePath();
+			ctx.fill()
+			ctx.stroke();
+/********CURVAS BEZIER*****************/
+var ctx2=canvas.getContext('2d');
+ctx2.strokeStyle='rgba(100,200,255,.6)';
+ctx2.fillStyle="#FFF9F9";
+ctx2.fontStyle="bold 20px Arial";
+ctx2.beginPath();
+var pts=[[],[],[],[]];
+	pts[0].x=170;/*A*/
+	pts[0].y=450;
+	pts[1].x=450;/*B*/
+	pts[1].y=380;
+	pts[2].x=20;/*C*/
+	pts[2].y=200;
+	pts[3].x=270;/*D*/
+	pts[3].y=50;
+ctx2.moveTo(pts[0].x,pts[0].y);
+ctx2.fillText("(A)"+pts[0].x+" : "+pts[0].y,pts[0].x,pts[0].y);
+
+console.log(
+	pts[1].x+"\n"+
+	pts[1].y+"\n"+
+	pts[2].x+"\n"+
+	pts[2].y+"\n"+
+	pts[3].x+"\n"+
+	pts[3]["y"]
+);
+
+ctx2.bezierCurveTo(pts[1].x,pts[1].y,pts[2].x,pts[2].y,pts[3].x,pts[3].y);
+//ctx2.closePath();/*cierra el grafico buiscando el punto inicial del bibujo trazado*/
+ctx2.stroke();
+ctx2.fillText("(B)"+pts[1].x+" : "+pts[1].y,pts[1].x,pts[1].y);
+ctx2.fillText("(C)"+pts[2].x+" : "+pts[2].y,pts[2].x,pts[2].y);
+ctx2.fillText("(D)"+pts[3].x+" : "+pts[3].y,pts[3].x,pts[3].y);
+
+
+
+/**************************/
+var ctx3=canvas.getContext('2d');
+ctx3.fontStyle="italic 20px sans-serif";
+ctx3.strokeStyle="#ED6023";
+ctx3.lineWidth=4;
+ctx3.fillStyle="#ED6023";
+	ctx3.beginPath();
+ctx3.moveTo(450,60);
+canvas.addEventListener('mousemove',function(e){
+	ctx3.clearRect(0,0,canvas.width,canvas.height);
+	ctx3.beginPath();
+	var xa=(Math.random()*(800-0)).toFixed(0),
+	ya=(Math.random()*(500-0)).toFixed(0),
+	xa2=(Math.random()*(800-0)).toFixed(0),
+	ya2=(Math.random()*(500-0)).toFixed(0);
+	//ctx3.clearRect();
+	//canvas.width=canvas.width;
+	console.log(e);
+	console.log(
+		"X: "+e.pageX+"\n"+
+		"Y: "+e.pageY
+	);
+	console.log(
+		"X: "+e.layerX+"\n"+//layer solo es aceptado en chrome, en mozzila arroja un valor igual al clientX y clientY(sin utilidad mayor)
+		"Y: "+e.layerY
+	);
+	ctx3.moveTo(e.layerX,e.layerY);
+	ctx3.bezierCurveTo(e.layerX,e.layerY,xa2,ya2,xa,ya);
+	ctx3.closePath();
+	ctx3.stroke();
+
+},false);
+		},true);
+	</script>
+</head>
+<body>
+	<div id="web">
+		<canvas id="mycanvas" width="800" height="500">
+			your browser do not suport this feature, need a true browser,
+		</canvas>
+
+	</div>
+</body>
+</html>
+

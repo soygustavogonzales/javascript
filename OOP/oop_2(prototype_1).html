@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!
+*NOTA: Las clases se implementan como una funcion, donde el this dentro de la funcion reprenta al objeto de la misma clase. Ej:
+
+var Nombre_de_la_Clase= function(propiedad1,propiedad2,propiedad3,...,propiedadN){
+	this.propiedad1_=propiedad1;//propiedades de la clase
+	this.propiedad2_=propiedad2;
+	this.propiedad3_=propiedad3;
+	this.propiedad4='ValorPorDefecto';//esta propiedad de la clase,la tendra el objeto por defecto al ser creado.
+	this.metodo1=function(){return 'llamaste al metodo1'}//este es un metodo de la clase,que la tendra el objeto
+}
+
+	var oObjeto1 = new Nombre_de_la_Clase();//creo el objeto pero sin instanciarlo.
+	var oObjeto2 = new Nombre_de_la_Clase(prop1,prop2);//yo elijo hasta cuantas propiedades deseo insertar al instanciar el objeto.
+	var oObjeto3 = {prop1: 'valor1',prop2: 'valor2', metodo1:function(){return 'llamaste al metodo1'} //esta es otra forma de instanciar a un objeto al momento de crearlo}
+
+Tambien se puede crear la clase de esta otra forma(tal como la otra forma de crear una funcion)
+
+function Nombre_de_la_Clase(propiedad1,propiedad2,propiedad3,...,propiedadN){
+	this.propiedad1_=propiedad1;//esta es una propiedad de la clase
+	this.propiedad2_=propiedad2;
+	this.metodo1=function(){}//este es un metodo de la clase
+}
+
+*NOTA: las clases tambien son objetos de forma intrinseca,la razon es porque javascript es un lenguaje basado en Prototipos. Ej:
+function claseYobjeto(){
+	[...el codigo comun y corriente]	
+}
+claseYobjeto.propiedad1='loQueSea'//Asi trato a la clase claseYobjeto como si fuese tambien un objeto.
+pero sus atributos(propiedades,metodos y otros) solo tendran validez o ambito para ese objeto.
+Es decir,los objetos de la claseYobjeto no poseeran ningun atributo del objeto claseYobjeto al instanciarse.
+EJ: var newObjeto = new claseYobjeto;
+console.log(newObjeto.propiedad1);//arroja undefined pues no es un atributo de ese objeto(newObject) en concreto.
+*NOTA: la propiedad prototype solo se puede utilizar con las clases(funciones propiamente dichas) no con los objetos. 
+Ej: objeto.prototype.loQueSea ...es incorrecto
+Ej: clase.prototype.loQueSea ...correcto
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>body{background: #000;}	</style>
+	<script type="text/javascript">
+		function Empleado(codigo){//esta es una clase
+			this.codigo='123456';
+			return this;
+		}
+		/*A continuacion instancio el objeto Empleado, no olvidar que las clases tambien son objetos se forma innata*
+		NO olvidar que los atributos(las propiedadaes y los metodos) del objeto Empleado jamas seran heredados a sus objetos instanciados a partir de su clase Empleado*/
+		Empleado.nombre_='carlos';//al objeto Empleado le doi una propiedad.
+		Empleado.apellido_='torres';
+		Empleado.cargo_='desarrollador';
+		//this.cargo_='tecnico';//no entiendo a quien hace referencia este this, que el debugger no bota error
+		Empleado.seguro=function(){//este es un metodo para el objeto Empleado
+			switch(this.cargo_){//aca this es <igual a> Empleado,probar reemplazandolo.
+				case 'desarrollador':return "AFP";break;
+				case 'analista':return 'ONP';break;
+				case 'tecnico':return 'BROKER';break;
+				default: return 'no asegurado';
+			}
+		}
+		//El objeto a continuacion es creado antes de implentar el atributo a travez del prototype.
+		var oEmpleado0 = new Empleado;//este es un objeto de la clase Empleado//notar que lo creo antes de implementar el metodo por prototype
+		oEmpleado0.nombre_='omar';//esta es una propiedad del objeto
+		oEmpleado0.cargo_='analista';
+		oEmpleado0.sueldo='2400';
+		
+		Empleado.prototype.seguro=function(){//creando un nuevo metodo para la clase Empleado.Este metodo lo heredaran todos los objetos que se instancien en esta clase-los creados antes y los creados luego de implementar este atributo por prototype-.
+			switch(this.cargo_){
+				case 'desarrollador':return "AFP";break;
+				case 'analista':return 'ONP';break;
+				case 'tecnico':return 'BROKER';break;
+				default: return 'no asegurado';
+			}
+		}
+
+		var oEmpleado1 = new Empleado;//creando un nuevo objeto de Empleado.
+		oEmpleado0.nombre_='omar';//esta es una propiedad
+		oEmpleado1.cargo_='desarrollador';
+		oEmpleado0.sueldo='2400';
+		
+		console.log("Empleado.nombre_: "+Empleado.nombre_+'\n'+//arroja carlos
+					"Empleado.seguro(): "+Empleado.seguro()+'\n'+//arroja AFP
+					"Empleado.prototype.seguro(): "+Empleado.prototype.seguro()+'\n'//arroja 'no asegurado'
+					);
+
+		console.log("----------------------------------------");
+		console.log("");
+		console.log("oEmpleado1.nombre: "+oEmpleado1.nombre+'\n'+
+					"oEmpleado1.codigo: "+oEmpleado1.codigo+'\n'+
+					"oEmpleado1.seguro(): "+oEmpleado1.seguro()+'\n'+
+					"oEmpleado0.seguro(): "+oEmpleado0.seguro()+'\n'
+					);
+		console.warn("**********************************************");
+	</script>
+</head>
+<body>
+	<div id="web">
+		ejercicio con prototype
+
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script>
+	var nombres = ['omar','erick','gloria','gustavo','sara','john','tony'],
+	notas = [12,11,7,8,12,15,13],temp=0,j=0,j_=0,temp_=0,msj="**NOTAS\n";
+	notas2=[13,4,12.6,11.5,5,6,4.5,12.3];
+	//console.log(notas.length);
+	burbujear(notas);
+	burbujear(notas2);
+	function intercambiar(matriz,ind1,ind2,orden){
+		var temp=null;
+		//var orden=eval('orden');
+		var condicion = eval(matriz[ind1]+orden+matriz[ind2]);
+		//console.log(condicion);
+		if(condicion){
+				temp = matriz[ind1];
+				matriz[ind1] = matriz[ind2];
+				matriz[ind2] = temp;
+		}
+	}
+	function burbujear(matriz,orden){
+		console.log(matriz);
+		switch(orden){
+			case "des":
+				orden="<";
+				break;
+			default:
+				orden=">";
+		}
+		for (var i = 0,j = 0,longi = matriz.length - 1; i < longi; i++) {//ordena hacia adelante
+			j = i+1;
+			intercambiar(matriz,i,j,orden);	
+			if(i>=1){
+				for (var t = i; t > 0; t--) {//ordena hacia atras
+					j_ = t-1;
+					intercambiar(matriz,j_,t,orden);	
+				};
+			}
+			//msj+=""+matriz[i]+"\n";
+		};
+		for (var i = 0,longi = matriz.length; i < longi; i++) {
+			console.log(matriz[i]);
+		};
+	}
+	
+
+
+	</script>
+		
+</head>
+
+<body>
+
+</body>
+</html>

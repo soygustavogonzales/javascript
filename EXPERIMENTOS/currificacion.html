@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+	/*
+		Currificar es una tecnica de programacion que consiste en transformar
+		a una funcion que utiliza multiples argumentos para operar, en una funcion
+		que utiliza un unico argumento.
+	*/
+		var add = function(a,b){
+			return a+b;
+		}
+		Function.prototype.curry = function(obj){
+			var toArray = Array.prototype.slice.call(obj);
+				if(arguments.length<1){
+					return this;
+				}
+				var __method = this;
+				var args = toArray(arguments);
+			return function(){
+					return __method.apply(this.args.concat(toArray(arguements)));
+			}
+
+		};
+		//console.log(add.curry());
+
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

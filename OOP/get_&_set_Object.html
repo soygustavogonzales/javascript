@@ -5,20 +5,73 @@
 	<title>Document</title>
 	<link rel="stylesheet" type="text/css" href=""/>
 	<script type="text/javascript">
-		var oMensajeria={
-			aviso:'eureka!',
-			set setAviso(value){this.aviso=value},
-			get getAviso(){return this.aviso+' in this getAviso'},
-			aviso2:'voila',
-			set setAviso2(value){this.aviso2=value},
-			get getAviso2(){return this.aviso2+' in this getAviso2'}
-		};
-		//oMensajeria.setAviso='VICTORy';
+	function clsMadre() {
+		/*
+		Con esta forma de generar propiedades de clase para
+		los objetos ya no necesitamos un constructor
+		*/
+		var name = null;
+		var lastname = null;
+		Object.defineProperty(this,"name",{
+			get : function(){
+				return name;
+			}
+			,set : function(value){
+				name = value;
+			}
+			,enumerable : true
+		});
+
+		Object.defineProperty(this,"lastname",{
+			get : function(){
+				return lastname;
+			}
+			,set : function(value){
+				lastname = value;
+			}
+			,enumerable : true
+		});
+	}
+	clsMadre.prototype.cuidar = function(hijo) {
+		return "cuidar a: " + hijo;
+	};
+		var oGloria = new clsMadre();
+		var oRosa = new clsMadre();
+		oGloria.name = "Gloria"//seteo
+		oRosa.name = "Rosa"//seteo
+		console.group("GRUPO");
+			console.log(
+							oGloria.name//Gloria
+				+"\n"+oRosa.name//Rosa
+				+"\n"+oRosa.cuidar("Omar")//cuidar a Omar
+			);
+		console.groupEnd("GRUPO");
+			var oMensajeria={
+				aviso:'eureka!',
+				set setAviso(value){
+						this.aviso=value
+				},
+				get getAviso(){
+					return this.aviso+' in this getAviso'
+				},
+				aviso2:'voila',
+				set setAviso2(value){
+					this.aviso2=value
+				},
+				get getAviso2(){
+					return this.aviso2+' in this getAviso2'
+				}
+			};
+		oMensajeria.setAviso='VICTORy';//esto es correcto
+		//oMensajeria.aviso='VICTORY';//esto es correcto
+		/*
+			oMensajeria.setAviso('VICTORy'); //lanza error el objeto oMensajeria no tiene el metodo setAviso();
+		*/
 		console.groupCollapsed('GROUP1');
-			console.log(oMensajeria.getAviso)
-			console.log(oMensajeria.aviso);
-			console.log(oMensajeria.getAviso2);
-			console.log(oMensajeria.aviso2);
+			console.log(oMensajeria.getAviso)//retorna eureka! in this getAviso
+			console.log(oMensajeria.aviso);//retorna eureka!
+			console.log(oMensajeria.getAviso2);//voila in this getAviso2
+			console.log(oMensajeria.aviso2);//voila
 		console.groupEnd('GROUP1');
 
 		function clsPadre(){

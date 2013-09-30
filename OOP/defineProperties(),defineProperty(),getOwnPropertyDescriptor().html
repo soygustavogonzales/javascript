@@ -34,32 +34,32 @@
 			value: 'World',
 			writable: false,
   		},
-  		property3:{
-  			configurable:false,
-  			enumerable:true,
-  			value:'Sin city',
-  			writable:true,
-  		}
+		property3:{
+			configurable:false,
+			enumerable:true,
+			value:'Sin city',
+			writable:true,
+		}
 	};
-	console.group('GROUP1');
-		console.log(Object.defineProperties(oHijo,obj));//forma de agragar atributos en lote.
-		console.log(Object.defineProperty(oHijo,'property4',{//forma de agregar un solo atributo
+		Object.defineProperties(oHijo,obj);//forma de agragar atributos en lote.
+		obj = {
+
 			configurable:true,
 			enumerable:true,
-			value:null,
 			writable:true,
-			set prop4(value){
-				this.value_=value;
-			},
-			
-			get prop4(){
-				return (this.value_ +'...super!!');
-			},
+			value:"unknown",
 
-		}));
-		//oHijo.property4='EUREKA!!';
-		console.log('oHijo.property4: '+oHijo.property4);
+		}
+		Object.defineProperty(oHijo,"property4",obj);//forma de agregar un solo atributo
+	console.group('GROUP1');
+		console.log(
+						oHijo.property1//hello
+			+"\n"+oHijo.property2//word
+			+"\n"+oHijo.property3//sin city
+			+"\n"+oHijo.property4//unknown
+		);
 	console.groupEnd('GROUP1');
+console.groupCollapsed("**")
 	console.group('GROUP2')//probando writable
 		console.log(Object.getOwnPropertyDescriptor(oHijo,'property1'));
 		console.log(Object.getOwnPropertyDescriptor(oHijo,'property2'));
@@ -112,6 +112,7 @@
 			console.log(Object.getOwnPropertyDescriptor(oSecretaria,'id_'));		
 			
 	console.groupEnd("GROUP6")
+console.groupEnd("**")
 	</script>
 </head>
 <body>

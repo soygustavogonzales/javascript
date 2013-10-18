@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>UNknown</title>
+		<style >
+			body{
+				margin: 0px;
+				padding:0px;
+			}
+		</style>
+	</head>
+	<body>
+		el body
+		<div id="container"></div>
+		<script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.7.2.min.js"></script>
+		<script>
+			window.Kinetic || document.write('<script src="kinetic-v4.7.2.min.js"><\/script>');
+		</script>
+		<script defer="defer">
+			var stage = new Kinetic.Stage({//el tamaño del canvas
+				container: 'container'
+				,width: 578
+				,height: 200
+			});
+			var layer = new Kinetic.Layer();
+			var raya = new Kinetic.Line({
+				points:[//x,y
+					10,10,
+					20,34,
+					15,15,
+					80,90,
+					70,85,
+					102,150,
+					10,80,
+					65,10,
+					205,250,//sobrepaso el stage
+					102,153
+
+				]
+				,stroke:'cyan'
+				,strokeWidth:3
+				,lineCap:'round'
+				,lineJoin:'round'
+			})
+
+			layer.add(raya);
+			stage.add(layer);
+		</script>
+
+	</body>
+</html>

@@ -14,20 +14,29 @@
 		var add = function(a,b){
 			return a+b;
 		}
-		Function.prototype.curry = function(obj){
-			var toArray = Array.prototype.slice.call(obj);
+		Function.prototype.curry = function(){
+			var toArray = function(obj){
+				return Array.prototype.slice.call(obj);	
+			}
 				if(arguments.length<1){
 					return this;
 				}
-				var __method = this;
-				var args = toArray(arguments);
+			var __method = this;
+			var args = toArray(arguments);
 			return function(){
-					return __method.apply(this.args.concat(toArray(arguements)));
+				return __method.apply(this,args.concat(toArray(arguments)));
 			}
 
 		};
 		//console.log(add.curry());
-
+		console.log(add(8,9))//arroja 17
+		var s1 = add.curry(6);//s1 sera una funcion
+		console.log(s1(7))//arroja 13
+		console.log(add.curry(6)(7))//arroja 13
+		/*Sin hacemos lo siguiente*/
+		var s2 = add.curry(6,8);
+		console.log(s2(5))//arrojara 14, no es tomado en cuenta el ultimo parametro
+		//pasado pues la funcion add original solo definio el paso de dos parametros
 	</script>
 </head>
 <body>

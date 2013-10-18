@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script></script>
+</head>
+<body>
+	<div id="web">
+		<div id="container"></div>
+		<script>
+			window.Kinetic || document.write('<script src="kinetic-v4.7.2.min.js"><\/script>');
+		</script>
+		<script>
+			var stage = new Kinetic.Stage({
+				container:'container'
+				,width:600
+				,height:450
+			});
+			var layer = new Kinetic.Layer({
+				width:stage.getWidth()
+				,height:stage.getHeight()
+				
+			});
+			var text = new Kinetic.Text({
+				x:100
+				,y:50
+				,fontSize:'24'
+				,fontFamily:'Arial'
+				,text:'Este es el texto'
+				,fill:'black'
+				,draggable:true//para moverlo con el mouse haciendo click
+			});
+			var ctx = window.container;
+			console.log(ctx);
+			ctx.addEventListener('click',function(e){
+				console.log(
+					e.x
+					+"\n"+e.y
+					);
+				window.e = e;
+			},false)
+			/*
+			*/
+			text.move(20,40);
+			layer.add(text);
+			stage.add(layer);
+
+		</script>
+
+	</div>
+</body>
+</html>
+

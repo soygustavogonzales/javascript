@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style >
+			body{
+				margin: 0px;
+				padding:0px;
+			}
+	</style>
+</head>
+<body>
+	<div id="web">
+		<div id="container"></div>
+		<script>
+			window.Kinetic || document.write('<script src="kinetic-v4.7.2.min.js"><\/script>');
+		</script>
+		<script>
+			var stage = new Kinetic.Stage({
+				container: 'container'
+				,width:578
+				,height:200
+			});
+			var layer = new Kinetic.Layer();
+			var circulo = new Kinetic.Circle({
+				x:stage.getWidth()/3
+				,y:stage.getHeight()/3
+				,radius:100
+				,fill:'yellow'
+				,stroke:'orange'
+				,strokeWidth:3
+			});
+			var wedge = new Kinetic.Wedge({
+				 x:80
+				,y:stage.getHeight()/2
+				,radius:70
+				,angleDeg:160
+				,fill:'red'
+				,stroke:'black'
+				,strokeWidth:4
+				,rotationDeg:120
+			});
+
+			var rayaCyan = new Kinetic.Line({
+				points:[//x,y
+					10,10,
+					20,34,
+					15,15,
+					80,90,
+					70,85,
+					102,150,
+					10,80,
+					65,10,
+					205,250,//sobrepaso el stage
+					102,153
+
+				]
+				,stroke:'cyan'
+				,strokeWidth:3
+				,lineCap:'round'
+				,lineJoin:'round'
+			})
+
+/*
+*/
+			rayaCyan.move(102,50);
+			/*
+			Estoy moviendo el elemento a la 
+			*/
+
+			layer.add(wedge);
+			layer.add(circulo);
+			layer.add(rayaRoja);
+			stage.add(layer);
+
+		</script>
+
+
+	</div>
+</body>
+</html>
+

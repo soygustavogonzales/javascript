@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>UNknown</title>
+		<style >
+			body{
+				margin: 0px;
+				padding:0px;
+				border: 0px;
+			}
+			#container{
+				background:green; 
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+		<script>
+			window.Kinetic || document.write('<script src="kinetic-v4.7.2.min.js"><\/script>');
+		</script>
+		<script>
+			var l = console;
+			var stage = new Kinetic.Stage({//el tamaño del canvas
+				container: 'container'
+				,width: 578
+				,height: 600
+			});
+			var layer = new Kinetic.Layer();
+
+			var ctx = document.getElementById('container');
+			//ctx.addEventListener('mousedown',startDraw,false);
+			//ctx.addEventListener('mouseup',stopDraw,false);
+			ctx.onmousedown = function(e){
+				l.log("trigger down");
+				startDraw(e,'msj');
+			}
+			ctx.onmouseup = function(e){
+				l.log("trigger up");
+				stopDraw(e);
+			}
+			//console.log(ctx.scrollHeight);
+			//console.log(ctx.scrollWidth);
+			var pts = [];
+			var x =null , y = null;
+			var x0=null,y0=null;
+			var startDraw = function(e,msj){
+					x0 = e.x;
+					y0 = e.y;
+					l.log(this);
+					ctx.addEventListener('mousemove',draw,false)
+
+			};
+			var stopDraw = function(e){
+				ctx.removeEventListener('mousemove',draw,false);
+			};
+			var draw = function(e){
+				l.log(">>draw")
+				x = e.x;
+				y = e.y;
+					x0 = x0 || x;
+					y0 = y0 || y;
+				
+
+				var raya = new Kinetic.Line({
+					points:[x0,y0,x,y]//array
+					,stroke:'black'
+					,strokeWidth:2
+					,lineCap:'round'
+					,lineJoin:'round'
+				});
+
+					x0 = x;
+					y0 = y;
+					layer.add(raya);
+					stage.add(layer);
+
+
+
+			};
+		</script>
+
+	</body>
+</html>

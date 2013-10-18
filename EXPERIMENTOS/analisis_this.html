@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script>
+		var l = console;
+		var net = new Object();
+		//El constructor de la clase clsPadre
+		net.clsPadre = function(opts){//el constructor de la clase
+			this.name = 'Antenor'
+			,this.lastname = 'Gonzales'
+		};
+		/*
+			Como es bien conocido por uso de las buenas practicas de eficiencia
+			y eficacia en javascript, utilizare los metodos implementandolos en
+			un prototype ya que estos otorgan la ventaja de que estaran creados
+			en la propia plantilla y no se crearan en memoria cada vez que se
+			cree u objeto o instancia de susodicha clase.
+
+			La forma de crear los metodos con el prototype es asi:
+				clsPadre.prototype.metodo = function(){
+		
+				}
+			El problema con esta forma es que necesitaria hacerlo para cada metodo
+			que quisiera que tenga la clase, repitiendo la misma sentencia y solo
+			cambiando el nombre del metodo. Esto es util,si para implementar por 
+			separado partes de un plugin con funciones/roles/tareas especificas(os)
+			exportando finalmente estas partes(los metodos, que vienen a ser cada 
+			uno un plugiin).
+			Pero cuando voi a implementar un plugin por completo, donde todos tendran
+			una interdependencia casi necesaria, entonces es mejor utilizar esta forma:
+
+			clsPadre.prototype = {
+				metodo1 : function(){
+					return this; //Este this hace referencia al objeto que se creara de la clase clsPadre
+				}
+				metodo2 : function(){
+					return (function(){
+										return this;//este this hace referencia al objeto superPadre(en todos los navegadores-a nivel cliente claro esta-) window
+									})()
+				}
+				metodo3 : function(){
+					var submetodo = function(){
+						return this;//Este this hace referencia al objeto 
+					}
+				}
+						.
+						.
+						.
+				metodoN : function(){}
+
+			} 
+		*/
+		/*
+			Cunado quiero implementar atributos estaticos, a nivel de la clase
+			(osea como plantilla), debo hacerlo dentro del prototype, pero para
+			mantener un orden y no hacerlo dentro del  mismo prototype donde 
+			implemento los metodos, lo hago con otro prototype asi:
+			
+			net.clsPadre.prototype.parametros = {
+				atrib1 : 'atrib1'
+				atrib2 : 'atrib1'
+				atrib3 : 'atrib1'
+				.
+				.
+				.
+				atribN : 'atribN'
+
+			}
+			Esta implementacion debe hacerse despues de la declaracion
+			e implmentacion de los metodos con prototype
+		*/
+
+		net.clsPadre.prototype.oof = function(){//un metodo
+			return 'soy el metodo';
+		}
+		net.clsPadre.prototype.foo = {//una propiedad
+			foo:'bar'
+		};
+
+	/*
+
+		Los atributos estaticos declarados lineas arriba no tendran utilidad, y no
+		podran usarse en el objeto/instancia de la clase clsPadre pues se declararon
+		antes de los metodos
+	*/
+
+	/*Los metodos de la clase net.clsPadre*/
+		net.clsPadre.prototype = {
+			proteger : function(){
+				//this hace referencia al objeto de la clase clsPadre();
+				//l.log(this);
+				//l.log(this.name);
+				var self = this;//usare self cuando this, deje de referenciar al objeto de la clase clsPadre
+				var obj = {}
+				obj.subme = function(){
+					l.log(this);//this hace referencia al objeto obj
+					l.log(self);//self hace referencia al objeto de la clase clsPadre
+				}
+				var subme1 = (function(){
+									return (this);//this hace referencia al objeto window
+								})();
+				l.log(subme1)
+				var subme2 = function(){
+					return this;
+				}
+				l.log(new subme2())
+				var o = new subme2();
+				l.log(o)
+				return obj.subme();//retorno el resultado de ejecutar al metodo subme();
+			}
+			,amar : function(){}
+			,trabajar : function(){}
+		};
+
+		/*
+		Atributos estaticos declarados fuera de la declaracion de
+		los metodos, estos si funcionaran cuando se les llame mediante
+		una instancia de la clase clsPadre.
+		*/
+		net.clsPadre.prototype.abrazar = function(){
+			return 'Estoy abrazando';
+		};
+
+		net.clsPadre.prototype.parametros = {
+			a:'a'
+			,b:'b'
+			,c:'c'
+		};
+
+		var papa = new net.clsPadre();
+		papa.age = 35;
+		papa.proteger();
+		l.log(papa.abrazar());
+		l.log(papa.parametros);
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

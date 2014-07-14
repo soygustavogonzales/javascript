@@ -1,0 +1,115 @@
+<!doctype html>
+<html ng-app lang="en"><!-- ng-app es para angularjs sino no funcionara -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=devide-width, initial-scale=1, maximun-scale=1">
+	<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap.css">
+	<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap-theme.css">
+	<style>
+		*{
+			box-sizing:border-box;
+		}
+		.first-true{
+			background: #F62F2F;
+		}
+	</style>
+	<script src="angular.min.js"></script>
+	<title>Angularjs:ng-repeat</title>
+</head>
+<body>
+<div ng-controller="List">
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-4">
+						<span class="" style="vertical-align:middle;">Persons</span>
+					</div>
+					<div class="col-xs-8">
+						<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+							<input class="form-control" type="text" ng-model="search" placeholder="search by name or age">
+						</div> </div>
+				</div>
+			</div>
+			<div class="panel-body">
+					<form name="form1" ng-submit="submitForm()" novalidate>
+						<input ng-model="email" placeholder="email" class="email" name="email" type="text" ng-minlength="3" required>
+						<input type="submit">
+					</form>
+					<ul class="list-group">
+						<li ng-repeat="(key,person) in people | filter:search" class="list-group-item">
+							{{person.name}} : {{person.age}}
+							<button ng-click="remove($index)" class="first-{{$first}}">x</button>
+							<span ng-show="$first">First</span>
+							<span ng-show="$middle">middle</span>
+							<span ng-show="$last">Last</span>
+						</li>
+					</ul>
+					<span>Hay {{people.length}} personas en la lista</span>
+			</div>
+			<div class="panel-footer">
+				<form name="form2"></form>
+				<div class="row">
+					<div class="col-xs-5">
+							<div class="input-group">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-paperclip"></span></span>
+									<input ng-model="new_name" class="form-control" type="text" placeholder="name">
+							</div>
+					</div>
+					<div class="col-xs-4">
+						<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-plus-sign"></span></span>
+								<input ng-model="new_age" ng-keyup="keyPress($event)" class="form-control" type="number" placeholder="age">
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<div ng-click="add()" class="btn btn-default">add</div>
+					</div>
+				</div>
+						
+			</div>
+		</div>
+	</div>
+</div>
+	<script>
+	var List = function($scope){
+		$scope.people = 
+		[
+			{name:"Tom",age:20},
+			{name:"Jeffrey",age:23},
+			{name:"Dominic",age:21},
+			{name:"Taylor",age:21},
+			{name:"Ryan",age:25}
+		];
+
+		console.log($scope)		
+
+		$scope.add = function(){
+			$scope.people.push({
+				name:$scope.new_name,
+				age:$scope.new_age
+			});
+			$scope.new_name = "";
+			$scope.new_age = "";
+		}
+		$scope.keyPress = function(e){
+				var tecla = e.keyCode.toString();
+				if(tecla=="13"){
+					console.log("Presionaste [ENTER]");
+					$scope.add();
+				}
+		}
+		$scope.remove = function(index){
+			$scope.people.splice(index,1);
+		}
+
+		$scope.submitForm = function(){
+			console.log($scope.form1)
+			console.log($scope.form1.email)
+		}
+
+	}
+	</script>
+</body>
+</html>

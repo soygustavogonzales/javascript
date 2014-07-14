@@ -702,11 +702,12 @@
         //   as another way to moving to next step... And yes, I know that for the sake of
         //   consistency I should add [shift+tab] as opposite action...
         document.addEventListener("keyup", function ( event ) {
-            if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40) ) {
+            if ( event.keyCode === 9 || ( event.keyCode >= 32 && event.keyCode <= 34 ) || (event.keyCode >= 37 && event.keyCode <= 40)) {
                 switch( event.keyCode ) {
                     case 33: // pg up
                     case 37: // left
                     case 38: // up
+                    //case 65: // a
                              api.prev();
                              break;
                     case 9:  // tab
@@ -714,6 +715,7 @@
                     case 34: // pg down
                     case 39: // right
                     case 40: // down
+                    //case 68: // d
                              api.next();
                              break;
                 }
@@ -721,6 +723,19 @@
                 event.preventDefault();
             }
         }, false);
+        /*
+        var e = $.Event('keyup')
+            e.which = 39
+            e.keyCode = 39
+
+            var timer = setInterval(function(){
+                //$(document).trigger(e)
+                api.prev();
+            },900);
+            setTimeout(function(){
+                clearInterval(timer)
+            }, 20000);
+        */
         
         // delegated handler for clicking on the links to presentation steps
         document.addEventListener("click", function ( event ) {

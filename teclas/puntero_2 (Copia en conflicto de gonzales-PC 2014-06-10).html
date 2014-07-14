@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8" />
+<title>Ejercicio 15 - Información sobre eventos</title>
+ 
+<style type="text/css">
+body {font-family: arial, helvetica;height: 1200px;}
+#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;z-index: 2;}
+#info h1 {margin: 0;}
+#caja{
+  width: 100px;
+  height: 100px;
+  background: #FD446D;
+  position: absolute;
+   z-index: 1;
+   border-radius: 50%;
+}
+#cajita{
+  width: 500px;
+  height: 100px;
+  background: #766E70;
+  z-index: 3;
+}
+</style>
+ 
+<script type="text/javascript">
+function informacion(elEvento) {
+  var evento = elEvento || window.event;
+  switch(evento.type) {
+    case 'mousemove':
+      document.getElementById('info').style.backgroundColor = '#FFFFFF';
+      var ie = navigator.userAgent.toLowerCase().indexOf('msie')!=-1;
+      console.log("correcto1..."+ie+";"+navigator.userAgent.toLowerCase().indexOf('msie'));
+      var coordenadaXrelativa, coordenadaYrelativa, coordenadaXabsoluta, coordenadaYabsoluta;
+      if(ie) {
+        if(document.documentElement && document.documentElement.scrollTop){ 
+          coordenadaXabsoluta = evento.clientX + document.documentElement.scrollLeft;
+          coordenadaYabsoluta = evento.clientY + document.documentElement.scrollTop;
+        }
+        else { 
+          coordenadaXabsoluta = evento.clientX + document.body.scrollLeft;
+          coordenadaYabsoluta = evento.clientY + document.body.scrollTop;
+        }
+      }
+      else {
+        coordenadaXabsoluta = evento.pageX;
+        coordenadaYabsoluta = evento.pageY;
+      }
+      coordenadaXrelativa = evento.clientX;
+      coordenadaYrelativa = evento.clientY;
+      muestraInformacion(['Raton', 'Navegador ['+coordenadaXrelativa+', '+coordenadaYrelativa+']', 'Pagina ['+coordenadaXabsoluta+', '+coordenadaYabsoluta+']']);
+      coordenadas(coordenadaXrelativa, coordenadaYrelativa);
+
+      break;
+
+    case 'keypress':
+      document.getElementById('info').style.backgroundColor = '#CCE6FF';
+      var caracter = evento.charCode || evento.keyCode;
+      var letra = String.fromCharCode(caracter);
+      var codigo = letra.charCodeAt(0);
+      muestraInformacion(['Teclado', 'Carácter ['+letra+']', 'Código ['+codigo+']']);
+
+      break;
+    case 'click':
+      document.getElementById('info').style.backgroundColor = '#FFFFCC';
+      break;
+  }
+}
+ 
+function muestraInformacion(mensaje) {
+  document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
+  //document.getElementById("caja").innerHTML = '<h1>'+mensaje[0]+'</h1>';
+
+  for(var i=1; i<mensaje.length; i++) {
+    console.log("length de mensaje: "+mensaje.length);
+    document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
+    console.log(mensaje[i]);
+     
+  }
+}
+function coordenadas(x,y){
+   var caja=document.getElementById("caja");
+  caja.style.top=y+"px";
+  caja.style.left=x+"px";
+}
+
+function moverCaja(evento){
+  
+  if(evento.type=='click'){
+  var caja=document.getElementById("caja");
+  console.log("se ejecuto moverCaja"+evento.type);
+  caja.style.width="200px";
+  caja.style.height="250px";
+  }
+}
+
+window.onload=function(){
+document.onmousemove = informacion;
+document.onkeypress = informacion;
+console.log("correcto1");
+document.onclick = informacion;
+console.log("correcto2");
+
+
+document.getElementById('cajita').addEventListener('click',moverCaja,false);
+console.log("correcto3");
+//document.getElementById("caja").addEventListener('onmousemove',informacion,false);
+
+}
+ 
+</script>
+</head>
+ 
+<body>
+ 
+<div id="info"></div>
+ 
+
+<div id="caja">
+  
+</div>
+
+<div id="cajita">
+  
+</div>
+
+
+ 
+</body>
+</html>

@@ -1,0 +1,10 @@
+<h2 class="well">{{friend.firstName}}, {{friend.lastName}}</h2>
+<h3>{{title}}</h3></br>
+<div class="container">
+    <strong>Tweets : </strong></br>
+    <ul>
+        <li  ng-repeat="tweet in friend.tweets">
+            <b>{{tweet.text}}</b>
+        </li>
+    </ul>
+</div>

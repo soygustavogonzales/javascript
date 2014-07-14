@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+		var clsPadre=function(name,lastname){
+			this.name_=name;	
+			this.lastname_=lastname;	
+
+		}
+		clsPadre.prototype={
+			name_:'jorge',//este no sobreescribe a la propiedad name_ seteada en la clase padre
+			nacionalidad_:'peruana',
+			ocupacion_:'developer',
+			quienSoy:function(){
+				return 'SOY '+this.name_ +' '+this.lastname_+'\n'+
+				'trabajo como : '+this.ocupacion_+'; de nacionalidad : '+this.nacionalidad_;
+			},
+		}
+		var oHijo=new clsPadre('carlos','torres');
+
+		console.warn(oHijo.quienSoy());
+		console.log(delete oHijo.name_);
+		console.warn(oHijo.quienSoy());
+		
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

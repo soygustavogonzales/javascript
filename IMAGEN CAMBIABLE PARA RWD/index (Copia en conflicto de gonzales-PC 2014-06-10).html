@@ -1,0 +1,42 @@
+
+
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" href="stylos.css"/>
+	<!--<script src="/javascripts/application.js" type="text/javascript" charset="utf-8" async defer></script>pt src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+	<script src="newImageOOP.js"></script>
+	<script>
+	window.addEventListener('load',function(){
+		var image1= new clsImage('image1',{
+			/*
+				'resolucion':'copia para esa resolucion'
+			*/
+			'180':'img-180.jpg',
+			'320':'img-320.jpg',
+			'480':'img-480.jpg',
+			'800':'img-800.jpg',
+			'1600':'img-1600.jpg',
+		});
+		image1.testear_ancho_browser();
+	},false);//end listen del window en load
+
+
+	</script>
+</head>
+	<body>
+		<div id="web">
+			<div class="cajita_img">
+				<img id="image1" src="images/">
+				<!--Es prudente no especificar el nombre de la imagen a cargar en este img,
+				 pues no tendria mucho sentido cargar una imagen al al disco del usuario y
+				  luego volver a cargar otra imagen que la chanque-->
+			</div>
+
+
+		</div>		
+	</body>
+</html>

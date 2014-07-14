@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+	<html ng-app="urlApp">
+	<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1">
+			<title></title>
+			<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap.css">
+			<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap-theme.css">
+			<style>
+			*{
+				box-sizing:border-box;
+				border:0;
+				margin: 0;
+				padding: 0;
+			}
+			#web{
+				width: 100%;
+				height: auto;
+				font-size: 17px;
+				font-family: Georgia, sans-serif;
+			}
+			.browser{
+				width: 80%;
+				min-width: 500px;
+				min-height: 400px;
+				height: 90%;
+				background: rgba(244,244,244,.9);
+				box-shadow: 0 0 .8em .3em rgba(0,0,0,.5);
+				margin: 0 auto;
+			}
+			.browser .url{
+				width: 90%;
+				margin: 1.5em 5%;
+				padding: .8em 1.4%;
+			}
+			.browser .page{
+				width: 70%;
+				margin: 1.2em 10%;
+				padding: .3em 5%;
+			}
+
+			</style>
+	</head>
+	<body>
+		<div id="web">
+			<div class="browser" ng-controller="Browser">
+				<div class="url row">
+					<div class="input-group">
+							<span class="input-group-addon btn btn-default">&larr;</span>
+							<span class="input-group-addon btn btn-default">&rarr;</span>
+							<span class="input-group-addon btn btn-default">&infin;</span>
+						<input class="form-control" type="text" value="edit/{{path}}">
+					</div>
+				</div><!-- url -->
+				<hr>
+				<div class="page row">
+						<div class="input-group">
+							<span class="input-group-addon">Update the url</span>
+							<input ng-change="clean()" ng-model="path" class="form-control" type="text">
+						</div>
+				</div><!-- .page -->
+			</div><!-- .browser -->
+		</div><!-- #web -->
+		<script src="angular.min.js"></script>
+		<script>
+		var urlApp = angular.module("urlApp",[]);
+		urlApp.controller("Browser",function($scope){
+			$scope.clean = function(){
+				$scope.path = $scope.path
+																			.replace(/\s+/g,'-')
+																			.replace(/[^a-z0-9-]/ig,'')
+			}
+		})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<style type="text/css">
+		div { margin: 0px;
+			  width: 200px;
+			  height: 200px;
+			  background: url(tierra.jpg);
+			  border: 1px solid black;
+			  position: relative;
+			  box-shadow: 3px 3px 5px black;
+		}
+	</style>
+
+  <script>
+  $(document).ready(function() {
+    
+		$("div").click(function () {
+		      $(this).hide("explode",{ pieces: 16 }, 3000);
+		});
+
+  });
+  </script>
+</head>
+<body style="font-size:62.5%;">
+  <div></div>
+</body>
+</html>

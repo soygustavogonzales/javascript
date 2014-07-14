@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!En este ejercicio veremos que sucede con un objeto al ser asignado a una variable
+		notamos que la variable apuntara ahora por valor por referencia al objeto, de esta forma cuando creemos(de crear) un atributo para la variable, estaremos creando un atributo para el objeto original.
+		ejemplo:
+		var objA={prop1_:'valor1',prop2_:'valor2',prop3_:'valor3',met1:function(){return 'llamaste al metodo1'}}
+
+		var varA;//este es un variable...
+		console.log(typeof(varA))//arroja undefined.
+		varA=objA;//ahora varA es un objeto que hace referencia(en todo aspecto) al objeto original objA.
+
+		console.log(varA.prop1_);//arroja 'valor1'.//estA es la propiedad original de object
+		console.log(typeof(varA));//arroja 'object'.}
+		varA.prop1_='valorNuevo';//puedo cambiar el valor de la propiedad del objeto como si se tratara del objeto original objA.
+		console.log(varA.prop1_);//arroja 'valor1';
+		console.log(objA.prop1);//arroja 'valor1';
+
+	-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script type="text/javascript">
+		var objA={name_:'erick',lastname_:'gonzales',age_:20,ocupation_:'student'}//este es un objeto
+
+		console.log("typeof(objA):\t"+typeof(objA)+"\n"+//arroja object
+					"objA.name_:\t"+objA.name_+"\n"+
+					"objA.lastname_:\t"+objA.lastname_+"\n"+
+					"objA.age_:\t"+objA.age_+"\n"
+					);
+		console.error("*************************************");
+		var A=objA;//la variavle A se convierte en object, y en tal sentido apuntara al objeto objA
+		A.name_='roberto';
+		A.lastname_='vidaurre';
+		A.age_=30;
+		console.log("typeof(A):\t"+ typeof(A)+"\n"+//arroja object
+					"objA.name_:\t"+objA.name_+"\n"+
+					"objA.lastname_:\t"+objA.lastname_+"\n"+
+					"objA.age_:\t"+objA.age_+"\n"+
+					"A.name_:\t"+A.name_+"\n"+
+					"A.lastname_:\t"+A.lastname_+"\n"+
+					"A.age_:\t"+A.age_+"\n"
+					);
+		//console.log(typeof(Array));//arroja function
+	</script>
+</head>
+<body>
+	<div id="web">
+
+
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+	<html ng-app lang="es-PE">
+	<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<title></title>
+			<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap.css">
+			<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap-theme.css">
+	</head>
+	<body>
+		<div>
+		<form action="">
+			<fieldset>
+				<legend>Ingresar datos</legend>
+					<div class="row">
+						<div class="col-xs-3">
+							<input type="text" class="form-control" ng-model="yourName" placeholder="Enter your name">
+						</div>
+						<div class="col-xs-4">
+							<input type="text" class="form-control" ng-model="yourLastname" placeholder="Enter your lastname">
+						</div>
+					</div>
+			</fieldset>
+		</form>
+
+			<hr>
+			<h1>Hello {{yourName}} - {{yourLastname || "Gonzales"}}</h1>
+		</div>
+		<div class="btn-group">
+	  <button type="button" class="btn btn-default">Left</button>
+	  <button type="button" class="btn btn-default">Middle</button>
+	  <button type="button" class="btn btn-default">Right</button>
+		</div>
+		<script src="angular.min.js"></script>
+	</body>
+</html>

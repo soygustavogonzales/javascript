@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!--
+	En este ejercicio quiero demostrar las formas de manejo que encontre para tratar con nodo tipo elemento
+	Para los poco entendidos: Un ejemplo de darle estilos a un objeto de tipo nodo seria, facilmente por:
+	1.Mediante codigo CSS o
+	2.Mediante codigo javascript
+	3.Forma intermedia(html-css): mediante el atributo style del tag html del nodo_elemento.Ej: <div style="height:200px;width:300px;">
+	
+	Encontre 2 dos formas de tratar a los estilos de un nodo tipo Element es decir a los tag.
+	1ero. nodo_elemento.style.propiedad_css : asigna u obtiene la propiedad css de un elemento. Una desventaja con la obtencion, es que solo obtiene
+			el valor de la propiedad si esta fue definida mediante codigo javascript o mediante la forma intermedia.No obtiene la propiedad si fue definida con codigo css.
+	2do. getComputedStyle(nodo_elemento).propiedad_css : Obtiene la propiedad css de un elemento computada en el css, es decir,
+	que si la propiedad fue definida mediante codigo css o mediante codigo javascript o mediante la forma intermedia podra obtenerla.
+	Este es un metodo mas efectivo al obtener los stylos de un nodo_elemento.
+
+-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+  	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+	<script>
+		var parrafo=document.createElement('p');//creo un nuevo nodo de tipo parrafo(<p>).
+		/*Definiendo estilos mediante  javascript al objeto nodo parrafo*/
+		parrafo.style.background="#BCBCB4";
+		parrafo.style.borderRadius="10px";
+		parrafo.style.boxShadow="1px 1px 3px #161613";
+		parrafo.style.margin="0 auto";
+		parrafo.style.maxWidth="300px";
+		parrafo.style.minWidth="100px";
+		parrafo.style.boxSizing="300px";
+		parrafo.style.border="2px solid #61614E";
+
+		cadena='nuevo parrafo agregado '+parrafo+"\n"+parseInt(parrafo.style.border)
+		/*
+			parrafo.style.border ;//arroja una cadena con el valor completo del estilo del border: "2px solid #61614E". Este estilo fue establecido con codigo javascript, no con cdigo css
+			//parseInt();// arrojara el valor numerico que este al inicio de la cadena
+		*/
+		var texto=document.createTextNode(cadena);//creo un nodo de texto y le paso su contenido
+		parrafo.appendChild(texto);//lo inserto en el DOM del documento actual como hijo del objeto nodo parrafo
+
+		window.addEventListener('load',function(){//cuando se termine de cargar el DOM de html del codumento, se ejecutara la funcion anonima.
+			document.getElementById('web').appendChild(parrafo);
+			var cajon =document.querySelector('.cajon');
+			//cajon.style.height='200px';//con esto estableceriamos un estilo al objeto/nodo cajon, mediante javascript.
+			console.group("style.propiedad_css");
+					console.log(cajon.tagName+"\n"+//arroja el nombre del tag de HTML
+						"cajon.style.fontFamily : "+cajon.style.fontFamily+"\n"+//arroja "Verdana sans-serif"//propiedad css definida dentro del tag del elemento cajon, no dentro del <style><style>
+						"cajon.style.borderRadius : "+cajon.style.borderRadius+"\n"+//arroja 20px						
+						"cajon.style.opacity : "+cajon.style.opacity+"\n"+//arroja 0.6						
+						"cajon.style.height : "+cajon.style.height+"\n"+//arroja vacio(Yo esperaba obtener el valor del estilo establecido por css)						
+						"cajon.style.width : "+cajon.style.width+"\n"+//arroja vacio						
+						"cajon.style.background : "+cajon.style.background//+"\n"+//arroja vacio						
+					);
+			console.groupEnd("nodo_elemento.style.propiedad_css");
+			/*
+	PROBLEMA: El problema esta cuando quiero obtener el valor del estilo height, que fue establecido por css(no por javascript)
+	Al probar, resulta que arroja un valor vacio.
+	SOLUCION: getComputedStyle(elemento)//obtiene los stylos computados con el css de un nodo elemento(no de los nodos texto)
+			*/
+			console.group("getComputedStyle(nodo_elemento)");
+			console.log(getComputedStyle(cajon));
+					console.log(
+							getComputedStyle(cajon).fontFamily+"\n"+//arroja "Verdana sans-serif"
+							getComputedStyle(cajon).opacity+"\n"+//arroja 0.6
+							getComputedStyle(cajon).borderRadius+"\n"+//arroja '20px'
+							getComputedStyle(cajon).height+"\n"+//arroja '150px'
+							getComputedStyle(cajon).width+"\n"+//arroja '150px'
+							getComputedStyle(cajon).background+"\n"+//arroja 'rgb(232, 151, 113)'							getComputedStyle(cajon).length+"\n"+//arroja 0
+							getComputedStyle(cajon).border+"\n"+//5px dotted rgb(0, 0, 0)
+							getComputedStyle(cajon).transform+"\n"+//arroja none
+							getComputedStyle(cajon).transition//+"\n"+//arroja all 0s 0s cubic-bezier(0.25, 0.1, 0.25, 1)
+						);
+
+					console.log(cajon.style);
+			console.groupEnd("getComputedStyle(nodo_elemento)");
+		},false);
+
+
+	</script>
+	<style>
+		.cajon{
+			background: #E89771;
+			height: 150px;
+			width: 150px;
+			border: 5px dotted black;
+		}
+	</style>
+</head>
+<body>
+	<div id="web" >
+		<div class="cajon" style="font-family:'Verdana' sans serif;border-radius:20px; opacity:.6;"><!--Analizar los estos estilos definidos por el atributo style a diferencia de los definidos por el javascript y el de CSS-->
+				Lorem ipsum.
+		</div>
+
+	</div>
+</body>
+</html>
+

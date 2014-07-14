@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="" ng-app="myapp">
+	<head>
+		<title>Title Page</title>
+		<meta charset="UTF-8">
+		<meta name=description content="">
+		<meta name=viewport content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../bootstrap-3.0.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <style>
+            *{
+                 box-sizing:border-box;
+            }
+         .boton{
+             font-size:2em;
+             font-weight:900;
+             line-height: middle;
+         }
+        dir-boton{
+             font-size:2em;
+             font-weight:900;
+             line-height: middle;
+        }
+        </style>
+	</head>
+	<body>
+		<h1 class="text-center">Saludos desde la matrix</h1>
+        <i class="boton glyphicon glyphicon-chevron-left"></i>
+        <div class="nota well well-md"></div>
+        <div class="" ng-controller="ctrlBoton">
+          <dir-boton forward="{{next}}" backward="" icon="'glyphicon glyphicon-chevron-left'"></dir-boton>
+        </div>
+
+        <script src="../jquery-1.9.1.min.js"></script>
+        <script src="../bootstrap-3.0.2/js/bootstrap.min.js"></script>
+		<script src="../angular.min.js"></script>
+		<script>
+        var myapp = angular.module("myapp",[]);
+
+        myapp.controller("ctrlBoton",['$scope',function($scope){
+            var i = 0 ,j = 0;
+            $scope.next = function(){
+                i++
+                $('.nota').text("next: "+i)
+            }
+            $scope.prev = function(){
+                j++
+                $('.nota').text("prev: "+j)
+            }
+        }])
+
+        myapp.directive("dirBoton",[function(){
+
+            return {
+                restrict:'E',
+                templateUrl:'templateBoton.html',
+                scope:{
+                    forward:'=',
+                    reward:'=',
+                    icon:'='//glyphicon,font awesone icons
+                },
+                link:function(scope,ele,attr){
+                    console.log(ele)
+                    console.log(scope.forward)
+                    console.log(attr)
+                    //console.log(eval("scope.forward+'()'"))
+                }
+            }
+        }])
+        </script>
+	</body>
+</html>

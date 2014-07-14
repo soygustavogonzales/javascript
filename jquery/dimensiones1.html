@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+	$(document).on('ready',function(){
+		$('body').css({'background':'#DADCD1'});
+//el metodo height() aroja la altura disponible de espacio dentro de un elemento,lo disponible es lo sobrante de 
+//haber colocado el border y el padding, es decir lo que queda para por ejemplo llenar con texto plano
+//es distinto al metodo css('height') que siempre arroja el alto establecido por css.Con height:'valor'.
+//el metodo innerHeight() devuelve el alto sin tomar en cuenta el border.
+			var newNodeSpan=$('<span></span>');
+			newNodeSpan.append("height() : "+$('.cajita1').height()+"\n");
+			newNodeSpan.append("innerHeight() : "+$('.cajita1').innerHeight());
+			$('.cajita1').after(newNodeSpan);
+		console.log("$('.cajita1').css('height') : "+$('.cajita1').css('height'));//arroja 90
+
+			var newNodeSpan=$('<span></span>');
+			newNodeSpan.append("height() : "+$('.cajita2').height()+"\n");
+			newNodeSpan.append("innerHeight() : "+$('.cajita2').innerHeight());
+			$('.cajita2').after(newNodeSpan);
+		console.log("$('.cajita2').css('height') : "+$('.cajita2').css('height'));//arroja 90
+
+			var newNodeSpan=$('<span></span>');
+			newNodeSpan.append("height() : "+$('.cajita3').height()+"\n");
+			newNodeSpan.append("innerHeight(): "+$('.cajita3').innerHeight());
+			$('.cajita3').after(newNodeSpan);
+		console.log("$('.cajita3').css('height') : "+$('.cajita3').css('height'));//arroja 90
+
+
+		console.log("$('html').css('height') : "+$('html').css('height'));
+		console.log("$('html').height() : "+$('html').height());
+		console.log("$('html').innerHeight() : "+$('html').innerHeight());
+		console.log("$('body').css('height') : "+$('body').css('height'));
+		console.log("$('body').height() : "+$('body').height());
+		console.log("$('body').innerHeight() : "+$('body').innerHeight());
+	})
+
+	</script>
+	<style>
+	.cajita1{
+		width: 90px;
+		height: 90px;
+		background: #EE8D53;
+	}
+	.cajita2{
+		width: 90px;
+		height: 90px;
+		background: #EEE753;
+		border:5px solid #39313C;
+		padding: 5px;
+
+	}
+	.cajita3{
+		width: 90px;
+		height: 90px;
+		background: #EEE753;
+		border:5px solid #39313C;
+		padding: 5px;
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		-ms-box-sizing:border-box;
+		box-sizing:border-box;
+	}
+	</style>
+</head>
+	<body>
+		<section>
+			<div class="cajita1"></div>
+			<div class="cajita2"></div>
+			<div class="cajita3"></div>
+
+		</section>
+	</body>
+</html>

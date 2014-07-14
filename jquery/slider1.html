@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	*{margin:0;padding: 0;border: 0;box-sizing:border-box;word-wrap:break-word;}
+		body{
+			background: #9A9E8B;
+		}
+		#web{
+			width: 90%;
+		}
+		div.cajita{
+			width: 212px;
+			height: 212px;
+			background: transparent;
+			border: 6px solid #CBCDC2;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		div.cajita>ul.lista{
+			width: 400px;
+			height: 400px;
+			position: relative;
+		}
+		div.list1,.list2,.list3,.list4{
+			background: #E6EA37;
+			width: 200px;
+			height: 200px;
+			display:inline-block;
+			float: left;
+		}
+		div.list1{
+			background: #F89452;
+		}
+		div.list2{
+			background: #A595F2;
+		}
+		div.list3{
+			background: #99BBEE;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>window.jQuery||document.write('<script src="jquery-1.9.1.min.js"><\/script>');</script>
+	
+	<script>
+		jQuery(document).on('ready',function(){
+				var lista = $('ul.lista');
+				function mover(){
+					lista.animate({
+						left:'-=200px',
+						top:'=0px',
+					},1000,function(){
+						$(this).animate({
+							left:'+=200px',
+							top:'-=200px',
+						},1000,function(){
+							$(this).animate({
+								left:'-=200px',
+								top:'=200px',
+							},1000,function(){
+								$(this).animate({
+									left:'0px',
+									top:'0px',
+								},1000,function(){
+									setTimeout(mover,0)
+								})
+							})
+						})
+					});
+				};
+			$('.boton').click(function(){
+				setTimeout(mover,0);
+			});//end click in boton
+		});//end on 'ready'
+	</script>
+</head>
+<body>
+	<div id="web">
+		<div class="cajita">
+			<ul class="lista">
+					<div class="list1">li1</div>
+					<div class="list2">li2</div>
+					<div class="list3">li3</div>
+					<div class="list4">li4</div>
+			</ul>
+		</div>
+			<input class="boton" type="button" value="mover">
+
+	</div>
+</body>
+</html>
+

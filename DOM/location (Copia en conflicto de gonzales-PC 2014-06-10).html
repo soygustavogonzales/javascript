@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+	body{background: #000;}
+	#webito{height: 400px;width: 400px;background: gray}
+	</style>
+	<script type="text/javascript">
+		console.log("hash : "+location.hash);//Devuelve la parte de anclaje de una URL. Supongamos que la URL es http://www.example.com/test.htm# part2: Entonces devolvera: #part2 
+		console.log("host : "+location.host);//el dominio de la pagina web, o el localhost si este en local.
+		console.log("hostname : "+location.hostname);
+		console.log("href : "+location.href);//arroja la ruta completa,incluyenfdo el dominio(si esta en red), y el localhost si esta en local.
+		console.log("pathname : "+location.pathname);//arroja la ruta excluyendo el dominio.Si esta en local , excluira el localhost.
+		console.log("port : "+location.port);
+		console.log("protocol : "+location.protocol);//arroja el protocolo usado para presentar el documento actual.
+		console.log("search : "+location.search);//La búsqueda de propiedades devuelve la parte de consulta de una URL, incluyendo el signo de interrogación(?). Supongamos que la URL es http://www.example.com/submit.htm?email=someone@ example.com:entonces devolvera :  ?email=someone@ example.com
+		console.log(";"+document.url);
+		window.addEventListener("load",function(){//cuando se cargue el DOM por completo, recien se ejecutara el codigo q este dentro.
+			console.log("se cargo el DOM");
+				var boton1=document.querySelector("#btnAssign_id");
+				boton1.addEventListener("click",function(){
+					console.log("se ejecuto la carga de la pagina...");
+					location.assign("http://www.google.com.pe");
+				},false);
+				var boton2=document.querySelector("#btnReload_id");
+				boton2.addEventListener("click",function(){
+					location.reload();
+				},false);
+				var boton3=document.querySelector("#btnReplace_id");
+				boton3.addEventListener("click",function(){
+					location.replace("http://www.google.com.pe");
+				},false);
+		},false);
+	</script>
+</head>
+<body>
+	<div id="web">
+		<input id="btnAssign_id" type="button" value="location.assign">
+		<input id="btnReload_id" type="button" value="location.reload">
+		<input id="btnReplace_id" type="button" value="location.replace">
+		<div id="webito">
+			
+		</div>
+	</div>
+</body>
+</html>
+

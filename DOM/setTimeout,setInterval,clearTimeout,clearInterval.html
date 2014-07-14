@@ -78,7 +78,7 @@
 		}
 
 		function StopCount(evento){//detendra el contador, dependiendo del boton donde se hizo click
-			var elementID=this.id;
+			var elementID=this.id;//this hace referencia al nodo delde el que fue lanzado el evento
 			console.log(elementID);
 			(elementID=='btnStop')?//si no es 'btnStop' entonces debe ser 'btnStop2'
 			clearInterval(timer1):

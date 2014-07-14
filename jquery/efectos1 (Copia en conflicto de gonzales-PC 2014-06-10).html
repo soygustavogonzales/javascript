@@ -1,0 +1,102 @@
+
+
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<style>
+	*{border:0;padding: 0;margin:0;}
+		div{
+			background-color: #EA8039;
+			width: 80px;
+			height: 80px;
+			border-radius: .2em;
+		}
+input{
+	width: 120px;
+	height: 50px;
+}
+	</style>
+	
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+
+		$(document).on('ready',function(){
+			var velocidad=1000;
+			function aviso(mensaje){
+				if($('span.aviso')){
+					$('span.aviso').remove();
+				};
+				var cajita_aviso=$('<span>'+mensaje+'</span>');
+				cajita_aviso.addClass('aviso');
+				cajita_aviso.css({
+					'background-color':'#E07454',
+					'border-radius':'10px',
+					'height':'auto',
+					'width':'200px',
+					'border':'2px solid #121110',
+					'z-index':'2',
+					'position':'absolute',
+					'left':'10%',
+					'top':'10%',
+				});
+				function titilar(){//Hara que aparezca y desaparezca el mensaje
+					cajita_aviso.fadeOut(500,function(){
+						$(this).fadeIn(500);
+					})
+					timer=setTimeout(titilar,1000);
+				}
+				$('body').append(cajita_aviso);//coloco el mensaje dentro del body.
+				titilar();//Ejecuto la funcion.pongo a titilar el mensaje.
+					setTimeout('clearInterval',4000,timer);
+			}
+			$('#boton1').click(function(){
+				$('div.cajita1').slideUp(2000,function(){
+					aviso('se oculto cajita1')
+				});
+			});
+			$('#boton2').click(function(){
+				$('div.cajita1').slideDown(2000,function(){
+					aviso('se mostro cajita1')
+				});
+				
+			})
+			$('#boton3').on('click', function() {
+				var self=$(this);//self hace referencia al elemento boton que provoco el evento click
+				$('div.cajita1').slideToggle(velocidad,function(){
+					//$(this).fadeIn(4000);//this hace referencia al elemento div.cajita1
+					//self.fadeOut(4000);
+				$('div.cajita3').css({
+					'background-color':'#9AE492',
+				});
+				aviso('se modifico correctamente')	;
+				});
+			});
+			$('#boton4').on('click', function() {
+				$('div.cajita2').fadeIn(2000);
+			});
+			$('#boton5').on('click', function() {
+				$('div.cajita2').fadeOut(2000);
+			});
+		});
+	</script>
+</head>
+	<body>
+		<p>
+			<div class="cajita1"></div>
+			<input id="boton1" type="button" value="slideUp">
+			<input id="boton2" type="button" value="slideDown">
+			<input id="boton3" type="button" value="slideToggle">
+		</p>
+		<p>
+			<div class="cajita2"></div>
+			<input id="boton4" type="button" value="fadeIn">
+			<input id="boton5" type="button" value="fadeOut">
+		</p>
+		<div class="cajita4"></div>
+		<div class="cajita3"></div>
+		<div class="cajita5"></div>
+	</body>
+</html>

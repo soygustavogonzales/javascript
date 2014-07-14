@@ -15,6 +15,7 @@
 </head>
 	<body>
 		<div id="caja">hazme click</div>
+		<a class="link" target="_blank" href="http://www.sensei.pe">ir a sensei</a>
 	</body>
 	<script>
 
@@ -34,8 +35,11 @@
 			
 
 		*/
+		var link = document.getElementsByClassName('link')[0];
+
 		caja.onclick=function(evento){
-			this.dispatchEvent(evento1);//disparo el evento
+			this.dispatchEvent(evento1);//disparo el evento personalizado
+			link.dispatchEvent(new MouseEvent("click"));//disparando el evento click del nodo <a>
 			console.log("evento click: "+evento);
 		}
 

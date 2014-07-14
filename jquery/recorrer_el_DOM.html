@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" href=""/>
+	<script>
+		$(document).on('ready',function(){
+			console.log('your version of jquery is: '+$.fn.jquery);//ver la version de mi jquery.Forma de preguntar si ya esta cargado mi jquery.
+			var hijo=$('ul>li.li01');
+			var sgte_al_hijo=hijo.next();
+			console.log('msj1:'+sgte_al_hijo.attr('class'));
+			console.log('msj2:'+hijo.parent().attr('class'));
+			var hijos=$('div.div1_class').children();//arroja un array de nodos hijos//escoge al primer hijo del 'div.div1_class'
+
+			hijos.each(function(indice,valor){//forma de recorrer un plugin con un metodo propio de jquery.
+				console.log('indice: '+indice+'; value: '+valor.nodeName);//imprimo el indice y el nombre del nodo.
+			 });
+						
+			/*//CUIDADO:esta forma de recorrer el obj de jQuery arroja un array enorme de los atributos del jQuery como tal.S 
+			for(i in hijos){
+				console.log('**indice: '+i+'; valor: '+hijos[i]);
+			}
+			*/
+
+			/* //otra forma efectiva,de recorrer el arra hijos, con un bucle comun de javascript for(), esta forma resulta mas rapida en determinadas condiciones De jquery.
+			var i=0;
+			for (var i = hijos.length - 1; i >= 0; i--) {
+				console.log('recorriendo con for(): '+hijos[i].tagName);
+			};
+			*/
+			console.log(hijos.attr('class'));//muestro el atributo class del hijos
+			var hermanos=$('ul.ul1_class>li:nth-child(2)').siblings();//selecciono a los hermanos del li de indice 2 dentro del ul.ul1_class 
+			hermanos.css('background','peru');//le doy estios a los nodos 'hermanos'
+			console.log('cantidad de hermanos: '+hermanos.length);
+			hermanos.each(function(indice,valor){
+				console.log("indice: "+indice+//arroja el indice del array
+							"\n, valor: "+valor.tagName+//arroja el nombre del nodo o elemento = valor.nodeName
+							'\n, class: '+$(valor).attr('class'));//arroja el valor del atributo class, notar que hago q valor se convierta
+							//en n objeto de jquery con $(valor), para q asi entienda el metodo attr() q es propio de jquery.							
+			});
+
+   			//console.log($.browser.webkit);// el metodo browser ya no esta soportado a partir de la version 1.9
+		});
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		<section class="section1_class">
+			<article class="article1_class">article01</article>
+			<article class="article2_class">article02
+				<div class="div1_class">
+					<ul class="ul1_class">
+						<li class="li01">li1</li>
+						<li class="li02">li2</li>
+						<li class="li03">li3</li>
+						<li class="li04">li4</li>
+					</ul>
+					<ul class="ul2_class">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+					<div class="div11_class"></div>
+				</div>
+			</article>
+		</section>
+	</body>
+</html>

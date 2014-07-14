@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="" ng-app="myapp">
+	<head>
+		<title>Title Page</title>
+		<meta charset="UTF-8">
+		<meta name=description content="">
+		<meta name=viewport content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../bootstrap-3.0.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <style>
+            *{
+                 box-sizing:border-box;
+            }
+            .container{
+                padding:.8em;
+                transition:all .25s ease;
+                border:0px solid #ede;
+            }
+            .container:hover{
+                box-shadow:0 .1em 4em  0em #ede;
+                 border:1px solid #ede;
+            }
+
+        </style>
+	</head>
+	<body>
+		<h1 class="text-center">Saludos desde la matrix</h1>
+		<ul ng-controller="myCtrl">
+			<li ng-repeat="(key,friend) in friends">
+				<contact-card id="{{key}}" friend="friend" title="'-- Contact Card --'"></contact-card>
+			</li>
+		</ul>
+
+        <script src="../jquery-1.9.1.min.js"></script>
+        <script src="../bootstrap-3.0.2/js/bootstrap.min.js"></script>
+		<script src="../angular.min.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

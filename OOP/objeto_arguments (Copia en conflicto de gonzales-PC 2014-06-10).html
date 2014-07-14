@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>(2,3,5,23,5	);
+		function Suma(){
+			var cantArguments=null;
+			/*Este metodo arrojara la suma de todos los argumentos pasados por parametros*/
+			var sumatoria=0;
+			for (var i = 0,cantArguments=arguments.length; i < arguments.lexngth; i++) {
+				console.log("el argumento:"+i+" es: "+arguments[i]);
+				sumatoria=sumatoria+arguments[i];
+			};
+		console.log('la sumatoria es: '+sumatoria);
+		}
+		Suma(2,3,5,23,5	);//arroja la suma de los argumentos
+		var a=5;
+		var b=6;
+		var c=7;
+		Suma(a,b,c)//arroja la suma de los valores de las variables
+		var m=[9,0,1];
+		Suma(a,b,c,m)//arroja 189,0,1//el 18 es la suma de las variable y desde el 9 en adelante en una concatenacion qu hizo del resto de las variables(la matriz-en este caso-)
+		var m=['H',0,1];
+		Suma(a,b,c,m)//arroja 18H,0,1//concateno la suma de los numeros con la matriz
+		var obj={cero:1,uno:'soy uno'};
+		Suma(a,b,c,obj);//arroja 18[object Object]//concateno la suma con el objeto
+		/*******************************************/
+			
+		function metodo(A,B,C,D,E){// defino 5 parametros
+				console.log("parametros definidos: "+metodo.length);
+				console.log("argumentos recibidos: "+arguments.length);
+		};
+		metodo(1,2);//envio solo 2 argumentos
+		/*
+		NOTA: Cuando un parametro es definido con el nombre de arguments entonces
+		el objeto arguments ya no referenciara a los argumentos pasados, es como si 
+		ya no existiera ese objeto, pues dentro del contexto de la funcion donde se define
+		el arguments ya existe un valor que lo "sobreescrive", por entenderlo de alguna forma.
+		A continuacion unos ejemplos de esta observacion
+		*/
+		var foo=(function(arguments){//utilizo el nombre de arguments como denominacion de un parametro
+			//console.warn("correcto");
+			return arguments//retorno el valor de ese argumento pasado, ya no es el objeto arguments que vimos anteriormente
+		})(1,2,3);//argumentos pasados
+		console.log(foo);//arroja 1, el valor del parametro pasado.
+
+		var bar= function metodo2(a,arguments,b){
+			console.log("arg1: "+a+",arg2 :"+arguments+",arg3 :"+b);//arroja arg1: 5,arg2 :6,arg3 :7//el valor de los argumentos pasados
+			console.log(
+				arguments[0]+"\n"+//arroja undefined
+				arguments[1]+"\n"+//arroja undefined
+				arguments[2]+"\n"+//arroja undefined
+				arguments.length//arroja undefined
+				);
+		}
+
+		bar(a,b,c);
+
+			
+
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

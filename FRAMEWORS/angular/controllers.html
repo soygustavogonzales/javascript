@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+	<html ng-app>
+	<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1">
+			<title></title>
+			<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap.css">
+			<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap-theme.css">
+			<script src="angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-controller="Ctrl">
+			<div class="col-xs-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<input type="text" class="form-control" ng-model="name">
+						</div>
+						<div class="panel-body">
+							<div class="alert alert-info">{{name}}</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div ng-controller="Ctrl1">
+		<div class="col-xs-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<input type="text" class="form-control" ng-model="name">
+					</div>
+					<div class="panel-body">
+						<div class="alert alert-info">{{name}}</div>
+						<div class="alert alert-info">{{age + 1 }}</div><!-- notar la operacion aritmetica -->
+					</div>
+				</div>
+		</div>
+	</div>
+
+		<script>
+		var l = console;
+			var Ctrl = function($scope){
+				$scope.name = "Gustavo Gonzales"
+			}
+			var Ctrl1 = function($scope){
+				$scope.name = "Omar Gonzales";
+				$scope.age = 21;
+
+				$scope.$watch('name',function(){
+					l.log($scope.name)
+				})
+			}
+		</script>
+	</body>
+</html>

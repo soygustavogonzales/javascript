@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!--
+	En este ejercicio veremos el funcionamiento del metodo on(),
+	que dependiendo de la forma en que se le use, provocara
+	variados funcionamientos
+-->
+	<link rel="stylesheet" type="text/css" href=""/>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		$(document).on("ready",function(){
+			var ul=$("ul#ul_id");//Este objeto referencia.//con $("ul")[0] no se produce el mismo resultado
+			var ul_=$("ul")[0];//es un objeto que referencia a un nodo <ul>.Notar que se diferencia del  objeto ul pues los metodos de jquery no se pueden implementar de forma correcta.
+			ul_=$(ul_);
+			console.log(ul_.tagName+"\n"+ul.tagName);
+			ul.css({
+				'width':'150px',
+				'height':'350px',
+				'background':'#EEB988',
+			});
+			ul.on("click",">a",function(evento){
+				/*
+				>a //Crea el escucha click sobre los nodos <a> que sean hijos(descendientes directos) del objeto/nodo ul
+				li a //Crea el escucha del click sobre los objetos nodos <a> que sean descendientes(directos e indirectos) del objetio nodo <li> 
+				..se podria ser aun mas exclicito con una infinidad de selectores distintos
+				indicando a nodos descendientes siempre del objeto/nodo ul.
+ 				*/
+				evento.preventDefault();//detengo el metodo por defecto del <a> (redireccionar)
+				console.log("click sobre <a> "+evento.pageX+" ; "+evento.clientY);
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="web">
+		<ul id="ul_id">
+			<li><a href="#">a__ 1</a></li>
+			<li><a href="#">a__ 2</a></li>
+			<li><a href="#">a__ 3</a></li>
+			<li><a href="#">a__ 4</a></li>
+		<a href="#">a__ 5</a>
+		<a href="#">a__ 6</a>
+		</ul>
+
+	</div>
+</body>
+</html>
+

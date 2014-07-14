@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="jquery.masonry.min.js"></script>
+	<script>
+		$(document).on('ready',function(){
+			$('#web').masonry({
+				itemSelector:'.item',
+				isAnimated:true,
+				animationOptions:{
+					duration:200
+				},
+				columnWidth:function(containerWidth){
+					return containerWidth/10
+				}
+			});
+
+		});
+
+	</script>
+	<style>
+	*{margin: 0;padding:0;border:0;}
+		#web{
+			width: 96%;
+			background:#F1EFED;
+			margin: 0 auto;
+		}
+		.item{
+			min-width: 200px;
+			float: left;
+			background: #F99F64;
+			height: 200px;
+		}
+		#web>.item:nth-child(2n+1){
+			height: 350px;
+			background: #6784F5;
+
+		}
+	</style>
+</head>
+	<body>
+	<div id="web">
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	  <div class="item">...</div>
+	</div>
+	</body>
+</html>

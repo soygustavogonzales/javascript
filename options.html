@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1">
+	<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap.css">
+	<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap-theme.css">
+	<style>
+		*{
+			box-sizing:border-box;
+		}
+
+	</style>
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	<div id="web">
+		<div ng-controller="Contacts">
+			<input type="search" ng-model="search">
+			<select ng-model="selected_person" 
+											ng-options="person.name for person in people | filter:search">
+							<option ng-model="$first">Choose a person</option>
+			</select>
+			<select ng-model="university" ng-options="u.name for u in univs"></select>
+			<select ng-model="escritores">
+				<option>seleccione</option>
+				<option ng-repeat="e in escritores">{{e}}</option>
+			</select>
+			<hr>
+			<label>Name: </label>
+			<input type="text" ng-model="selected_person.name">
+			<br>
+			<label>Number: </label>
+			<input type="text" ng-model="selected_person.number">
+		</div>
+		<script>
+			var Contacts = function($scope){
+				$scope.active = "true";
+				$scope.people = [
+					{name:"Tom Ashworth", number:"123456778"},
+					{name:"Linc Taylor", number:"0987654321"},
+					{name:"Roth Jansen", number:"123450000"}
+				];
+
+				$scope.univs = [
+						{name:'usmp'}
+					,{name:'pucp'}
+					,{name:'ucv'}
+					,{name:'unmsm'}
+				];
+
+				$scope.escritores = [
+						'elegir',
+						'garcia lorca',
+						'vallejo',
+						'valdelomar',
+						'vargas',
+						'ribeyro',
+				]
+			}//Contacs
+		</script>
+	</div>
+</body>
+</html>

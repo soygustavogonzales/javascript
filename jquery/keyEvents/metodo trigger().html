@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<style>
+		.cajita{
+			width:150px;
+			height: 150px;
+			background: #E27E70;
+		}
+		input[type="color"]{
+			//display: none;
+			visibility: hidden;
+			width: 0;
+			height: 0;
+			border: 0;
+			padding: 0;
+			margin: 0;
+			box-sizing:border-box;
+		}
+	</style>
+  	<script src="polyfill_keyEvent.js"></script>
+  	<script>window.jQuery||document.write('<script src="../jquery-2.0.3.js"><\/script>')</script>
+	<script>
+		$(document).on('ready',function(){
+			var cajita=$('.cajita');
+			cajita.on('click',function(){
+				console.log('hiciste click en cajita');
+			});
+
+			var clikeador = setInterval(function(){
+				console.info("trigger disparado");
+				cajita.trigger('click');//este disparador hara q se produzca el evento click del objeto cajita.
+			},200);
+			setTimeout(function(){
+				clearInterval(clikeador,40000);
+			},2000);
+
+			var boton = $('input[type="button"]');
+			var colorPicker = $('input[type="color"]');
+			console.log(boton);
+			boton.on("click",function(){
+				colorPicker.trigger('click');
+			})
+			var inputXXX = $('#foo')
+			inputXXX.keyup(function(e) {
+				e.stopPropagation()
+				console.log(e);
+			});
+			var e = $.Event('keyup')
+			e.which = 65
+			e.keyCode = 65
+			inputXXX.trigger(e)
+			var body = document.body
+			$(body).keyup(function(e) {
+				console.log(e);
+			});
+			var timer = setInterval(function(){
+				var keyEvent = new KeyboardEvent("keyup",
+				{
+					key:"a",
+					char:"a",
+					shiftkey:true
+				})
+				body.dispatchEvent(keyEvent)
+			},900);
+			setTimeout(function(){
+				clearInterval(timer);
+			}, 5000);
+				
+		});
+	</script>
+</head>
+<body>
+	<div id="web">
+			<div class="cajita"></div>
+			<input type="color">
+			<input type="button",value="trigger">
+			<input type="text" id="foo">
+	</div>
+</body>
+</html>
+

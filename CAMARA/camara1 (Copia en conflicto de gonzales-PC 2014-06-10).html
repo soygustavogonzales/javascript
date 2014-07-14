@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<style>
+	video{
+		width:500px;
+		height:500px;
+		border-radius: 10px;
+		box-shadow: 1px 2px 3px #9A9A8F;
+		background:#0B0B0B;
+	}
+	video:hover{
+		box-shadow: 6px 4px 10px #9A9A8F;
+		opacity: .9;
+	}
+	</style>
+</head>
+	<body>
+		<video autoplay controls loop>
+			 <!--  
+			--> 
+		Tu navegador no soporta video de HTML5			
+		</video>
+	</body>
+	<script>
+	var video=document.querySelector('video');
+	navigator.getUserMedia=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia;
+	window.URL=window.URL||window.webkitURL;
+	function success(stream){
+		video.src=window.URL.createObjectURL(stream);
+	}
+	function fallback(){
+		console.log("se ejecutara el fallback");
+		video.src="videos/dizzy.mp4";
+	}
+	if(navigator.getUserMedia)
+	{//si esta definido
+		console.log('si esta definido')
+		console.log(window.URL);
+		navigator.getUserMedia({
+			video:true,
+			audio:true,
+		},success,fallback);
+		
+	}else{
+		console.log("MSJ1:no soporta getUserMedia");
+	}
+	</script>
+</html>

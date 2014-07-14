@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+	/*
+		El $.extend(obj1,obj2,obj3,...,objN) arrojara un objeto, que es el resultado de la 'combinacion' de los atributos
+		de los objetos pasados por parametros(obj1,obj2,...). Donde el ultimo objeto, chancara o sobreescribira los atri-
+		butos que tenga en comun con los otros objetos anteriores a el.
+	*/
+		var obj1={
+			name:'erick',
+			age:22,
+			lastname:'gonzales',
+			dni:'343453493',
+		};
+		var obj2={
+			name:'omar',
+			age:21,
+			email:'omar@gmail.com',
+		};
+		var obj3={
+			name:'carlos',
+			lastname:'torres',
+			dni:null,
+			age:undefined,//el undefined no se toma en cuenta,por lo tanto el value de este key no sobreescribira al value de un key igual en un objeto anterior.
+		}
+		var oPersona=$.extend(obj1,obj2,obj3);
+		console.info(oPersona);
+		/***OUTPUT:
+			oPersona={
+				name:'carlos',
+				lastname:'torres',
+				age:21,
+				email:'omar@gmail.com',
+				dni:'343453493',
+			}
+			*Explicacion:
+			Se evalua cuales son los atributos con el mismo key(clave) que tienen los ojetos pasados por
+			parametros, 
+		*/
+		/*_________________________________________*/
+		function validatorUndefined(oDefaults,oValidar){
+			var index=null;
+			for(index in oValidar){
+				oValidar[index]=oValidar[index]||oDefaults[index];
+			}
+			for(index in oDefaults){
+				oValidar[index]=oValidar[index]||oDefaults[index];
+			}
+			return oValidar;
+		}
+		function metodo(argumentos){
+			var defaults={
+				name:'unknown',
+				lastname:'unknown',
+				surname:'unknown',
+				dni:'unknown',
+				age:'unknown',
+				humano:true,
+				email:'unknown',
+			};
+			argumentos=validatorUndefined(defaults,argumentos);
+			console.log(typeof(argumentos)),//arroja object
+			console.warn("NAME: "+argumentos.name+"\n"+//arroja la cadena 'gustavo'
+						"LASTNAME: "+argumentos.lastname+"\n"+
+						"AGE: "+argumentos.age+"\n"+
+						"OCUPATION: "+argumentos.ocupation+"\n"+
+						"EMAIL: "+argumentos.email+"\n"+
+						"DNI: "+argumentos.dni+"\n"
+			);
+		}
+		metodo({//llamando al metodo
+			name:'gustavo',
+			lastname:'gonzales',
+			age:22,
+			ocupation:'programador:frontend',
+		});
+		function metodo2(options){//una forma mas limpia y eficiente de crear una funcion.
+			/*
+				options: Un objeto literal o JSON.
+			*/
+			var defaults={//estos seran los valores por defecto.En caso no se hayan especificado al pasarlos como parametros.
+				name:'unknown',
+				surname:'unknown',
+				lastname:'unknow',
+				age:undefined,
+				ocupation:'unknow',
+				dni:'unknow',
+			};
+			options=$.extend(defaults,options);
+			console.info("name: "+options.name+"\n"+
+						",surname: "+"\n"+options.surname+"\n"+
+						", lastname: "+options.lastname+"\n"+
+						", age: "+options.age+"\n"+
+						", ocupation: "+options.ocupation+"\n"+
+						", dni: "+options.dni+"\n"
+						);
+		}	/*LLAMANDO A METODO DE DISTINTAS FORMAS, SIN IMPORTAR EL ORDEN ENEL QUE SEAN PASADOS LOS ARGUMENTOS*/
+			metodo2();//SIN ARGUMENTOS, los parametros tomaran el valor dispuesto en el objeto defaults que esta dentro de la funcion
+			metodo2({surname:'gonzales',lastname:'davalos',age:22,ocupation:'student',dni:'434532343'});
+			metodo2({name:'gustavo',lastname:'gonzales',});
+
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

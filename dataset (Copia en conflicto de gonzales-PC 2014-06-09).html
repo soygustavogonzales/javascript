@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<!--
+		En este ejercicio se muestra como se trabaja con los data atributes del html5
+		
+		La sintaxis de los data atributos en el html es como sigue:
+		ejemplo en un <ul>:
+		<ul id="soyUl" data-atributo1="valor1" data-atributo2="valor2" data-atributoN="valorN">
+
+		y con javascript obtengo el valor del data-atributo1 asi:
+		var nodoUl=document.getElementById("soyUl");
+		console.log(nodoUl.dataset.atributo1);//arroja valor1
+	-->
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+	<script src=""></script>
+	<script>
+	window.addEventListener("load",function(){//espero que se cargue el dom de la pagina
+		var elemento=document.getElementById("elemento");//selecciono el nodo con id=elemento
+		console.log("elemento.dataset.name : "+elemento.dataset.name);//arrojaria gustavo
+		console.log("elemento.dataset.age : "+elemento.dataset.age);//arrojaria 22
+		console.log("elemento.dataset.dateOfBorn : "+elemento.dataset.dateOfBorn);//arrojaria "31/07/1990"
+		elemento.dataset.dateOfBorn="1990/07/31";//le cambio el valor del atributo data-date-of-born="31/07/1990"
+		console.log("elemento.dataset.dateOfBorn : "+elemento.dataset.dateOfBorn);//arrojaria "1990/07/31"
+		console.log("other in elemento.dataset : "+('other' in elemento.dataset));//arrojaria true
+		elemento.dataset.atributo1="value1";//le creo un data atribute llamado otroData, se verifica que al observar el dom(por consola) del documento si que se ha incluido este nuevo data atribute
+		elemento.setAttribute("data-atributo2","value2");
+		console.log("atributo1 in elemento.dataset : "+('atributo1' in elemento.dataset));
+		console.log("atributo2 in elemento.dataset : "+('atributo2' in elemento.dataset));
+
+
+	},false);
+	</script>
+</head>
+<body>
+	<div id="web">
+		<div id="elemento" data-name="gustavo" data-age="22" data-ocupation="student" data-date-of-born="31/07/1990" data-other="xx" data-dni="46463112"></div>
+	</div>
+</body>
+</html>
+

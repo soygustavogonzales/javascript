@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        show. console
+    </div>
+    <script>
+        var obj = {
+            a:4,
+            getb :function(a,b){
+                this.a = a;
+                this.b = this.a/2;
+
+            }
+
+        }
+        var ob = new obj.getb();
+        console.log(obj.getb())
+        ob.a = 6;
+        console.log(ob.b)
+    </script>
+</body>
+</html>

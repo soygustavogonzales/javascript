@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app lang="en"><!-- ng-app es para angularjs sino no funcionara -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=devide-width, initial-scale=1, maximun-scale=1">
+	<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap.css">
+	<link rel="stylesheet" href="bootstrap-3.0.2/css/bootstrap-theme.css">
+	<script src="angular.min.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<input type="checkbox" ng-model="checked">
+	<label for="">show?</label>
+	<div ng-show="checked">Hello world!!</div>
+	<br>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-9">
+							<input ng-model="name" type="text" class="form-control" placeholder="name">
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+						<input type="checkbox" ng-model="checked1">
+						<label for="">Hide?</label>
+						<div ng-hide="checked1">Hello {{name || "gustavo"}}!!</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

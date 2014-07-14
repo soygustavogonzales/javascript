@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+
+		function tab(pestana,panel)
+			{
+			 pst = document.getElementById(pestana);
+			 pnl = document.getElementById(panel);
+			 psts = document.getElementById('tabs').getElementsByTagName('li');
+			 pnls = document.getElementById('paneles').getElementsByTagName('div');
+
+			 /* psts.length //para ssaber cuantos elementos tiene la coleccion , imprime 4*/
+			 /* pnls.length para ssaber cuantos elementos tiene la coleccion,  imprime 4*/
+			// eliminamos las clases de las pestañas
+			for(i=0; i< psts.length; i++)
+			{
+			// Para evitar meternos en temas de dom
+			// hacemos que la clase sea vacío
+			 psts[i].className = '';
+			 console.log(psts[i])
+			}
+
+			// Añadimos la clase "actual" a la pestaña activa
+			 pst.className = 'actual';
+
+			// ocultamos todos los paneles
+			for(i=0; i< pnls.length; i++)
+			{
+			 pnls[i].style.display = 'none';
+			}
+
+			// Y mostramos el panel que nos interesa
+			 pnl.style.display = 'block';
+			}
+	</script>
+	<script type="text/javascript">
+		 tab('tab_01','panel_01');
+	</script>
+	<style type="text/css">
+		
+			/* tamaño y forma del panel principal */
+			#panel {
+			position: relative;
+			width:400px;
+			height: 300px;
+			}
+
+			/* configuracion de las pestañas */
+			#tabs {
+			position:absolute;
+			left: 0px;
+			top: 0px;
+			margin:0;
+			padding:0;
+			width: 400px;
+			height: 24px;
+			z-index: 20;
+			}
+			 #tabs>li {
+			float:left;
+			height: 23px;
+			padding-left: 8px;
+			list-style: none;
+			margin-right: 1px;
+			background: #E77036;
+			}
+			 #tabs>.actual {
+			height: 24px;
+			background: #8955F4;
+			}
+			 #tabs>li>a {
+			display: block;
+			/* hack para ie6 */
+			 .display: inline-block;
+			/* fin del hack */
+			height: 23px;
+			line-height: 23px;
+			padding-right: 8px;
+			outline: 0px none;
+			font-family: arial;
+			font-size: 10px;
+			text-decoration: none;
+			color: #000;
+			background:#E29638;
+			}
+
+			 #tabs>.actual>a {
+			height: 24px;
+			line-height: 24px;
+			background: #A8DE1B;
+			cursor: default;
+			}
+
+			/* Configuración de los paneles */
+			 #panel>#paneles {
+			position:absolute;
+			left: 0px;
+			top: 23px;
+			width: 398px;
+			height: 275px;
+			border: 1px solid #91a7b4;
+			background: #fff;
+			overflow: hidden;
+			//z-index: 10px;
+			}
+			 #panel>#paneles>div {
+			margin:10px;
+			width: 378px;
+			height: 255px;
+			font-family: arial;
+			font-size: 12px;
+			text-decoration: none;
+			color: #000;
+			overflow: auto;
+			}
+	</style>
+</head>
+<body>
+	
+		<div id="panel">
+			<ul id="tabs">
+				<li id="tab_01"><a href="javascript:tab('tab_01','panel_01');">opción 1</a></li>
+				<li id="tab_02"><a href="javascript:tab('tab_02','panel_02');">opción 2</a></li>
+				<li id="tab_03"><a href="javascript:tab('tab_03','panel_03');">opción 3</a></li>
+				<li id="tab_04"><a href="javascript:tab('tab_04','panel_04');">opción 4</a></li>
+			</ul>
+			<div id="paneles">
+				<div id="panel_01">panel para la opción 1</div>
+				<div id="panel_02">panel para la opción 2</div>
+				<div id="panel_03">panel para la opción 3</div>
+				<div id="panel_04">panel para la opción 4</div>
+			</div>
+		</div>
+</body>
+</html>

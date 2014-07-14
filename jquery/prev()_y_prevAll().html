@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href=""/>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  	<script>
+  			$(document).on('ready', function() {
+  				var li03=$('ul.lista1>li.li03');
+  				li03.prev().css('color','red');//cojo al hermano anterior al nodo li03 y le doy estilos
+  				var li03_2=$('ul.lista2>li.li04')
+  				var anteriores=li03_2.prevAll();//cojo a todos los hermanos anteriores al li03_2
+  				anteriores.css('color','green');//le doy estilos
+  			});
+  	</script>
+</head>
+<body>
+	<div id="web">
+		<ul class="lista1">
+			<li class="li01">list1</li>
+			<li class="li02">list2</li>
+			<li class="li03">list3</li>
+			<li class="li04">list4</li>
+			<li class="li05">list5</li>
+		</ul>
+		<ul class="lista2">
+			<li class="li01">list1</li>
+			<li class="li02">list2</li>
+			<li class="li03">list3</li>
+			<li class="li04">list4</li>
+			<li class="li05">list5</li>
+		</ul>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<script>
+	/*
+		La funcion se hace autoejecutable al colocarle:
+		encerrarla en () y añadiendole la final de su 
+		definicion otros (). Ejm:
+
+		(
+			function(p1,p2){
+				//el codigo...
+			}
+		)//AQUI NO VAN (;)
+		('soy_p1','soy_p2');//AQUI SI VAN (;)
+
+		tambien se le pueden pasar parametros.
+	*/
+		(
+			function(a,b,c){
+				console.log("hello word: "+a+' ; '+b+' ; '+c);
+			}
+		)//cuidado !AQUI NO SE COLOCAN (;)¡
+		('uno','dos','tres');
+
+		(function metodo(a){
+			console.log('hello '+a);
+		})('gustavo');
+
+		var metodo2=(function(a){
+			console.log('bye '+a);
+			//console.log(typeof(metodo2));
+		})('omar');
+			//metodo2();//arroja error pues metodo2 no es una funcion
+			console.log("correcto");
+			console.log(typeof(metodo2));//arroja undefined
+
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		
+	</body>
+</html>

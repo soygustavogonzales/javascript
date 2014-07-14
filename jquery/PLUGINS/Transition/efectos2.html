@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+		<script>window.jQuery || document.write('<script src="jquery-1.9.1.min.js"><\/script>')</script>
+		<script src="jquery.transit.min.js"></script>
+
+	<script>
+		$(document).on('ready',function(){
+			var newDiv=$('<div></div>');
+			newDiv.css({
+				'width':'200px',
+				'height':'200px',
+				//'background':'#E8BC82',
+				'background-image':'url(tierra.jpg)',
+				'background-size':'120%',
+				'background-position':'-12px -18px',
+				'background-attachment':'scroll',
+				'border-radius':'50%',
+				//'border-left':'15px solid #D9ED65',
+				'box-shadow':'inset 10px 8px 8px #1C1D19',
+			});
+			$('body').append(newDiv);
+			console.info('es correcto');
+			setTimeout(function(){
+				newDiv.transition({
+						//perspective:'100px',
+						rotate:'+=10deg',
+				},100);
+				console.info("correcto2");
+				setTimeout(arguments.callee,80);
+			},900);
+			
+		});
+	</script>
+	<style>
+	</style>
+</head>
+	<body>
+		<div class="caja"></div>
+		<div class="caja"></div>
+	</body>
+</html>

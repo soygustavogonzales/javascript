@@ -1,0 +1,22 @@
+{
+  "name": "raphaeljs",
+  "version": "0.0.0",
+  "description": "svg with raphaeljs",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies":{
+    "gulp":"latest",
+    "gulp-connect":"latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "svg",
+    "raphalejs"
+  ],
+  "author": "@gagdgonda",
+  "license": "ISC"
+}

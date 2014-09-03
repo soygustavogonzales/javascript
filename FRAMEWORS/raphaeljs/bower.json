@@ -1,0 +1,26 @@
+{
+  "name": "raphaeljs",
+  "version": "0.0.0",
+  "homepage": "https://github.com/soygustavogonzales/javascript",
+  "authors": [
+    "Gustavo <gustavo.gonda@gmail.com>"
+  ],
+  "description": "svg vectorial",
+  "main": "index.html",
+  "keywords": [
+    "svg",
+    "raphaeljs"
+  ],
+  "dependencies":{
+    "raphael":"latest",
+    "jquery":"latest"
+    },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

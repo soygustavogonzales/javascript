@@ -24,11 +24,11 @@
         </style>
 	</head>
 	<body>
-		<h1 class="text-center">Saludos desde la matrix</h1>
+		<h1 class="text-center">!Saludos desde la matrix</h1>
         <i class="boton glyphicon glyphicon-chevron-left"></i>
         <div class="nota well well-md"></div>
         <div class="" ng-controller="ctrlBoton">
-          <dir-boton forward="{{next}}" backward="" icon="'glyphicon glyphicon-chevron-left'"></dir-boton>
+          <dir-boton forward="" backward="right" icon="'glyphicon glyphicon-chevron-right'"></dir-boton>
         </div>
 
         <script src="../jquery-1.9.1.min.js"></script>
@@ -38,14 +38,22 @@
         var myapp = angular.module("myapp",[]);
 
         myapp.controller("ctrlBoton",['$scope',function($scope){
-            var i = 0 ,j = 0;
-            $scope.next = function(){
+            var i = 0 ,j = 0,k = 0,l = 0;
+            $scope.up = function(){
                 i++
-                $('.nota').text("next: "+i)
+                $('.nota').text("up: "+i)
             }
-            $scope.prev = function(){
+            $scope.down = function(){
                 j++
-                $('.nota').text("prev: "+j)
+                $('.nota').text("down: "+j)
+            }
+            $scope.right = function(){
+                k++
+                $('.nota').text("right: "+k)
+            }
+            $scope.left = function(){
+                l++
+                $('.nota').text("left: "+l)
             }
         }])
 
@@ -56,14 +64,19 @@
                 templateUrl:'templateBoton.html',
                 scope:{
                     forward:'=',
-                    reward:'=',
+                    backward:'=',
                     icon:'='//glyphicon,font awesone icons
                 },
                 link:function(scope,ele,attr){
                     console.log(ele)
-                    console.log(scope.forward)
+                    console.log(scope)
                     console.log(attr)
-                    //console.log(eval("scope.forward+'()'"))
+                    $(ele).find('span').click(function(){
+                        var r = Math.random()*(100-0+1)+0;
+                        console.log("click ..." + r)
+                        var method = scope.backward || scope.forward;
+                        method();
+                     })
                 }
             }
         }])

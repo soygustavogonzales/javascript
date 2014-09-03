@@ -8,8 +8,8 @@ gulp.task('connect',function(){
 	});
 })
 
-gulp.task('html',function(){
-	gulp.src('examples/*.html')
+gulp.task('allFiles',function(){
+	gulp.src('examples/**/*.*')
 		.pipe(connect.reload())
 })
 
@@ -18,7 +18,7 @@ gulp.task('default',function(){
 	//gulp.run('html')
 
 
-	gulp.watch('examples/*.html',function(){
-		gulp.run('html')
+	gulp.watch('examples/**/*.*',function(){
+		gulp.run('allFiles')
 	})
 })

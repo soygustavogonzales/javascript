@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+			border:0;
+			padding: 0;
+			margin: 0;
+			box-sizing:border-box;
+	}
+	html,body{
+		background: #D3CECE;
+		width: 100%;
+		height: 100%;
+		overflow-y:hidden;
+	}
+	.circle{
+		background:#E97350;
+		width: 2.5em;
+		height: 2.5em;
+		border-radius: 1%;
+		position: absolute;
+		box-shadow: 0 0 .9em #333;
+	}
+	.container{
+		width: 49.8%;
+		height: 100%;
+		padding: .9em;
+		display: inline-block;
+		background: #D3CECE;
+	}
+	.container .cont {
+			border:.4em dashed #eee;
+			width: 100%;
+			height: 100%;
+	}
+	</style>
+</head>
+<body>
+	<section class="container left">
+		<div class="cont">
+			<div class="circle" draggable="true"></div>
+			<div class="circle" draggable="true"></div>
+			<div class="circle" draggable="true"></div>
+			<div class="circle" draggable="true"></div>
+			<div class="circle" draggable="true"></div>
+		</div>
+	</section>
+	<section class="container right">
+		<div class="cont"></div>
+	</section>
+	<script>
+	var conf = {
+		clon: false//las figuras movidas seran clones y no estas mismas
+	}
+	var l = function(msj){
+		console.log(msj)
+	}
+	var bolitas = document.querySelectorAll('.left .cont .circle')
+	var cright = document.querySelector('.right .cont')
+	var eleActual
+	//console.log(Object.prototype.toString.call(bolitas))
+	for (bola in bolitas){
+		if(!isNaN(bola)){
+			//console.log(bolitas.item(bola))
+			var y = random(0,document.body.clientHeight) + "px";
+			var x = random(0,document.body.clientWidth/2) + "px";
+			bolitas.item(bola).ondragstart = function(e){
+				//console.log("drag start")
+				//console.log(e.dataTransfer)
+				//e.dataTransfer.setData('ele',JSON.stringify(this))
+				this.style.transform = "scale(1.199)"
+				eleActual = (conf.clon)?this.cloneNode():this;
+			}
+			bolitas.item(bola).ondragenter = function(e){
+				//console.log("drag enter")
+				//console.log(e.dataTransfer)
+			}
+			//console.log(x+" "+y)
+			bolitas.item(bola).style.top = y
+			bolitas.item(bola).style.left = x
+		}
+		else{
+			break
+		}
+	}
+
+	function random(min,max) {
+		min = min;max = max - 50
+		return Math.round((Math.random()*(max-min))+min)
+	}
+	cright.ondragover = function(e){
+		l("dragover en cright")
+			e.stopPropagation()
+			e.preventDefault()
+			e.dataTransfer.dropEffect = 'copy'//cambio el puntero del mouse
+		//l(e.dataTransfer)
+		this.style.border = ".6em dashed #5AF871"
+	}
+	cright.ondrop = function(e){
+		l("drop en cright")
+		l(e)
+			e.stopPropagation()
+			e.preventDefault()
+			e.dataTransfer.dropEffect = 'copy'
+			//l(e.dataTransfer.getData('ele'))
+			var clon = eleActual
+			l(clon)
+			var y = random(0,this.clientHeight) + "px";
+			var x = random(cright.clientWidth,document.body.clientWidth) + "px";
+			clon.style.left = e.x + "px"
+			clon.style.top = e.y+ "px"
+			clon.style.background = "#F14999";
+			this.appendChild(clon)
+			this.style.border = ".4em dashed #eee"
+
+		//l(e.dataTransfer)
+		//l(e.dataTransfer)
+	}
+	cright.ondragstart = function(e){
+		l("dragstart en cright")
+		//l(e.dataTransfer)
+	}
+	cright.ondragend = function(e){
+		l("dragend en cright")
+		this.style.border = ".4em dashed #eee"
+		//l(e.dataTransfer)
+	}
+	cright.ondraenter = function(e){
+		l("dragenter en cright")
+		//l(e.dataTransfer)
+	}
+	cright.ondragleave = function(e){
+		l("dragleave en cright")
+		//l(e.dataTransfer)
+	}
+	cright.ondrag = function(e){
+		l("drag en cright")
+		//l(e.dataTransfer)
+	}
+	//container_left.children
+	</script>
+</body>
+</html>

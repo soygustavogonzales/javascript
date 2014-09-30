@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="file" id="files" name="files[]" multiple>
+	<output id="list"></output>
+<script>
+	if(window.File&&window.FileReader&&window.FileList&&window.Blob)
+		app();
+	else
+		console.log("Your browser do not support the FILEapi of HTML5")
+
+	function app() {
+		var handleFileSelect = function(evt){
+			var files = evt.target.files;
+			var output = []
+			for (var i = 0,f; f = files[i]; i++) {
+				output.push('<li><strong>',escape(f.name),'</strong>(',
+																	f.type||'n/a',')-',
+																	f.size,' bytes,last modified: ',
+																	f.lastModifiedDate.toLocaleDateString(),'</li>')
+			};
+			document.getElementById('list').innerHTML = '<ul>'+output.join("")+'</ul>'
+		}
+	
+			document.getElementById('files').addEventListener('change',handleFileSelect,false)
+	}
+</script>	
+</body>
+
+</html>

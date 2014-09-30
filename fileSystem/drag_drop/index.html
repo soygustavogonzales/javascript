@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		padding: 0;
+		border: 0;
+		margin: 0;
+		box-sizing:border-box;
+	}
+	html,body{
+		height: 100%;
+		width: 100%;
+	}
+	.dataFile {
+			background: #ecf0f1;
+			padding: .4em;
+			height: 100%;
+			width:100%;
+			display: table;
+	}
+		#drop_zone {
+			border: 3px dashed #bdc3c7;
+			width: 100%;
+			height: 100%;
+			padding: .5em;
+			text-align: center;
+			text-decoration: overline;
+			font-size: 2.3em;
+			font-weight: 700;
+			color:#bdc3c7;
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.thumb {
+			height: 100%;
+		}
+		#list{
+			height: 25%;
+			width:100%;
+			background:rgba(0,0,0,.5);
+			position: absolute;
+			bottom: 15%;
+		}
+	</style>
+</head>
+<body>
+	<div class="dataFile">
+		<div id="drop_zone">Drop files here</div>
+	</div>
+		<output id="list" draggable="true"></output>
+		
+	<script>
+		var handleFileSelect = function(evt) {
+			console.log("drop event")
+			evt.stopPropagation()
+			evt.preventDefault()
+				console.log(evt)
+			var files  = evt.dataTransfer.files;
+				console.log(files)
+			var output = []
+			for (var i = 0,f;f = files[i]; i++) {
+				console.log(f)
+				console.log(!!f.type.match(/image.*/ig))
+				if(!f.type.match(/image.*/ig)){
+					continue;
+				}
+				var reader = new FileReader();
+								reader.onload = (function(theFile){
+									return function(e){
+											var span = document.createElement('span');
+											span.innerHTML = ['<img class="thumb" draggable="true" src="',
+																													e.target.result,
+																													'" title = "',escape(theFile.name),'"/>'].join('');
+											document.getElementById('list').insertBefore(span,null)
+											console.log(span)
+									}						
+								})(f)
+				reader.readAsDataURL(f)
+			};
+		}
+
+		function handleDragOver(evt){
+			console.log("drag over")
+			evt.stopPropagation()
+			evt.preventDefault()
+			evt.dataTransfer.dropEffect = 'copy'
+		}
+		
+			var dropZone = document.getElementById('drop_zone')
+			dropZone.addEventListener('dragover',handleDragOver,false)
+			dropZone.addEventListener('drop',handleFileSelect,false)
+			/*
+			dropZone.addEventListener('dragstart',function (evt) {console.log("start drag");console.log(evt);},false)
+			dropZone.addEventListener('drag',function(){console.log("drag")},false)
+			dropZone.addEventListener('dragend',function(){console.log("drag end")},false)
+			dropZone.addEventListener('dragenter',function(){console.log("drag enter")},false)
+			dropZone.addEventListener('dragleave',function(){console.log("drag leave")},false)
+
+			list.addEventListener('dragover',function (evt) {
+				console.log("dragg over");
+			},false)
+			list.addEventListener('drop',function (evt) {
+				console.log("drop")
+			},false)
+			list.addEventListener('drag',function(){
+				console.log("drag");
+			},false)
+			list.addEventListener('dragend',function(e){
+					console.log("drag end");
+					this.style.background = "rgba(0,0,0,.5)";
+					console.log(this)
+					console.log(e)
+					console.log(e.x +' : ' +e.y)
+				},false)
+			*/
+			var list = document.getElementById('list')
+			list.addEventListener('dragenter',function(){console.log("drag enter")},false)
+			list.addEventListener('dragleave',function(){console.log("drag leave")},false)
+			list.addEventListener('dragstart',function (e) {
+				console.log("start drag");
+				this.style.background = "#e74c3c"
+			},false)
+	</script>
+</body>
+</html>

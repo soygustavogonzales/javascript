@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html,body{
+			width: 100%;
+			height: 100%;
+			background-color: #FFA851;
+		}
+	</style>
+</head>
+<body>
+	<script>
+			var body = document.body;
+			var handler = function(a,b,c,event){
+				with(console){
+					log(a)
+					log(b)
+					log(c)
+					log(event)
+				}
+			}
+			//body.addEventListener('click',handler.bind(null,1,2,3),false);//CORRECTO
+			//body.onclick = handler.bind(null,1,2,3)//CORRECTO
+			//body.onclick = handler(null,1,2,3)//INCORRECTO, aunque no arroja error y el trigger no existe
+	</script>
+</body>
+</html>

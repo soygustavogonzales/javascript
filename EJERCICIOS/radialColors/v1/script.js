@@ -55,14 +55,14 @@
           $point.text(count)
           $("#center").append($point);
 
-          $('#output_css').append( '<div>li:nth-child(' + (count) + ') { left:'+ parseFloat(x - parent_x).toFixed(2) +'px; top:'+ parseFloat(y - parent_y).toFixed(2) +'px; }</div>');
+         // $('#output_css').append( '<div>li:nth-child(' + (count) + ') { left:'+ parseFloat(x - parent_x).toFixed(2) +'px; top:'+ parseFloat(y - parent_y).toFixed(2) +'px; }</div>');
 
           count = count + 1;
         }
 
-        $('#pol').html(points);
-        $('#ral').html(radius);
-        $('#rol').html(rotate);
+        //$('#pol').html(points);
+        //$('#ral').html(radius);
+        //$('#rol').html(rotate);
       }
 
       function update_points(num) {
@@ -79,7 +79,7 @@
         draw_points(points, radius, rotate);
       }
       //window.update_rotate = update_rotate;
-
+/*
       $("#points").bind("slider:changed", function (event, data) {
         //console.log('miles: ' + data.value);
         update_points(data.value);
@@ -92,6 +92,7 @@
         //console.log('miles: ' + data.value);
         update_rotate(data.value);
       });
+*/
 
       update_points(10)
         
@@ -101,7 +102,7 @@
 
           update_radius(r_)
           update_rotate(a*2.8)
-          r_ = r_+ (a / 1.8)
+          r_ = r_+ (a / 3.4)
           a++
         },15)
         setTimeout(function(){

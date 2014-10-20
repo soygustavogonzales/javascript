@@ -3,10 +3,12 @@
       padding: 0;
       line-height: 1;
     }
-    html {
+    html,body {
       font-family: "Helvetica-Neue", sans-serif;
       font-size: 62.5%;
       background: #f0f0f0;
+      width: 100%;
+      height: 100%;
     }
     h1 {
       font-size: 3.4em;
@@ -75,12 +77,16 @@
     .safe_container {
       padding:13px;
     }
-    #objeto{
+    #radialColors{
+      margin: auto;
       position: absolute;
-      left: 45em;
+      bottom: auto;
+      top: 29%;
+      left: 43%;
+      right:auto;
     }
     .hide {
-      display: block;
+      display: none;
       visibility: hidden;
     }
     .circle_container {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var Net  = function(x){
+		this.x = x
+	}
+
+	Net.prototype.myMethod = function() {
+		console.log(this.x)
+
+		var _private = function(){
+			/*en este scope, la palabra reservada this hace referencia 
+			al objeto window mas no al objeto instanciado de la clase Net*/
+			console.log(this.x)
+		}
+		_private.bind(this)()//con bind se le ancla el objeto this al scope de _private
+		_private()
+
+	};
+
+	var myNet = new Net(5);
+	myNet.myMethod()
+
+	//5
+	//5
+	//undefined
+
+	</script>	
+</body>
+</html>

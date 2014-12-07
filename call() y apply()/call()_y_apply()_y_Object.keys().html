@@ -22,6 +22,8 @@
 		var obj={base:4,exp:2};
 		console.group('GRUPO1');//con call()
 				console.log(Elevar.call(obj,obj.base,3));//usar this aqui provoca un error,usar directamente el nombre del objeto
+				console.log(Elevar.call(obj,5,obj.exp));//
+				console.log(Elevar.call(obj));//
 				/*NOTA:Elevar() es tratado ahora como un metodo del objeto obj*/
 		console.groupEnd('GRUPO1');
 
@@ -32,6 +34,7 @@
 			this.email_=email;
 			this.id_=this.dni_+this.edad_;
 		}
+
 		var oGerente=new Object();//Creo al objeto oGerente, una de las tantas formas de crearlo.
 		oGerente.name_='carlos';
 		oGerente.lastname_='torres';
@@ -74,6 +77,9 @@
 				"oSecretaria.email_: "+oSecretaria.email_);
 			console.log("Object.keys(oOperario): "+Object.keys(oOperario)+'\n'+//arroja un array con los nombres de los atributos(los keys,no los values) q posee el objeto oOperario
 				"Object.keys(arrayAttributes): "+Object.keys(arrayAttributes));//arroja un array con el contenidos de los indices del array arrayAttributes
+			console.log(oOperario instanceof clsEmpleado)//false
+			var oOperario2 = new clsEmpleado();
+			console.log(oOperario2 instanceof clsEmpleado)//true
 		console.groupEnd('GRUPO3');
 	</script>
 </head>

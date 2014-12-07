@@ -3,32 +3,70 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style>
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
 </head>
 <body>
 	<script>
-	var Net  = function(x){
-		this.x = x
-	}
+	console.group("1")
+			var Net  = function(x){
+				this.x = x
+			}
 
-	Net.prototype.myMethod = function() {
-		console.log(this.x)
+			Net.prototype.myMethod = function() {
+				console.log(this.x)
 
-		var _private = function(){
-			/*en este scope, la palabra reservada this hace referencia 
-			al objeto window mas no al objeto instanciado de la clase Net*/
-			console.log(this.x)
+				var _private = function(){
+					/*en este scope, la palabra reservada this hace referencia 
+					al objeto window mas no al objeto instanciado de la clase Net*/
+					console.log(this.x)
+				}
+				var o = new _private();
+				o.x = 8;
+				_private.bind(this)()//con bind se le ancla el objeto this al scope de _private
+				_private()
+				
+			};
+
+			var myNet = new Net(5);
+			myNet.myMethod()
+
+			//5
+			//5
+			//undefined
+	console.groupEnd("1")
+
+
+	console.group("2")
+		var obj = {
+			name : "Gustavo Gonzales",
+			getName : function(){
+				
+				console.log(this)
+				console.log(Object.prototype.toString.call(this))
+				return this
+			}
 		}
-		_private.bind(this)()//con bind se le ancla el objeto this al scope de _private
-		_private()
-
-	};
-
-	var myNet = new Net(5);
-	myNet.myMethod()
-
-	//5
-	//5
-	//undefined
+	
+			obj.getName()//imprime la definicion del objeto obj
+			var f1 = obj.getName;
+			f1()//imprime la definicion del objeto window
+			var f2 = obj.getName.bind(obj)
+			f2()//imprime la definicion del objeto obj
+			var o = new obj.getName()
+			o.name = "Erick Gonzales"
+			console.log(o)
+	console.groupEnd("2")
+	console.group("3")
+		function metodo(msj){
+			console.log(msj)
+		}
+		document.body.addEventListener('click',metodo.bind(null,"hiciste click pagina"),false)
+	console.groupEnd("3")	
 
 	</script>	
 </body>

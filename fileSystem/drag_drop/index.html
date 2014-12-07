@@ -63,6 +63,7 @@
 			var output = []
 			for (var i = 0,f;f = files[i]; i++) {
 				console.log(f)
+				console.log(Object.prototype.toString.call(f))
 				console.log(!!f.type.match(/image.*/ig))
 				if(!f.type.match(/image.*/ig)){
 					continue;
@@ -70,6 +71,8 @@
 				var reader = new FileReader();
 								reader.onload = (function(theFile){
 									return function(e){
+										console.log(e)
+										console.log(theFile)
 											var span = document.createElement('span');
 											span.innerHTML = ['<img class="thumb" draggable="true" src="',
 																													e.target.result,

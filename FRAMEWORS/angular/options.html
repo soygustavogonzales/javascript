@@ -20,7 +20,7 @@
 			<input type="search" ng-model="search">
 			<select ng-model="selected_person" 
 											ng-options="person.name for person in people | filter:search">
-							<option ng-model="$first">Choose a person</option>
+							<option ng-model="$first",value="{{person.number}}">Choose a person</option>
 			</select>
 			<select ng-model="university" ng-options="u.name for u in univs"></select>
 			<select ng-model="escritores">

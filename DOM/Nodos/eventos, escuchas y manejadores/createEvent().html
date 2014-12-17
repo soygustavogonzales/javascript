@@ -38,6 +38,8 @@
 		var link = document.getElementsByClassName('link')[0];
 
 		caja.onclick=function(evento){
+			var bg = getComputedStyle(window.caja).backgroundColor;
+			evento1.bg = bg;
 			this.dispatchEvent(evento1);//disparo el evento personalizado
 			link.dispatchEvent(new MouseEvent("click"));//disparando el evento click del nodo <a>
 			console.log("evento click: "+evento);

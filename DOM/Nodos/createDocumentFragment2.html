@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href=""/>
+	<style>
+	</style>
+	<script>
+		window.addEventListener('load',function(){
+				var article1=document.getElementsByClassName('art2')[0];
+				var df=document.createDocumentFragment();
+				
+				//ul.textContent=", soy el nuevo ul";
+				//ul.innerText="hola a todos";
+				//console.log(ul.textContent);
+				
+				console.time("CONTROLLER: DocumentFragment");
+					for(var i=1;i<=10;i++){
+						var li1=document.createElement('li');
+						li1.setAttribute('class','li:'+i);
+						li1.textContent="soy li:"+i;
+						df.appendChild(li1);
+						console.log(df)
+					}
+						article1.appendChild(df);
+				console.timeEnd("CONTROLLER: DocumentFragment");
+				console.log(df)
+					//ul.appendChild(df);
+
+				
+				
+				
+		},false);
+	</script>
+</head>
+	<body>
+		<section class="sec1">
+			<article class="art2">article2
+			</article>
+		</section>
+	</body>
+</html>	

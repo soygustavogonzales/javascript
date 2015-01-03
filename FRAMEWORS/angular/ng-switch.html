@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>ng-switch</title>
+</head>
+<body>
+	<input type="text" ng-model="color">
+	<div ng-switch on="color">
+		<div ng-switch-when="red" style="color: {{color}}"><h1>RED</h1></div>
+		<div ng-switch-when="blue" style="color: {{color}}"><h1>BLUE</h1></div>
+		<div ng-switch-when="green" style="color: {{color}}"><h1>GREEN</h1></div>
+		<div ng-switch-default style="color: {{color}}"><h1>{{color}}</h1></div>
+	</div>
+	 <script src="jquery-1.9.1.min.js"></script>
+  <script src="bootstrap-3.0.2/js/bootstrap.min.js"></script>
+		<script src="angular.min.js"></script>
+</body>
+</html>

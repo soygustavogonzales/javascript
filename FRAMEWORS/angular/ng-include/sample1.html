@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es-PE" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="../bootstrap-3.0.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+ <script src="../jquery-1.9.1.min.js"></script>
+ <script src="../bootstrap-3.0.2/js/bootstrap.min.js"></script>
+	<script src="../angular.min.js"></script>
+	<script>
+		var app = 	angular.module('app', []);
+	</script>
+</head>
+<body>
+	<div ng-include="'hola.html'"></div>
+	<!-- 
+	<ng-view src="'hola.html'"></ng-view>
+	 -->
+	<script type="text/ng-template" id="hola.html">
+		<h1>HOLA DESDE TEMPLATE</h1>
+	</script>
+</body>
+</html>
